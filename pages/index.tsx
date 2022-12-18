@@ -9,7 +9,7 @@ export default function Home() {
         <meta name="description" content="Artist portfolio" />
         {/* <link rel="icon" href="/logo.ico" /> */}
       </Head>
-      <Layout />
+      <Layout > </Layout>
     </>
   );
 }

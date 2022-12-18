@@ -1,0 +1,14 @@
+.text {
+    padding: 0px 30px 0px 30px;
+    color: rgb(81, 81, 81);
+    /* text-align: left; */
+    line-height: 1.6;
+}
+
+.text p {
+    margin-bottom: 10px;
+}
+/* 
+.text img {
+    margin: 10px;
+} */
