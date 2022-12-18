@@ -7,7 +7,6 @@ export default function Bio() {
       <div className={styles.text}>
         <h2>PAST</h2>
         <p>
-          {" "}
           Was born in Moscow in a family of physicists and engineers in the
           early 90s. Studied at the department of computer music of a modern
           music school in the 2000s and exactly in this place I got my first
@@ -42,9 +41,8 @@ export default function Bio() {
           inserting elements of field recordings into sound and trying to find
           rare and strange combinations.
         </p>
-        <p>SOLO</p>
+        <h2>SOLO</h2>
         <p>
-          {" "}
           My first solo-project started in Kyiv in 2017. The first time, its
           slogan was 'Noise against war'. It was conceptual noise with an active
           anti-war agenda. Through this project, I critically rethought the
@@ -73,9 +71,8 @@ export default function Bio() {
             'i dream in dreams'.
           </a>
         </p>
-        <p>NOWADAYS</p>
+        <h2>NOWADAYS</h2>
         <p>
-          {" "}
           As a result of my love for interdisciplinarity, music and its visual
           accompaniment are an alliance of science, technology, and art.
           <br />
