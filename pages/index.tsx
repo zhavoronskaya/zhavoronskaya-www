@@ -1,7 +1,8 @@
-import Head from 'next/head'
-import Layout from '../src/components/layout/Layout'
+import Head from "next/head";
+import Layout from "../src/components/layout/Layout";
+import Home from "../src/components/home/Home";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
@@ -9,7 +10,8 @@ export default function Home() {
         <meta name="description" content="Artist portfolio" />
         {/* <link rel="icon" href="/logo.ico" /> */}
       </Head>
-      <Layout > </Layout>
+      <Layout>bla </Layout>
+      <Home />
     </>
   );
 }

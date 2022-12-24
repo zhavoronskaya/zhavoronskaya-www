@@ -1,8 +1,8 @@
 .icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 .icons a {
-    padding: 20px;
+  padding: 20px;
 }

@@ -1,29 +1,29 @@
-import styles from "./Layout.module.css"
+import styles from "./Layout.module.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import React from "react";
-import Menu from "../menu/Menu"
+import Menu from "../menu/Menu";
 
-type Props = {children: React.ReactNode}
+type Props = { children: React.ReactNode; sidebar?: React.ReactNode };
 
-export default function Layout (props: Props) {
-    return (
-        <div className={styles.pagewrap}>
-            <header className={styles.header}>
-                <Header />
-            </header>
+export default function Layout(props: Props) {
+  return (
+    <div className={styles.pagewrap + `${props.sidebar ? " withsidebar" : ""}`}>
+      <header className={styles.header}>
+        <Header />
+      </header>
 
-            <aside className={styles.sidebar}>
-            
-            </aside>
+      {props.sidebar && (
+        <aside className={styles.sidebar}>{props.sidebar}</aside>
+      )}
 
-            <main className={styles.main}>
-            {props.children}
-            </main>
+      {/* <aside className={styles.sidebar}>{props.sidebar}</aside> */}
 
-            <footer className={styles.footer}>
-                <Footer />
-            </footer>
-        </div>
-    )
+      <main className={styles.main}>{props.children}</main>
+
+      <footer className={styles.footer}>
+        <Footer />
+      </footer>
+    </div>
+  );
 }

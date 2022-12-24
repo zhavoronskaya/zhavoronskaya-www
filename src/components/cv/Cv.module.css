@@ -1,0 +1,44 @@
+.text {
+  color: rgb(81, 81, 81);
+  /* text-align: left; */
+  line-height: 1.6;
+}
+
+.text p {
+  margin-bottom: 10px;
+}
+
+/* .cvimg {
+  width: 35%;
+  border-radius: 60%;
+  padding: 20px;
+  left: 64%;
+  position: relative;
+  display: inline;
+} */
+/* .discription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 30px 0px 30px;
+} */
+
+.discription {
+  line-height: 1.6;
+  display: inline-block;
+}
+.cvimg {
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 792px) {
+  .cvflex {
+    display: flex;
+  }
+  .sidebar {
+    flex: 1;
+  }
+  .content {
+    flex: 2;
+  }
+}

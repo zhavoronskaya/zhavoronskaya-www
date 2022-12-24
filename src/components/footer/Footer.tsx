@@ -1,4 +1,4 @@
-import styles from './Footer.module.css'
+import styles from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSoundcloud,
@@ -7,21 +7,21 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {
-    className?: string; // neobyazat
-}
+  className?: string; // neobyazat
+};
 
 export default function Footer() {
-    return (
-       <div className={styles.icons}> 
-            <a href="https://soundcloud.com/zhavoronskaya">
-            <FontAwesomeIcon icon={faSoundcloud} width={"40px"} />
-          </a>
-          <a href="https://t.me/zhavoronoki">
-            <FontAwesomeIcon icon={faTelegram} width={"30px"} />
-          </a>
-          <a href="https://zhavoronskaya.bandcamp.com/">
-            <FontAwesomeIcon icon={faBandcamp} width={"30px"} />
-          </a>
-       </div>
-    )
+  return (
+    <div className={styles.icons}>
+      <a href="https://soundcloud.com/zhavoronskaya">
+        <FontAwesomeIcon icon={faSoundcloud} height={"90px"} />
+      </a>
+      <a href="https://t.me/zhavoronoki">
+        <FontAwesomeIcon icon={faTelegram} height={"90px"} />
+      </a>
+      <a href="https://zhavoronskaya.bandcamp.com/">
+        <FontAwesomeIcon icon={faBandcamp} height={"90px"} />
+      </a>
+    </div>
+  );
 }

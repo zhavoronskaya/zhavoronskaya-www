@@ -3,8 +3,8 @@ import styles from "./Bio.module.css";
 export default function Bio() {
   return (
     <>
-      <img src="/image/photo1c.png" alt="biophoto" />
-      <div className={styles.text}>
+      <div className={styles.text + " " + "p20"}>
+        <img src="/image/photo1c.png" alt="biophoto" />
         <h2>PAST</h2>
         <p>
           Was born in Moscow in a family of physicists and engineers in the
