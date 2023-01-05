@@ -1,0 +1,27 @@
+.albumscontainer {
+  display: flex;
+  overflow-x: auto;
+}
+
+.albumscontainer img {
+  margin-right: 15px;
+  width: 50%;
+}
+
+.albumscontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.artcontainer {
+  display: flex;
+  overflow-x: auto;
+}
+
+.artcontainer img {
+  margin-right: 15px;
+  width: 50%;
+}
+
+.artcontainer::-webkit-scrollbar {
+  display: none;
+}

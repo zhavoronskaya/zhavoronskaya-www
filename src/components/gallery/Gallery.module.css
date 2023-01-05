@@ -1,0 +1,15 @@
+.artcontainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.artelement {
+  flex: 1;
+  min-width: 350px;
+  padding: 20px;
+}
+
+.artelement p {
+  padding-top: 10px;
+}

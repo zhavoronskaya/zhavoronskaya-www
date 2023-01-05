@@ -1,9 +1,3 @@
-.albumscontainer {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
 .albumelement {
   flex: 1;
   min-width: 350px;

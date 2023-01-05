@@ -52,9 +52,13 @@ h4 {
   /* margin-bottom: 1rem;
   margin-top: 2rem; */
   color: rgb(81, 81, 81);
+  margin: 0px;
+  padding: 0px;
 }
 p {
   color: rgb(81, 81, 81);
+  margin: 0px;
+  padding: 0px;
 }
 
 .p10 {
