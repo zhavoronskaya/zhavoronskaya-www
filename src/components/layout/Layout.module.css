@@ -1,5 +1,5 @@
 .pagewrap {
-  background: rgb(255, 255, 255);
+  background: var(--clr-bg);
   height: 100vh;
 
   /* box-shadow: 0 0 3px rgba(rgb(26, 26, 26), 0.33); */
@@ -29,32 +29,27 @@
 
 .header {
   grid-area: header;
-  background: #c8c8c8;
   min-height: 64px;
 }
 
 .sidebar {
   grid-area: side;
-  background: #fafafa;
 }
 
 .main {
   grid-area: main;
   overflow: auto;
   overflow-x: visible;
-  background: #2a2a2a;
   padding-bottom: 30px;
   position: relative;
 }
 
 .footer {
   grid-area: footer;
-  background: #c8c8c8;
 }
 
 @media screen and (min-width: 792px) {
   .pagewrap {
-    background: white;
     box-shadow: 0 0 3px rgba(black, 0.33);
 
     display: grid;

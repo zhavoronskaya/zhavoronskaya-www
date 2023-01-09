@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Layout from "../src/components/layout/Layout";
 import Home from "../src/components/home/Home";
-import ParticleLine from "../src/components/scenes/particleLine";
+import LineBezier from "../src/components/scenes/lineBezier";
+import db from "../src/db";
 
 export default function HomePage() {
   return (
@@ -12,10 +13,9 @@ export default function HomePage() {
         {/* <link rel="icon" href="/logo.ico" /> */}
       </Head>
       <Layout>
-        <ParticleLine />
-        <Home />
+        <LineBezier />
+        <Home albums={db.ablums} scenes={db.scenes} />
       </Layout>
-      {/* <Home /> */}
     </>
   );
 }

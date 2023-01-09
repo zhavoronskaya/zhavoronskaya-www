@@ -1,11 +1,17 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .albumscontainer {
   display: flex;
   overflow-x: auto;
 }
 
-.albumscontainer img {
+.albumscontainer > a {
   margin-right: 15px;
-  width: 50%;
+  flex-shrink: 0;
+  width: 25%;
 }
 
 .albumscontainer::-webkit-scrollbar {
@@ -17,9 +23,10 @@
   overflow-x: auto;
 }
 
-.artcontainer img {
+.artcontainer > a {
   margin-right: 15px;
-  width: 50%;
+  flex-shrink: 0;
+  width: 25%;
 }
 
 .artcontainer::-webkit-scrollbar {

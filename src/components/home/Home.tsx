@@ -1,36 +1,59 @@
 import styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTelegram, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
+import { IAlbum, IScene } from "../../interfaces";
 
-export default function Home() {
+export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
   return (
     <>
-      <h2 className="p20">Albums</h2>
+      <div className={styles.title + " " + "p20"}>
+        <h2>ALBUMS</h2>
+
+        <h2>
+          <Link href="/albums">FIND MORE</Link>
+        </h2>
+      </div>
+
       <div className={styles.albumscontainer}>
-        <img src="/albums/dreams.png" alt="Album" />
+        {/* <img src="/albums/dreams.png" alt="Album" />
         <img src="/albums/crystal.png" alt="Album" />
         <img src="/albums/whitehalf.png" alt="Album" />
         <img src="/albums/cxema.png" alt="Album" />
         <img src="/albums/reality.png" alt="Album" />
-        <img src="/albums/pcp.png" alt="Album" />
-      </div>
-      <h2 className="p20">Art</h2>
-      <div className={styles.artcontainer}>
-        <img src="/art/4.png" alt="Art" />
-        <img src="/art/5.png" alt="Art" />
-        <img src="/art/6.png" alt="Art" />
-        <img src="/art/2.png" alt="Art" />
-        <img src="/art/1.png" alt="Art" />
-        <img src="/art/3.png" alt="Art" />
-        <img src="/art/7.png" alt="Art" />
+        <img src="/albums/pcp.png" alt="Album" /> */}
+        {props.albums.map((album) => {
+          return (
+            <Link href={`/albums/${album.slug}`}>
+              <img src={album.cover} alt="Album" />
+            </Link>
+          );
+        })}
       </div>
 
-      <div className={styles.connect + " " + "p20"}>
-        <h2>Connect</h2>
-        <a href="https://t.me/zhavoronoki/">
-          <FontAwesomeIcon icon={faTelegram} height={"10px"} /> t me
-        </a>
+      <div className={styles.title + " " + "p20"}>
+        <h2>ART</h2>
+        <h2>
+          <Link href="/scenes">VIEW</Link>
+        </h2>
       </div>
+      <div className={styles.artcontainer}>
+        {props.scenes.map((scene) => {
+          return (
+            <Link href={`/scenes/${scene.slug}`}>
+              <img src={scene.cover} alt="Scene" />
+            </Link>
+          );
+        })}
+      </div>
+
+      <div className={styles.title + " " + "p20"}>
+        <h2>CONNECT</h2>
+        <h2>
+          <Link href="/contact">CONTACT ME</Link>
+        </h2>
+      </div>
+      <img src="/image/cover.png" alt="cover" />
     </>
   );
 }

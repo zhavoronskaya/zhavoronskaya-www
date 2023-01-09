@@ -1,3 +1,13 @@
+:root {
+  --clr-mauve: #f3cbfeff;
+  --clr-paradise-pink: #f475ac;
+  --clr-rich-black: rgb(19, 47, 68);
+
+  --clr-bg: var(--clr-mauve);
+  --clr-text: var(--clr-rich-black);
+  --clr-link: var(--clr-paradise-pink);
+}
+
 html,
 body {
   padding: 0;
@@ -9,25 +19,26 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 body {
-  background: #e4e4e4;
+  background: var(--clr-bg);
   height: 100vh;
   overflow: hidden;
 }
 
 a {
-  font-size: 1rem;
-  color: #626262;
-  margin: 0 -0.15rem;
-  padding: 0 0.15rem;
+  /* font-size: 1rem; */
+  color: var(--clr-link);
+  /* margin: 0 -0.15rem;
+  padding: 0 0.15rem; */
   /* transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
   text-decoration: none;
   padding: 0px;
   margin: 0px;
 }
+
 a:hover {
   /* box-shadow: inset 500px 0 0 0 rgba(255, 255, 255, 0.953); */
   /* border-radius: 6px; */
-  color: rgb(245, 242, 242);
+  opacity: 0.7;
 }
 
 svg {
@@ -51,12 +62,16 @@ h4 {
   font-weight: bold;
   /* margin-bottom: 1rem;
   margin-top: 2rem; */
-  color: rgb(81, 81, 81);
+  color: var(--clr-text);
+  /* text-shadow: 0.2px 0.1px #5a5559; */
   margin: 0px;
   padding: 0px;
+  line-height: 1.7;
 }
+
 p {
-  color: rgb(81, 81, 81);
+  color: var(--clr-text);
+  /* text-shadow: 0.3px 0.2px #5a5559; */
   margin: 0px;
   padding: 0px;
 }

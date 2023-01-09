@@ -6,6 +6,7 @@
 
 .text p {
   margin-bottom: 10px;
+  line-height: 1.8;
 }
 
 /* .cvimg {
@@ -24,11 +25,16 @@
 } */
 
 .discription {
-  line-height: 1.6;
-  display: inline-block;
+  line-height: 3.3;
+  text-shadow: 0.4px 0.2px #5a5559;
+  display: inline;
 }
 .cvimg {
   border-radius: 50%;
+}
+.sidebar {
+  padding: 20px;
+  padding-bottom: 0px;
 }
 
 @media screen and (min-width: 792px) {
@@ -37,6 +43,7 @@
   }
   .sidebar {
     flex: 1;
+    padding: 20px;
   }
   .content {
     flex: 2;

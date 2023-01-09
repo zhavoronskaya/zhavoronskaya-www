@@ -1,74 +1,70 @@
 .menu {
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    text-align: left;
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #c8c8c8;
-    z-index: 5;
-    padding: 30px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  text-align: left;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: var(--clr-bg);
+  z-index: 5;
+  padding: 30px;
 }
 
 .nav ul {
-    list-style: none;
-    font-family: "Oxygen", sans-serif;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav li {
-    display: block;
-    padding: 15px;
+  list-style: none;
+  font-family: "Oxygen", sans-serif;
+  padding: 0;
+  margin: 0;
+}
 
-  
-  }
-  .nav li a {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: rgb(81, 81, 81);
-  }
+.nav li {
+  display: block;
+  padding: 15px;
+}
+.nav li a {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
 
-  .menuBtn {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 8px;
-    z-index: 10;
-  }
-  
-  .menuBtn > span {
-    display: block;
-    height: 5px;
-    background-color: #202020;
-    width: 100%;
-  }
+.menuBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  z-index: 10;
+}
 
-  :global(.js-menu-opened) .nav {
-    display: block;
+.menuBtn > span {
+  display: block;
+  height: 5px;
+  background-color: var(--clr-text);
+  width: 100%;
+}
+
+:global(.js-menu-opened) .nav {
+  display: block;
+}
+
+@media screen and (min-width: 792px) {
+  .nav {
+    text-align: left;
+    padding: 30px;
   }
-
-
-  @media screen and (min-width: 792px) {
-    .nav {
-        text-align: left;
-        padding: 30px;
-    }
-    /* .menuBtn {
+  /* .menuBtn {
       display: none;
     } */
-  
-    /* .menu {
+
+  /* .menu {
       width: 100%;
       display: flex;
       justify-content: right;
@@ -96,4 +92,4 @@
     
     }
    */
-  }
+}

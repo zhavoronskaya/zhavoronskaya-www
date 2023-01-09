@@ -16,7 +16,7 @@ import { useThree, useFrame, extend } from "@react-three/fiber";
 
 const lightColor = new THREE.Color("#B434FF");
 const darkColor = new THREE.Color("#832554");
-const count = 100;
+const count = 1000;
 const PaintMaterial = shaderMaterial(
   {
     uTime: 0,

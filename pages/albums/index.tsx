@@ -3,13 +3,14 @@ import Link from "next/link";
 
 import AlbumsPageLayout from "../../src/components/albums/AlbumsPageLayout";
 import AlbumThumbnail from "../../src/components/albums/AlbumThumbnail";
+import db from "../../src/db";
+import { IAlbum } from "../../src/interfaces";
 
-import { album as goneBeyond } from "./gone-beyond";
-import { album as idreamed } from "./i-dreamed-in-dreams";
+export async function getStaticProps() {
+  return { props: { albums: db.ablums } };
+}
 
-const ablums = [goneBeyond, idreamed];
-
-export default function AlbumsPage() {
+export default function AlbumsPage(props: { albums: IAlbum[] }) {
   return (
     <>
       <Head>
@@ -19,7 +20,7 @@ export default function AlbumsPage() {
       </Head>
 
       <AlbumsPageLayout>
-        {ablums.map((album) => {
+        {props.albums.map((album) => {
           return <AlbumThumbnail key={album.name} album={album} />;
         })}
       </AlbumsPageLayout>

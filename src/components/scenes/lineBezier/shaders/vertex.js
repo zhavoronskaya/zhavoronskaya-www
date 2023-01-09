@@ -1,4 +1,5 @@
-export default /*glsl */ `#define PI 3.1415926535897932384626433832795
+export default /*glsl */ `
+#define PI 3.1415926535897932384626433832795
 
 
 uniform float uTime;

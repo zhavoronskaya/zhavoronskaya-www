@@ -5,7 +5,7 @@ export default function Bio() {
     <>
       <div className={styles.text + " " + "p20"}>
         <img src="/image/photo1c.png" alt="biophoto" />
-        <h2>PAST</h2>
+        <h2 className="py10">PAST</h2>
         <p>
           Was born in Moscow in a family of physicists and engineers in the
           early 90s. Studied at the department of computer music of a modern
@@ -16,7 +16,7 @@ export default function Bio() {
           and decoding sound reality happened there, such as the transformation
           of a bee or storm, for example, into a musical form like a piano trio.
         </p>
-        <h2>SEARCH</h2>
+        <h2 className="py10">SEARCH</h2>
         <p>
           When I was 18 I received my first independent musical experience as an
           artist in an avant-garde project connected with rock/metal music and
@@ -41,7 +41,7 @@ export default function Bio() {
           inserting elements of field recordings into sound and trying to find
           rare and strange combinations.
         </p>
-        <h2>SOLO</h2>
+        <h2 className="py10">SOLO</h2>
         <p>
           My first solo-project started in Kyiv in 2017. The first time, its
           slogan was 'Noise against war'. It was conceptual noise with an active
@@ -71,7 +71,7 @@ export default function Bio() {
             'i dream in dreams'.
           </a>
         </p>
-        <h2>NOWADAYS</h2>
+        <h2 className="py10">NOWADAYS</h2>
         <p>
           As a result of my love for interdisciplinarity, music and its visual
           accompaniment are an alliance of science, technology, and art.

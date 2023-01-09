@@ -32,7 +32,7 @@ export default function Header() {
             <Link href="/bio">BIO</Link>
           </li>
           <li>
-            <Link href="/gallery">GENERATIVE ART</Link>
+            <Link href="/scenes">GENERATIVE ART</Link>
           </li>
           <li>
             <Link href="/cv">CV</Link>
