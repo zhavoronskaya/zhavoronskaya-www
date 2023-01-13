@@ -1,5 +1,7 @@
 import particleFiber from "./scenes/particle-fiber";
 import colorField from "./scenes/color-field";
+import alienObject from "./scenes/alien-object";
+import lineBezier from "./scenes/line-bezier";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -23,7 +25,7 @@ const db = {
     sputnik,
     sxema,
   ],
-  scenes: [particleFiber, colorField],
+  scenes: [particleFiber, colorField, alienObject, lineBezier],
 };
 
 export default db;

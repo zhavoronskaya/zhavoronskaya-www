@@ -1,23 +1,43 @@
-import { shaderMaterial, Environment, OrbitControls } from "@react-three/drei";
-// import { EffectComposer } from "@react-three/postprocessing";
-
-import { extend, useFrame, useThree } from "@react-three/fiber";
 import {
-  Suspense,
-  useRef,
-  useMemo,
-  useEffect,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+  shaderMaterial,
+  Environment,
+  OrbitControls,
+  PresentationControls,
+  CameraShake,
+} from "@react-three/drei";
+
+import { useState } from "react";
+import { extend, useFrame, useThree } from "@react-three/fiber";
+import { Suspense, useRef, useMemo, useEffect, useCallback } from "react";
 import * as THREE from "three";
-//import PointsFlowMaterial from "./PointsFlowMaterial.js";
 
 import pointsVertexShader from "./shaders/vertex.js";
 import pointsFragmentShader from "./shaders/fragment.js";
+import {
+  DepthOfField,
+  Bloom,
+  EffectComposer,
+} from "@react-three/postprocessing";
 
-const count = 500;
-const size = 100;
+function Rig() {
+  const [vec] = useState(() => new THREE.Vector3());
+  const { camera, mouse } = useThree();
+  useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, 1, 60), 0.1));
+  return (
+    <CameraShake
+      yawFrequency={1}
+      maxYaw={0.05}
+      pitchFrequency={1}
+      maxPitch={0.05}
+      rollFrequency={0.5}
+      maxRoll={1.5}
+      intensity={0.2}
+    />
+  );
+}
+
+const count = 10000;
+const size = 80;
 const lightColor = new THREE.Color("#7ab9d8");
 const darkColor = new THREE.Color("#7F34FF");
 
@@ -64,30 +84,31 @@ function ParticleLine({ points }) {
   );
 }
 
-function ParticleLines(linesCount = 25) {
+function ParticleLines(props) {
+  const { linesCount = 5 } = props;
   const { width, height } = useThree((state) => state.size);
 
   const calcPoints = useCallback(() => {
     const curve = new THREE.CubicBezierCurve3(
       new THREE.Vector3(
-        (width / 100) * (Math.random() - 0.5),
-        (width / 100) * (Math.random() - 0.5),
-        0
+        (width / 8) * (Math.random() - 0.5),
+        (height / 8) * (Math.random() - 0.5),
+        (-height / 8) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (width / 100) * (Math.random() - 0.5),
-        (width / 100) * (Math.random() - 0.5),
-        0
+        (width / 8) * (Math.random() - 0.5),
+        (-height / 8) * (Math.random() - 0.5),
+        (height / 8) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (width / 100) * (Math.random() - 0.5),
-        (width / 100) * (Math.random() - 0.5),
-        0
+        (-width / 8) * (Math.random() - 0.5),
+        (-height / 8) * (Math.random() - 0.5),
+        (-height / 8) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        -(width / 100) * (Math.random() - 0.5),
-        (width / 100) * (Math.random() - 0.5),
-        0
+        (-width / 8) * (Math.random() - 0.5),
+        (height / 8) * (Math.random() - 0.5),
+        (height / 8) * (Math.random() - 0.5)
       )
     );
 
@@ -99,7 +120,7 @@ function ParticleLines(linesCount = 25) {
 
     return linesArr.map(() => calcPoints());
   }, [linesCount, calcPoints]);
-
+  console.log(lines);
   return (
     <group>
       {lines.map((linePoints, index) => {
@@ -112,10 +133,35 @@ function ParticleLines(linesCount = 25) {
 export default function Experience() {
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls
+      // makeDefault
+      // autoRotate
+      // autoRotateSpeed={1.5}
+      // zoomSpeed={0.5}
+      /> */}
+      <EffectComposer>
+        <DepthOfField
+          focusDistance={0.25}
+          focalLength={0.15}
+          bokehScale={0.5}
+        />
+      </EffectComposer>
+      <PresentationControls
+        enabled={true} // the controls can be disabled by setting this to false
+        global={false} // Spin globally or by dragging the model
+        cursor={true} // Whether to toggle cursor style on drag
+        snap={false} // Snap-back to center (can also be a spring config)
+        speed={1} // Speed factor
+        zoom={1} // Zoom factor when half the polar-max is reached
+        rotation={[0, 0, 0]} // Default rotation
+        polar={[0, Math.PI / 2]} // Vertical limits
+        azimuth={[-Infinity, Infinity]} // Horizontal limits
+        config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+      ></PresentationControls>
       <color args={["#0D1117"]} attach="background" />
       <Suspense fallback={null}>
-        <ParticleLines />
+        <ParticleLines linesCount={20} />
+        {/* <Rig /> */}
       </Suspense>
       <Environment preset="night" />
     </>

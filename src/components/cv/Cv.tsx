@@ -30,7 +30,11 @@ export default function Cv() {
   return (
     <div className={styles.cvflex}>
       <div className={styles.sidebar}>
-        <img className={styles.cvimg} src="/image/cvphoto.png" alt="cvphoto" />
+        <img
+          className={styles.cvimg}
+          src="/image/profphoto.png"
+          alt="cvphoto"
+        />
         <SideBarCv />
       </div>
       <div className={styles.content + " " + "p20"}>
@@ -42,6 +46,12 @@ export default function Cv() {
         </h2>
 
         <div className={styles.text}>
+          <h3 className="py10">SKILLS</h3>
+          <p>WebGL, Three.js</p>
+          {/* 
+          <h3 className="py10">EDUCATION</h3>
+          <p>Higher technical</p>
+          <p>Secondary musical education</p> */}
           <h3 className="py10">SOUND</h3>
           <p>
             <a href="https://zhavoronskaya.bandcamp.com/">

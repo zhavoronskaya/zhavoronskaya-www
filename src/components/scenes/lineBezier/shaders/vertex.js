@@ -104,9 +104,9 @@ float noise =((cnoise(vec3(modelPosition.xz, uTime)*1.9)));
    for (float i = 1.0; i <= 4.0; i++) {
       noise -= abs(cnoise(vec3(modelPosition.xz * i, uTime)))*(1.5/i);
     }
-modelPosition.x = sin(0.1*PI *noise + uTime*PI)*noise * sin(noise*PI-uTime*PI*0.5)*0.5;
- modelPosition.z += sin(0.3*PI * noise + uTime*PI) * noise * cos(0.5*noise*PI - uTime*PI);
-
+// modelPosition.x = 3.0 * sin( uTime*PI) * noise ;
+//  modelPosition.z = 2.0 * cos( uTime*PI) * noise ;
+// modelPosition.y += 0.01*noise;
 vec4 viewPosition = viewMatrix * modelPosition;
 vec4 projectedPosition = projectionMatrix * viewPosition;
 gl_Position = projectedPosition;

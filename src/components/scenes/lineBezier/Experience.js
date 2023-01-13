@@ -14,10 +14,16 @@ import paintingFragmentShader from "./shaders/fragment.js";
 import * as THREE from "three";
 import { useThree, useFrame, extend } from "@react-three/fiber";
 
+import {
+  DepthOfField,
+  Bloom,
+  EffectComposer,
+} from "@react-three/postprocessing";
+
 const lightColor = new THREE.Color("#B434FF");
 const darkColor = new THREE.Color("#832554");
 const count = 1000;
-const PaintMaterial = shaderMaterial(
+const LineBezierMaterial = shaderMaterial(
   {
     uTime: 0,
     uLightColor: lightColor,
@@ -26,7 +32,7 @@ const PaintMaterial = shaderMaterial(
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ PaintMaterial });
+extend({ LineBezierMaterial });
 
 function CurveLine({ points }) {
   //const sizes = new Float32Array(count * 3);
@@ -51,35 +57,36 @@ function CurveLine({ points }) {
     <line>
       <bufferGeometry attach="geometry" ref={pointsRef} />
 
-      <paintMaterial ref={shaderRef} />
+      <lineBezierMaterial ref={shaderRef} />
     </line>
   );
 }
 
-function CurveLines({ linesCount = 30 }) {
+function CurveLines(props) {
+  const { linesCount = 10 } = props;
   const { width, height } = useThree((state) => state.size);
 
   const calcPoints = useCallback(() => {
     const curve = new THREE.CubicBezierCurve3(
       new THREE.Vector3(
-        (width / 10) * (Math.random() - 0.5),
-        (width / 10) * (Math.random() - 0.5),
-        (height / 10) * (Math.random() - 0.5)
+        (width / 100) * (Math.random() - 0.5),
+        (-width / 100) * (Math.random() - 0.5),
+        (-height / 100) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (width / 10) * (Math.random() - 0.5),
-        (width / 10) * (Math.random() - 0.5),
-        (height / 10) * (Math.random() - 0.5)
+        (-width / 100) * (Math.random() - 0.5),
+        (-width / 100) * (Math.random() - 0.5),
+        (height / 100) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (width / 10) * (Math.random() - 0.5),
-        (width / 10) * (Math.random() - 0.5),
-        (height / 10) * (Math.random() - 0.5)
+        (width / 100) * (Math.random() - 0.5),
+        (-width / 100) * (Math.random() - 0.5),
+        (height / 100) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        -(width / 10) * (Math.random() - 0.5),
-        (width / 10) * (Math.random() - 0.5),
-        -(height / 10) * (Math.random() - 0.5)
+        (-width / 100) * (Math.random() - 0.5),
+        (width / 100) * (Math.random() - 0.5),
+        (-height / 100) * (Math.random() - 0.5)
       )
     );
 
@@ -111,10 +118,18 @@ function CurveLines({ linesCount = 30 }) {
 export default function Experience() {
   return (
     <>
-      {/* <OrbitControls /> */}
-      <color args={["#000000"]} attach="background" />
+      <EffectComposer>
+        <DepthOfField
+          focusDistance={0.25}
+          focalLength={0.15}
+          bokehScale={0.1}
+        />
+        <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0} />
+      </EffectComposer>
+      <OrbitControls />
+      <color args={["#0D1117"]} attach="background" />
       <Suspense fallback={null}>
-        <CurveLines />
+        <CurveLines linesCount={8} />
       </Suspense>
       <Environment preset="night" />
     </>

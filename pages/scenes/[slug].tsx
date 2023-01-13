@@ -7,7 +7,8 @@ import db from "../../src/db";
 import ScenePageLayout from "../../src/components/scenes/ScenePageLayout";
 import ColorField from "../../src/components/scenes/psyhoColorField";
 import ParticleFiber from "../../src/components/scenes/particleFiber";
-
+import alienObject from "../../src/components/scenes/alienObject";
+import lineBezier from "../../src/components/scenes/lineBezier";
 export async function getStaticPaths() {
   const paths = db.scenes.map(({ slug }) => {
     return { params: { slug } };
@@ -41,6 +42,10 @@ export default function ScenePage(props: Props) {
         return ColorField;
       case "particle-fiber":
         return ParticleFiber;
+      case "alien-object":
+        return alienObject;
+      case "line-bezier":
+        return lineBezier;
       default:
         return () => <></>;
     }

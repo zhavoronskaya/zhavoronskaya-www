@@ -45,16 +45,15 @@ export default function Bio() {
         <p>
           My first solo-project started in Kyiv in 2017. The first time, its
           slogan was 'Noise against war'. It was conceptual noise with an active
-          anti-war agenda. Through this project, I critically rethought the
-          imperial past of Russia and its conquest policy. I worked a lot with
-          video at that time. And my interest in thematic samples and
-          experimental electronics had already started to emerge. Noise began to
-          move into the background. Piece by piece I started to expand my
-          thematic repertoire. Not only war, but various internal states of a
-          person also began to interest me, especially how I can convert them to
-          music. I often work with text, recording my observations about this
-          world on an audio-recorder. The birth of several albums is the result
-          of these observations:{" "}
+          anti-war agenda. Through this project, I critically rethought conquest
+          policy. I worked a lot with video at that time. And my interest in
+          thematic samples and experimental electronics had already started to
+          emerge. Noise began to move into the background. Piece by piece I
+          started to expand my thematic repertoire. Not only war, but various
+          internal states of a person also began to interest me, especially how
+          I can convert them to music. I often work with text, recording my
+          observations about this world on an audio-recorder. The birth of
+          several albums is the result of these observations:{" "}
           <a href="https://zhavoronskaya.bandcamp.com/album/zhavoronskaya-r">
             'R'
           </a>

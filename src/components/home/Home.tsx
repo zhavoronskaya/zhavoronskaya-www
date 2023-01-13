@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTelegram, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { IAlbum, IScene } from "../../interfaces";
+import ImageLiquid from "../scenes/imageLiquid";
 
 export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
   return (
     <>
+      <div className="py30"></div>
       <div className={styles.title + " " + "p20"}>
         <h2>ALBUMS</h2>
 
@@ -24,13 +26,13 @@ export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
         <img src="/albums/pcp.png" alt="Album" /> */}
         {props.albums.map((album) => {
           return (
-            <Link href={`/albums/${album.slug}`}>
+            <Link key={album.slug} href={`/albums/${album.slug}`}>
               <img src={album.cover} alt="Album" />
             </Link>
           );
         })}
       </div>
-
+      <div className="py30"></div>
       <div className={styles.title + " " + "p20"}>
         <h2>ART</h2>
         <h2>
@@ -40,20 +42,21 @@ export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
       <div className={styles.artcontainer}>
         {props.scenes.map((scene) => {
           return (
-            <Link href={`/scenes/${scene.slug}`}>
+            <Link key={scene.slug} href={`/scenes/${scene.slug}`}>
               <img src={scene.cover} alt="Scene" />
             </Link>
           );
         })}
       </div>
-
+      <div className="py30"></div>
       <div className={styles.title + " " + "p20"}>
         <h2>CONNECT</h2>
         <h2>
           <Link href="/contact">CONTACT ME</Link>
         </h2>
       </div>
-      <img src="/image/cover.png" alt="cover" />
+      {/* <img src="/image/cover.png" alt="cover" /> */}
+      <ImageLiquid />
     </>
   );
 }

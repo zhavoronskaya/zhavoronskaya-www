@@ -102,8 +102,8 @@ float noise = ((cnoise(vec3(modelPosition.xz, uTime * 0.5)*1.9)));
 angle +=noise;
 
 //rotate
-modelPosition.x += noise*sin(angle)*sin(modelPosition.z)+noise*3.0;
-modelPosition.z += 1.2*noise*cos(angle)*sin(modelPosition.x+0.2)+ noise*2.0;
+modelPosition.x += 10.2* noise*sin(angle)*sin(modelPosition.z)+noise*3.0;
+modelPosition.z += 8.2*noise*cos(angle)*sin(modelPosition.x+0.2)+ noise*2.0;
 
 vec4 viewPosition = viewMatrix * modelPosition;
 vec4 projectedPosition = projectionMatrix * viewPosition;
