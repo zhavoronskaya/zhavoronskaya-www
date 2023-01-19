@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout from "../src/components/layout/Layout";
 import Home from "../src/components/home/Home";
-import LineBezier from "../src/components/scenes/lineBezier";
+import LogoScene from "../src/components/scenes/logoScene";
 import db from "../src/db";
 
 export default function HomePage() {
@@ -13,7 +13,7 @@ export default function HomePage() {
         {/* <link rel="icon" href="/logo.ico" /> */}
       </Head>
       <Layout>
-        <LineBezier />
+        <LogoScene />
         <Home albums={db.ablums} scenes={db.scenes} />
       </Layout>
     </>

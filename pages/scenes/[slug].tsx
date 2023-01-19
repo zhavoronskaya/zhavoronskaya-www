@@ -9,6 +9,8 @@ import ColorField from "../../src/components/scenes/psyhoColorField";
 import ParticleFiber from "../../src/components/scenes/particleFiber";
 import alienObject from "../../src/components/scenes/alienObject";
 import lineBezier from "../../src/components/scenes/lineBezier";
+import bathRoom from "../../src/components/scenes/bathRoom";
+
 export async function getStaticPaths() {
   const paths = db.scenes.map(({ slug }) => {
     return { params: { slug } };
@@ -46,6 +48,8 @@ export default function ScenePage(props: Props) {
         return alienObject;
       case "line-bezier":
         return lineBezier;
+      case "bathroom":
+        return bathRoom;
       default:
         return () => <></>;
     }

@@ -2,6 +2,7 @@ import particleFiber from "./scenes/particle-fiber";
 import colorField from "./scenes/color-field";
 import alienObject from "./scenes/alien-object";
 import lineBezier from "./scenes/line-bezier";
+import bathroom from "./scenes/bathroom";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -25,7 +26,7 @@ const db = {
     sputnik,
     sxema,
   ],
-  scenes: [particleFiber, colorField, alienObject, lineBezier],
+  scenes: [particleFiber, colorField, alienObject, lineBezier, bathroom],
 };
 
 export default db;
