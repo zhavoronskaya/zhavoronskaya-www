@@ -4,6 +4,7 @@ import { faTelegram, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { IAlbum, IScene } from "../../interfaces";
 import ImageLiquid from "../scenes/imageLiquid";
+import IconLogo from "../icons/iconLogo/IconLogo";
 
 export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
   return (
@@ -51,12 +52,13 @@ export default function Home(props: { albums: IAlbum[]; scenes: IScene[] }) {
       <div className="py30"></div>
       <div className={styles.title + " " + "p20"}>
         <h2>CONNECT</h2>
-        <h2>
+        <h2 className={styles.contact}>
           <Link href="/contact">CONTACT ME</Link>
         </h2>
       </div>
       {/* <img src="/image/cover.png" alt="cover" /> */}
-      <ImageLiquid />
+      {/* <ImageLiquid /> */}
+      {/* <IconLogo /> */}
     </>
   );
 }

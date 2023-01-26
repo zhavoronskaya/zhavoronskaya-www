@@ -248,10 +248,10 @@ void main() {
     // float strength = diffusePoint(gl_PointCoord, vec2(0.5), 2.0);
 // //     float strength = lightPoint(gl_PointCoord, vec2(0.5), 10.0);
 // //        // Final color
-float strength = cnoise(vec3(vUv, uTime));
+float strength = cnoise(vec3(vUv, uTime)*0.5)*0.5;
 strength = clamp(strength, 0.0, 1.0);
 
-vec3 color = mix(uDarkColor, uLightColor, strength*strength*2.0);
+vec3 color = mix(uDarkColor, uLightColor, strength);
 
 
 

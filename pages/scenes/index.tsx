@@ -10,7 +10,7 @@ export default function GalleryPage() {
       <Head>
         <title>Zhavoronskaya</title>
         <meta name="description" content="Artist portfolio" />
-        {/* <link rel="icon" href="/logo.ico" /> */}
+        <link rel="icon" href="/Zhavoronok.ico" />
       </Head>
 
       <ScenesPageLayout>

@@ -9,23 +9,23 @@
 
 .birdSvg {
   width: 45vw;
-  bottom: 10vh;
-  right: 15vw;
+  bottom: 100px;
+  right: 100px;
   position: absolute;
 
   opacity: 0.2;
 }
 
 .birdSvg path {
-  stroke-dasharray: 5000;
-  stroke-dashoffset: 5000;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
   animation: firstAnimation 3s linear forwards;
 }
 
-.birdSvg :global(.eye) {
+/* .birdSvg :global(.eye) {
   animation: firstAnimation 1s linear forwards;
   animation-delay: 2.5s;
-}
+} */
 
 @keyframes firstAnimation {
   to {

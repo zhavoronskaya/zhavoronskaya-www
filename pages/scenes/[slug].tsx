@@ -10,6 +10,7 @@ import ParticleFiber from "../../src/components/scenes/particleFiber";
 import alienObject from "../../src/components/scenes/alienObject";
 import lineBezier from "../../src/components/scenes/lineBezier";
 import bathRoom from "../../src/components/scenes/bathRoom";
+import birds from "../../src/components/scenes/birds";
 
 export async function getStaticPaths() {
   const paths = db.scenes.map(({ slug }) => {
@@ -50,6 +51,8 @@ export default function ScenePage(props: Props) {
         return lineBezier;
       case "bathroom":
         return bathRoom;
+      case "birds":
+        return birds;
       default:
         return () => <></>;
     }
@@ -60,7 +63,7 @@ export default function ScenePage(props: Props) {
       <Head>
         <title>Zhavoronskaya</title>
         <meta name="description" content="Artist portfolio" />
-        {/* <link rel="icon" href="/logo.ico" /> */}
+        <link rel="icon" href="/Zhavoronok.ico" />
       </Head>
 
       {scene && (

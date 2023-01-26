@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import Link from "next/link";
-import IconHome from "../icons/iconHome/IconHome";
+import IconMenu from "../icons/iconMenu/IconMenu";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -20,7 +20,7 @@ export default function Header() {
       </div>
 
       <nav className={styles.nav}>
-        <IconHome />
+        <IconMenu />
         <ul>
           <li>
             <Link href="/">HOME</Link>

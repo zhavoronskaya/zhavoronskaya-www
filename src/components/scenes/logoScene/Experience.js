@@ -1,13 +1,14 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Environment } from "@react-three/drei";
 import React from "react";
+import styles from "./Canvas.module.css";
+import { BlendFunction } from "postprocessing";
 
 import {
   shaderMaterial,
   OrbitControls,
   useTexture,
-  Cloud,
-  meshBounds,
+  Html,
 } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
@@ -20,8 +21,10 @@ import {
   DepthOfField,
   Bloom,
   EffectComposer,
+  Noise,
 } from "@react-three/postprocessing";
-import { DoubleSide } from "three";
+
+import Post from "./Post";
 
 // Texture loader
 // const textureLoader = new THREE.TextureLoader();
@@ -39,73 +42,101 @@ const LogoMaterial = shaderMaterial(
 extend({ LogoMaterial });
 
 function Painting() {
-  const textLogo = useTexture("./image/logo.png");
-  // textLogo.encoding = THREE.sRGBEncoding;
-  const shaderRef = useRef();
   const geomertyRef = useRef();
   const { width, height } = useThree((state) => state.size);
 
-  useEffect(() => {
-    shaderRef.current.uTex = textLogo;
-  }, []);
-
-  useFrame((state, delta) => {
-    if (shaderRef.current)
-      shaderRef.current.uniforms.uTime.value += delta * 0.5;
-  });
-
   const logo = useRef();
 
-  const eventHandler = (event) => {
-    //console.log(event);
-    // logo.current.material.uniforms.uTime.value *= 2.0;
-  };
-
   return (
-    <mesh
-      ref={logo}
-      onClick={eventHandler}
-      onPointerEnter={eventHandler}
-      raycast={meshBounds}
-    >
+    <mesh ref={logo} key="stable">
       <planeGeometry
         ref={geomertyRef}
-        args={[(width * 1024) / 60000, (height * 512) / 60000, 128, 128]}
+        args={[width / 60, height / 60, 128, 128]}
       />
-      <shaderMaterial
-        ref={shaderRef}
-        vertexShader={paintingVertexShader}
-        fragmentShader={paintingFragmentShader}
-        transparent={false}
-        uniforms={{
-          uTime: { value: 0 },
-          uTex: { value: textLogo },
-          // uDataTexture: { value: texture },
-        }}
-      />
+      <PaintingMaterial />
       {/* <logoMaterial ref={shaderRef} /> */}
       {/* <meshBasicMaterial map={textWater} /> */}
     </mesh>
   );
 }
 
+const PaintingMaterial = React.memo(() => {
+  const textLogo = useTexture("./image/logoBlue.png");
+  textLogo.encoding = THREE.sRGBEncoding;
+
+  textLogo.minFilter = THREE.NearestFilter;
+  textLogo.magFilter = THREE.NearestFilter;
+  textLogo.generateMipmaps = false;
+
+  const shaderRef = useRef();
+
+  useEffect(() => {
+    shaderRef.current.uTex = textLogo;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (shaderRef.current) {
+      //console.log("upd", Math.round(shaderRef.current.uniforms.uTime.value));
+      shaderRef.current.uniforms.uTime.value += delta * 0.3;
+    }
+  });
+
+  return (
+    <shaderMaterial
+      ref={shaderRef}
+      key="stable"
+      vertexShader={paintingVertexShader}
+      fragmentShader={paintingFragmentShader}
+      // transparent={true}
+      uniforms={{
+        uTime: { value: 12 },
+        uTex: { value: textLogo },
+        // uDataTexture: { value: texture },
+      }}
+    />
+  );
+});
+
 export default function Experience() {
+  const { viewport } = useThree();
+  useFrame((state) => {
+    state.gl.clear();
+  });
+  // const postRef = useRef();
+  // useFrame(({ mouse }) => {
+  //   // const angle = state.clock.elapsedTime;
+
+  //   const x = (mouse.x + 1) * 0.5;
+  //   const y = (mouse.y + 1) * 0.5;
+  //   const uMouse = new THREE.Vector2(x, y);
+  //   // console.log(postRef.current);
+  //   // postRef.current.uniforms.uMouse.value = uMouse;
+  //   // console.log(postRef.current);
+  //   // state.camera.position.x =
+  //   //   Math.abs(Math.sin((angle * Math.PI) / 70) / 1.4) * 14;
+  //   // state.camera.position.z =
+  //   //   Math.abs(Math.cos((angle * Math.PI) / 70) / 1.4) * 14;
+  //   // state.camera.position.y =
+  //   //   Math.abs(Math.sin((angle * Math.PI) / 70) / 1.4) * 14;
+  //   // state.camera.lookAt(0, 0.5, 0);
+  //   // state.camera.updateProjectionMatrix();
+  // });
+
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
+
+      <EffectComposer multisampling={4} autoClear={false}>
+        <Post />
+        {/* <DepthOfField focusDistance={0.25} focalLength={0.25} bokehScale={3} /> */}
+        {/* <Bloom mipmapBlur intensity={0.63} luminanceThreshold={0.5} /> */}
+        {/* <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHTrew} /> */}
+      </EffectComposer>
+
       <color args={["#F3CBFE"]} attach="background" />
-      {/* <EffectComposer multisampling={4}>
-        <DepthOfField focusDistance={0.025} focalLength={0.15} bokehScale={6} />
-        <Bloom mipmapBlur intensity={0.2} luminanceThreshold={0} />
-      </EffectComposer> */}
       <Suspense fallback={null}>
-        {/* <Cloud position={[-4, -2, 9]} speed={0.2} opacity={0.2} /> */}
-        {/* <Cloud position={[4, 2, -15]} speed={0.2} opacity={1} />
-        <Cloud position={[-4, 2, -10]} speed={0.2} opacity={1} />
-        <Cloud position={[4, -2, -5]} speed={0.2} opacity={1} /> */}
         <Painting />
       </Suspense>
-      {/* <Environment preset="night" /> */}
     </>
   );
 }

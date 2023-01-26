@@ -22,7 +22,7 @@ import {
 
 const lightColor = new THREE.Color("#B434FF");
 const darkColor = new THREE.Color("#832554");
-const count = 1000;
+const count = 5000;
 const LineBezierMaterial = shaderMaterial(
   {
     uTime: 0,
@@ -50,7 +50,7 @@ function CurveLine({ points }) {
 
   useFrame((state, delta) => {
     //CurvesRef.current.rotation.y = state.clock.getElapsedTime() * 0.051;
-    if (shaderRef.current) shaderRef.current.uTime += delta * 0.09;
+    if (shaderRef.current) shaderRef.current.uTime += delta * 0.5;
   });
 
   return (
@@ -69,24 +69,24 @@ function CurveLines(props) {
   const calcPoints = useCallback(() => {
     const curve = new THREE.CubicBezierCurve3(
       new THREE.Vector3(
-        (width / 100) * (Math.random() - 0.5),
-        (-width / 100) * (Math.random() - 0.5),
-        (-height / 100) * (Math.random() - 0.5)
+        (width / 80) * (Math.random() - 0.5),
+        0,
+        (-height / 80) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (-width / 100) * (Math.random() - 0.5),
-        (-width / 100) * (Math.random() - 0.5),
-        (height / 100) * (Math.random() - 0.5)
+        (-width / 80) * (Math.random() - 0.5),
+        0,
+        (height / 80) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (width / 100) * (Math.random() - 0.5),
-        (-width / 100) * (Math.random() - 0.5),
-        (height / 100) * (Math.random() - 0.5)
+        (width / 80) * (Math.random() - 0.5),
+        0,
+        (height / 80) * (Math.random() - 0.5)
       ),
       new THREE.Vector3(
-        (-width / 100) * (Math.random() - 0.5),
-        (width / 100) * (Math.random() - 0.5),
-        (-height / 100) * (Math.random() - 0.5)
+        (-width / 80) * (Math.random() - 0.5),
+        0,
+        (-height / 80) * (Math.random() - 0.5)
       )
     );
 
@@ -119,19 +119,15 @@ export default function Experience() {
   return (
     <>
       <EffectComposer>
-        <DepthOfField
-          focusDistance={0.25}
-          focalLength={0.15}
-          bokehScale={0.1}
-        />
-        <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0} />
+        <DepthOfField focusDistance={0.025} focalLength={0.15} bokehScale={6} />
+        {/* <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0} /> */}
       </EffectComposer>
-      <OrbitControls />
-      <color args={["#0D1117"]} attach="background" />
+      {/* <OrbitControls /> */}
+      <color args={["#132F44"]} attach="background" />
       <Suspense fallback={null}>
-        <CurveLines linesCount={8} />
+        <CurveLines linesCount={12} />
       </Suspense>
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
     </>
   );
 }

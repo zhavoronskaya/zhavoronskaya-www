@@ -146,7 +146,7 @@ export default function Experience() {
           bokehScale={0.5}
         />
       </EffectComposer>
-      <PresentationControls
+      {/* <PresentationControls
         enabled={true} // the controls can be disabled by setting this to false
         global={false} // Spin globally or by dragging the model
         cursor={true} // Whether to toggle cursor style on drag
@@ -157,7 +157,7 @@ export default function Experience() {
         polar={[0, Math.PI / 2]} // Vertical limits
         azimuth={[-Infinity, Infinity]} // Horizontal limits
         config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
-      ></PresentationControls>
+      ></PresentationControls> */}
       <color args={["#0D1117"]} attach="background" />
       <Suspense fallback={null}>
         <ParticleLines linesCount={20} />

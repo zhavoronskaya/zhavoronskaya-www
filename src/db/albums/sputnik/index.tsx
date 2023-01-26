@@ -3,7 +3,7 @@ import description from "./description.html";
 import { IAlbum } from "../../../interfaces";
 
 const album: IAlbum = {
-  name: "sputnik LELL 22",
+  name: "Sputnik LELL 22",
   slug: "sputnik",
   description,
   cover: "/albums/sputnik.png",
