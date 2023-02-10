@@ -59,7 +59,7 @@
 
 .nav li {
   display: block;
-  padding: 15px;
+  margin-bottom: 15px;
 }
 .nav li a {
   font-size: 2.5rem;
