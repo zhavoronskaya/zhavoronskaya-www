@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface IAlbum {
   name: string;
   slug: string;

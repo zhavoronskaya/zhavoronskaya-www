@@ -1,43 +1,48 @@
 import styles from "./Contact.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBandcamp,
-  faTelegram,
-  faInstagramSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelopeOpen } from "@fortawesome/free-regular-svg-icons";
+
 import IconHome from "../icons/iconHome/IconHome";
+import {
+  BandcampIcon,
+  EmailIcon,
+  InstagramIcon,
+  TelegramIcon,
+} from "../icons/SocialIcons";
 
 export default function Contact() {
   return (
-    <div className="p20">
-      <IconHome />
-      <h1 className="py10">CONTACT ME</h1>
+    <div>
+      <h1>CONTACT ME</h1>
+      <p className="mb-lg">
+        Have a project in mind or just wanna chat about something? Feel free to
+        contact me via email or on any of social platforms I use:
+      </p>
 
-      <p className="py10">
-        <FontAwesomeIcon icon={faEnvelopeOpen} height={"20px"} /> mail to
-        zhavoronskaya.public@gmail.com
-      </p>
-      <br />
-      <br />
-      <br />
-      <h2>IN SOCIAL</h2>
-      <p className="py20">
-        <a href="https://www.instagram.com/glslsketch/">
-          <FontAwesomeIcon icon={faInstagramSquare} height={"20px"} /> instagram
-        </a>
-      </p>
-      <p>
-        <a href="https://t.me/zhavoronoki/">
-          <FontAwesomeIcon icon={faTelegram} height={"20px"} /> t me
-        </a>
-      </p>
-      <p className="py20">
-        <a href="https://zhavoronskaya.bandcamp.com/">
-          <FontAwesomeIcon icon={faBandcamp} height={"20px"} /> merch and
-          support
-        </a>
-      </p>
+      <a
+        className="g-sm mb-md items-center"
+        href="mailto:zhavoronskaya.public@gmail.com"
+      >
+        <EmailIcon /> zhavoronskaya.public@gmail.com
+      </a>
+
+      <a
+        className="g-sm mb-md items-center"
+        href="https://www.instagram.com/glslsketch/"
+      >
+        <InstagramIcon /> instagram
+      </a>
+
+      <a className="g-sm mb-md items-center" href="https://t.me/zhavoronoki/">
+        <TelegramIcon /> telegram
+      </a>
+
+      <a
+        className="g-sm mb-md items-center"
+        href="https://zhavoronskaya.bandcamp.com/"
+      >
+        <BandcampIcon /> merch and support
+      </a>
+
+      <IconHome />
     </div>
   );
 }

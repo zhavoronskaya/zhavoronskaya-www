@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IAlbum } from "../../interfaces";
+import { IAlbum } from "@/interfaces";
 import styles from "./AlbumThumbnail.module.css";
 
 export default function AlbumThumbnail(props: { album: IAlbum }) {

@@ -1,0 +1,38 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.albumscontainer {
+  display: flex;
+  overflow-x: auto;
+}
+
+.albumscontainer > a {
+  margin-right: 15px;
+  flex-shrink: 0;
+  width: 25%;
+}
+
+.albumscontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.artcontainer {
+  display: flex;
+  overflow-x: auto;
+}
+
+.artcontainer > a {
+  margin-right: 15px;
+  flex-shrink: 0;
+  width: 25%;
+}
+
+.artcontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.contact {
+  padding-bottom: 20px;
+}

@@ -1,0 +1,74 @@
+import React from "react";
+import Head from "next/head";
+import { GetStaticPropsContext } from "next";
+
+import { IScene } from "@/interfaces";
+import { getScenes } from "@/db";
+import ScenePageLayout from "@/components/scenes/ScenePageLayout";
+import ColorField from "@/components/scenes/psyhoColorField";
+import ParticleFiber from "@/components/scenes/particleFiber";
+import AlienObject from "@/components/scenes/alienObject";
+import LineBezier from "@/components/scenes/lineBezier";
+import BathRoom from "@/components/scenes/bathRoom";
+import Birds from "@/components/scenes/birds";
+
+export async function getStaticPaths() {
+  const scenes = await getScenes();
+  const paths = scenes.map(({ slug }) => {
+    return { params: { slug } };
+  });
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
+  const scenes = await getScenes();
+  const slug = context?.params?.slug;
+  const scene = scenes.find((scene) => scene.slug === slug);
+  const sceneIdx = scenes.findIndex((scene) => scene.slug === slug);
+  const prevSceneSlug = scenes[sceneIdx - 1]?.slug || null;
+  const nextSceneSlug = scenes[sceneIdx + 1]?.slug || null;
+
+  return { props: { scene, prevSceneSlug, nextSceneSlug } };
+}
+
+type Props = {
+  scene: IScene;
+  nextSceneSlug?: string;
+  prevSceneSlug?: string;
+};
+
+export default function ScenePage(props: Props) {
+  const { scene } = props;
+
+  const Component = React.useMemo(() => {
+    switch (scene.slug) {
+      case "color-field":
+        return ColorField;
+      case "particle-fiber":
+        return ParticleFiber;
+      case "alien-object":
+        return AlienObject;
+      case "line-bezier":
+        return LineBezier;
+      case "bathroom":
+        return BathRoom;
+      case "birds":
+        return Birds;
+      default:
+        return () => <></>;
+    }
+  }, [scene.slug]);
+
+  if (!scene) return null;
+
+  return (
+    <ScenePageLayout
+      scene={scene}
+      nextSceneSlug={props.nextSceneSlug}
+      prevSceneSlug={props.prevSceneSlug}
+    >
+      <Component />
+    </ScenePageLayout>
+  );
+}

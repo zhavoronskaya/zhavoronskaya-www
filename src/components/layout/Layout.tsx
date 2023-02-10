@@ -1,24 +1,45 @@
-import styles from "./Layout.module.css";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import React from "react";
+import classNames from "classnames";
 
-type Props = { children: React.ReactNode; sidebar?: React.ReactNode };
+import LogoSideBar from "../scenes/logoSideBar";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
+import styles from "./Layout.module.css";
 
-export default function Layout(props: Props) {
+type LayoutProps = {
+  children: React.ReactNode;
+  sidebar?: React.ReactNode;
+  contentHeader?: React.ReactNode;
+  contentMaxWidth?: string;
+  // contentHeight?: string;
+};
+
+export default function Layout({
+  children,
+  sidebar,
+  contentHeader,
+  contentMaxWidth = "700px",
+}: LayoutProps) {
+  const layoutClassname = classNames(styles.layout, {
+    "layout--with-sidebar": Boolean(sidebar),
+  });
+
   return (
-    <div className={styles.pagewrap + `${props.sidebar ? " withsidebar" : ""}`}>
+    <div className={layoutClassname}>
       <header className={styles.header}>
-        <Header />
+        <Header
+          centerSlot={contentHeader}
+          centerSlotMaxWidth={contentMaxWidth}
+        />
       </header>
 
-      {props.sidebar && (
-        <aside className={styles.sidebar}>{props.sidebar}</aside>
-      )}
+      {sidebar && <aside className={styles.sidebar}>{sidebar}</aside>}
 
-      {/* <aside className={styles.sidebar}>{props.sidebar}</aside> */}
-
-      <main className={styles.main}>{props.children}</main>
+      <main className={styles.main}>
+        <div className={styles.content} style={{ maxWidth: contentMaxWidth }}>
+          {children}
+        </div>
+      </main>
 
       <footer className={styles.footer}>
         <Footer />
@@ -26,3 +47,7 @@ export default function Layout(props: Props) {
     </div>
   );
 }
+
+export const LayoutWithSidebar = (props: LayoutProps) => {
+  return <Layout {...props} sidebar={<LogoSideBar />} />;
+};

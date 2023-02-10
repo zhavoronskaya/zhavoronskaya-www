@@ -1,0 +1,12 @@
+:root {
+  --clr-mauve: #f3cbfeff;
+  --clr-paradise-pink: #ffb3fb;
+  --clr-rich-black: rgb(19, 47, 68);
+
+  --clr-bg: var(--clr-mauve);
+  --clr-text: var(--clr-rich-black);
+  --clr-link: var(--clr-paradise-pink);
+
+  --size-header: 64px;
+  --size-footer: auto;
+}

@@ -1,18 +1,8 @@
 import styles from "./IconHome.module.css";
 
 export default function IconHome() {
-  // return (
-  //     <img className={styles.icon}
-  // src="/BirdFlying.svg"
-  // alt="Bird Flying"
-  // />)
   return (
-    <svg
-      className={styles.birdSvg}
-      width="800px"
-      //   height="40px"
-      viewBox="0 0 1423 967"
-    >
+    <svg className={styles.birdSvg} width="800px" viewBox="0 0 1423 967">
       <g
         id="Page-1"
         stroke="none"

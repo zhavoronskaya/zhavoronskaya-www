@@ -1,0 +1,13 @@
+.container {
+}
+
+.discription {
+  line-height: 1.6;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+}

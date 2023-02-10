@@ -1,19 +1,10 @@
-/* .icon {
-  width: 60vw;
-  bottom: 60px;
-  right: 30px;
-  position: fixed;
-
-  opacity: 0.2;
-} */
-
 .birdSvg {
   width: 45vw;
   bottom: 10vh;
   right: 15vw;
   position: absolute;
-
-  opacity: 0.2;
+  pointer-events: none;
+  opacity: 0.1;
 }
 
 .birdSvg path {

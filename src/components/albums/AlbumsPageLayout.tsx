@@ -1,6 +1,6 @@
-import Layout from "../layout/Layout";
-import styles from "./AlbumsPageLayout.module.css";
 import Link from "next/link";
+import styles from "./AlbumsPageLayout.module.css";
+import { LayoutWithSidebar } from "../layout/Layout";
 
 type Props = {
   children: React.ReactNode;
@@ -8,13 +8,13 @@ type Props = {
 
 export default function AlbumsPageLayout(props: Props) {
   return (
-    <Layout>
+    <LayoutWithSidebar>
       {/* <h1 className="p20">ALBUMS</h1> */}
-      <h2 className={styles.discr + " " + "px20"}>
+      <h2 className={styles.discr}>
         Gallery of selected music works since 2017-2021
       </h2>
 
-      <p className="p20">
+      <p>
         HAVE A NICE TRAVELING
         <br />
         <br />
@@ -22,6 +22,6 @@ export default function AlbumsPageLayout(props: Props) {
       </p>
 
       <div className={styles.albumscontainer}>{props.children}</div>
-    </Layout>
+    </LayoutWithSidebar>
   );
 }
