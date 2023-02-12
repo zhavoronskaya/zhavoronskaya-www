@@ -7,6 +7,7 @@ import {
   InstagramIcon,
   TelegramIcon,
 } from "../icons/SocialIcons";
+import { SocialLinks } from "@/constants";
 
 export default function Contact() {
   return (
@@ -19,26 +20,20 @@ export default function Contact() {
 
       <a
         className="g-sm mb-md items-center"
-        href="mailto:zhavoronskaya.public@gmail.com"
+        href={`mailto:${SocialLinks.EMAIL}`}
       >
-        <EmailIcon /> zhavoronskaya.public@gmail.com
+        <EmailIcon /> {SocialLinks.EMAIL}
       </a>
 
-      <a
-        className="g-sm mb-md items-center"
-        href="https://www.instagram.com/glslsketch/"
-      >
+      <a className="g-sm mb-md items-center" href={SocialLinks.INSTAGRAM}>
         <InstagramIcon /> instagram
       </a>
 
-      <a className="g-sm mb-md items-center" href="https://t.me/zhavoronoki/">
+      <a className="g-sm mb-md items-center" href={SocialLinks.TELEGRAM}>
         <TelegramIcon /> telegram
       </a>
 
-      <a
-        className="g-sm mb-md items-center"
-        href="https://zhavoronskaya.bandcamp.com/"
-      >
+      <a className="g-sm mb-md items-center" href={SocialLinks.BANDCAMP}>
         <BandcampIcon /> merch and support
       </a>
 

@@ -1,5 +1,5 @@
 .container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  gap: var(--sz-md);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }

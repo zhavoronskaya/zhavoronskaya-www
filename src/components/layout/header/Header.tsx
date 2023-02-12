@@ -50,22 +50,34 @@ export default function Header({
         <IconMenu />
         <ul>
           <li>
-            <Link href="/">HOME</Link>
+            <Link href="/" className="text-ellipsis fz-xxl">
+              HOME
+            </Link>
           </li>
           <li>
-            <Link href="/albums">MUSIC</Link>
+            <Link href="/albums" className="text-ellipsis fz-xxl">
+              MUSIC
+            </Link>
           </li>
           <li>
-            <Link href="/scenes">DIGITAL ART</Link>
+            <Link href="/scenes" className="text-ellipsis fz-xxl">
+              DIGITAL ART
+            </Link>
           </li>
           <li>
-            <Link href="/bio">BIO</Link>
+            <Link href="/bio" className="text-ellipsis fz-xxl">
+              BIO
+            </Link>
           </li>
           <li>
-            <Link href="/cv">CV</Link>
+            <Link href="/cv" className="text-ellipsis fz-xxl">
+              CV
+            </Link>
           </li>
           <li>
-            <Link href="/contact">CONTACT</Link>
+            <Link href="/contact" className="text-ellipsis fz-xxl">
+              CONTACT
+            </Link>
           </li>
         </ul>
       </nav>

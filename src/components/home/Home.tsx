@@ -13,8 +13,8 @@ export default function Home(props: Props) {
   return (
     <>
       <LogoImage />
-      <div className="py30"></div>
-      <div className={styles.title + " " + "py20"}>
+
+      <div className="items-space-between items-center mt-lg mb-sm">
         <h2>ALBUMS</h2>
 
         <h2>
@@ -23,12 +23,6 @@ export default function Home(props: Props) {
       </div>
 
       <div className={styles.albumscontainer}>
-        {/* <img src="/albums/dreams.png" alt="Album" />
-        <img src="/albums/crystal.png" alt="Album" />
-        <img src="/albums/whitehalf.png" alt="Album" />
-        <img src="/albums/cxema.png" alt="Album" />
-        <img src="/albums/reality.png" alt="Album" />
-        <img src="/albums/pcp.png" alt="Album" /> */}
         {props.albums.map((album) => {
           return (
             <Link key={album.slug} href={`/albums/${album.slug}`}>
@@ -37,13 +31,14 @@ export default function Home(props: Props) {
           );
         })}
       </div>
-      <div className="py30"></div>
-      <div className={styles.title + " " + "py20"}>
+
+      <div className="items-space-between items-center mt-lg mb-sm">
         <h2>ART</h2>
         <h2>
           <Link href="/scenes">VIEW</Link>
         </h2>
       </div>
+
       <div className={styles.artcontainer}>
         {props.scenes.map((scene) => {
           return (
@@ -53,8 +48,8 @@ export default function Home(props: Props) {
           );
         })}
       </div>
-      <div className="py30"></div>
-      <div className={styles.title + " " + "py20"}>
+
+      <div className="items-space-between items-center mt-lg mb-sm">
         <h2>CONNECT</h2>
         <h2 className={styles.contact}>
           <Link href="/contact">CONTACT ME</Link>

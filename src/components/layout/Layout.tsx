@@ -9,6 +9,7 @@ import styles from "./Layout.module.css";
 type LayoutProps = {
   children: React.ReactNode;
   sidebar?: React.ReactNode;
+  heroSection?: React.ReactNode;
   contentHeader?: React.ReactNode;
   contentMaxWidth?: string;
   // contentHeight?: string;
@@ -17,6 +18,7 @@ type LayoutProps = {
 export default function Layout({
   children,
   sidebar,
+  heroSection,
   contentHeader,
   contentMaxWidth = "700px",
 }: LayoutProps) {
@@ -36,6 +38,7 @@ export default function Layout({
       {sidebar && <aside className={styles.sidebar}>{sidebar}</aside>}
 
       <main className={styles.main}>
+        {heroSection}
         <div className={styles.content} style={{ maxWidth: contentMaxWidth }}>
           {children}
         </div>

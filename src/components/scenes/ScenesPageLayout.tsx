@@ -15,9 +15,5 @@ export default function ScenesPageLayout(props: Props) {
 }
 
 const Header = () => {
-  return (
-    <h2 style={{ maxWidth: "700px", paddingRight: "200px" }}>
-      Gallery of generative art works
-    </h2>
-  );
+  return <h2 className="text-ellipsis">Gallery of generative art works</h2>;
 };

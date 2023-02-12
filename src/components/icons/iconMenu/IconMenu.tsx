@@ -9,7 +9,7 @@ export default function IconMenu() {
   return (
     <svg
       className={styles.birdSvg}
-      width="650px"
+      // width="1650px"
       //   height="40px"
       viewBox="0 0 324 199"
     >

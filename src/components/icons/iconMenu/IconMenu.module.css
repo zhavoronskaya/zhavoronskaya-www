@@ -1,16 +1,7 @@
-/* .icon {
-  width: 60vw;
-  bottom: 60px;
-  right: 30px;
-  position: fixed;
-
-  opacity: 0.2;
-} */
-
 .birdSvg {
-  width: 60vw;
+  width: 1600px;
   bottom: 80px;
-  right: 10px;
+  left: 50%;
   position: absolute;
 
   opacity: 0.2;

@@ -1,3 +1,4 @@
+import { SocialLinks } from "@/constants";
 import {
   BandcampIcon,
   SoundcloudIcon,
@@ -13,13 +14,13 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.social}>
-        <a href="https://t.me/zhavoronoki">
+        <a href={SocialLinks.TELEGRAM}>
           <TelegramIcon size="25px" />
         </a>
-        <a href="https://zhavoronskaya.bandcamp.com/">
+        <a href={SocialLinks.BANDCAMP}>
           <BandcampIcon size="25px" />
         </a>
-        <a href="https://soundcloud.com/zhavoronskaya">
+        <a href={SocialLinks.SOUNDCLOUD}>
           <SoundcloudIcon size="25px" />
         </a>
       </div>

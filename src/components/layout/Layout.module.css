@@ -9,7 +9,7 @@
     "footer";
 
   grid-template-columns: auto;
-  grid-template-rows: var(--size-header) 1fr var(--size-footer);
+  grid-template-rows: var(--sz-header) 1fr var(--sz-footer);
   overflow: hidden;
 }
 
@@ -36,7 +36,7 @@
 .content {
   margin: 0 auto;
   height: 100%;
-  padding: 0 10px;
+  padding: 0 10px 20px;
 }
 
 @media screen and (min-width: 792px) {
@@ -50,6 +50,6 @@
       "side main"
       "footer footer";
 
-    grid-template-columns: var(--size-sidebar) auto;
+    grid-template-columns: var(--sz-sidebar) auto;
   }
 }
