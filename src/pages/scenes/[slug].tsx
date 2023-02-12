@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { GetStaticPropsContext } from "next";
 
 import { IScene } from "@/interfaces";
@@ -38,7 +37,7 @@ type Props = {
   prevSceneSlug?: string;
 };
 
-export default function ScenePage(props: Props) {
+const ScenePage = (props: Props) => {
   const { scene } = props;
 
   const Component = React.useMemo(() => {
@@ -56,11 +55,11 @@ export default function ScenePage(props: Props) {
       case "birds":
         return Birds;
       default:
-        return () => <></>;
+        return null;
     }
   }, [scene.slug]);
 
-  if (!scene) return null;
+  if (!scene || !Component) return null;
 
   return (
     <ScenePageLayout
@@ -71,4 +70,6 @@ export default function ScenePage(props: Props) {
       <Component />
     </ScenePageLayout>
   );
-}
+};
+
+export default ScenePage;
