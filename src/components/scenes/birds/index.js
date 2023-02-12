@@ -4,7 +4,6 @@ import Experience from "./Experience.js";
 import React from "react";
 
 export default function Scene() {
-  return <div style={{ background: "tomato", height: "100%" }}></div>;
   return (
     <Canvas
       shadows
