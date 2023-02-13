@@ -41,7 +41,8 @@ export default function Home(props: Props) {
       <div className="mt-xl mb-sm ">
         <h2 className="fz-sm op-02">ALBUMS</h2>
         <p className="fz-lgr fw-b">
-          I create music since 2017. Here are some of my featured music albums.
+          I create music since 2017. Here are some of my featured music{" "}
+          <Link href="/albums">albums</Link>.
         </p>
       </div>
 
@@ -68,15 +69,15 @@ export default function Home(props: Props) {
         })}
       </div>
 
-      <Link href="/albums" className="mt-lg fz-lg fw-b g-md items-end">
+      {/* <Link href="/albums" className="mt-lg fz-lg fw-b g-md items-end">
         <RightArrowIcon color={"var(--clr-link)"} /> View all
-      </Link>
+      </Link> */}
 
       <div className="mt-xl mb-sm ">
         <h2 className="fz-sm op-02">ART</h2>
         <p className="fz-lgr fw-b">
-          Using technologies like WebGL, GLSL, and Three.js I can finally create
-          scenes from my fantasy.
+          Using technologies like WebGL, GLSL, and Three.js I can finally create{" "}
+          <Link href="/scenes">scenes</Link> from my fantasy.
         </p>
       </div>
 
@@ -99,9 +100,9 @@ export default function Home(props: Props) {
           );
         })}
       </div>
-      <Link href="/scenes" className="mt-lg fz-lg fw-b d-f g-md items-end">
+      {/* <Link href="/scenes" className="mt-lg fz-lg fw-b d-f g-md items-end">
         <RightArrowIcon color={"var(--clr-link)"} /> View all
-      </Link>
+      </Link> */}
 
       {/* <div className="items-space-between items-center mt-lg mb-sm">
         <h2>CONNECT</h2>
