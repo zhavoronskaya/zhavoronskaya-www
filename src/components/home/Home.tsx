@@ -83,16 +83,14 @@ export default function Home(props: Props) {
       </div>
 
       <div>
-        {props.scenes.map((row) => {
+        {props.scenes.map((row, idx) => {
           return (
-            <div className={styles.artcontainer}>
+            <div key={idx} className={styles.artcontainer}>
               {row.map(({ scene, size }) => {
                 return (
                   <Link
-                    style={{
-                      flexGrow: size,
-                    }}
                     key={scene.slug}
+                    style={{ flexGrow: size }}
                     href={`/scenes/${scene.slug}`}
                   >
                     <img src={scene.cover} alt="Scene" />
