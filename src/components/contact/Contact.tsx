@@ -12,7 +12,7 @@ import { SocialLinks } from "@/constants";
 export default function Contact() {
   return (
     <div>
-      <h1>CONTACT ME</h1>
+      <h2>CONTACT ME</h2>
       <p className="mb-lg">
         Have a project in mind or just wanna chat about something? Feel free to
         contact me via email or on any of social platforms I use:

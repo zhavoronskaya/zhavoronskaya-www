@@ -19,18 +19,21 @@
 .g-lg { gap: var(--sz-lg); }
 .g-xl { gap: var(--sz-xl); }
 .g-xxl { gap: var(--sz-xxl); }
-.fx-1 { flex: 1 };
-.fx-2 { flex: 2 };
-.fx-3 { flex: 3 };
-.fx-4 { flex: 4 };
-.fx-5 { flex: 5 };
-.fx-6 { flex: 6 };
-.fx-7 { flex: 7 };
-.fx-8 { flex: 8 };
-.fx-9 { flex: 9 };
+.fxw-w { flex-wrap: wrap; }
+.fx-1 { flex: 1; }
+.fx-2 { flex: 2; }
+.fx-3 { flex: 3; }
+.fx-4 { flex: 4; }
+.fx-5 { flex: 5; }
+.fx-6 { flex: 6; }
+.fx-7 { flex: 7; }
+.fx-8 { flex: 8; }
+.fx-9 { flex: 9; }
 
 /* BOX */
 .w-a { width: auto; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
 
 /* BORDER */
 .bdrs-round { border-radius: 50% }

@@ -13,6 +13,7 @@ body {
 body {
   background: var(--clr-bg);
   color: var(--clr-text);
+  font-size: var(--fz-md);
 }
 #__next {
   height: 100%;
@@ -39,6 +40,18 @@ h4 {
   font-weight: bold;
   margin: 0px;
   padding: 0px;
+}
+
+h1 {
+  font-size: var(--fz-xl);
+}
+
+h2 {
+  font-size: var(--fz-lgr);
+}
+
+h3 {
+  font-size: var(--fz-lg);
 }
 
 p {

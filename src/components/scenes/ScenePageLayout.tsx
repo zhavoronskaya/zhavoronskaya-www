@@ -41,7 +41,7 @@ const ScenesNav = (props: Props) => {
         </Link>
       )}
 
-      <h2>{props.scene.name}</h2>
+      <h2 className="text-ellipsis">{props.scene.name}</h2>
 
       {props.nextSceneSlug && (
         <Link href={`/scenes/${props.nextSceneSlug}`}>

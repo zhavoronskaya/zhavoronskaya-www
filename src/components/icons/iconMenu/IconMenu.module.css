@@ -1,13 +1,13 @@
 .birdSvg {
-  width: 1600px;
+  width: 600px;
   bottom: 80px;
-  left: 50%;
+  left: 40%;
   position: absolute;
 
   opacity: 0.2;
 }
 
-.birdSvg path {
+/* .birdSvg path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: firstAnimation 3s linear forwards;
@@ -15,7 +15,7 @@
 
 .birdSvg :global(.eye) {
   animation: firstAnimation 1s linear forwards;
-  /* animation-delay: 1s; */
+
 }
 
 .birdSvg :global(.leg1) path {
@@ -31,5 +31,11 @@
 @keyframes firstAnimation {
   to {
     stroke-dashoffset: 0;
+  }
+} */
+
+@media screen and (min-width: 792px) {
+  .birdSvg {
+    width: 1600px;
   }
 }

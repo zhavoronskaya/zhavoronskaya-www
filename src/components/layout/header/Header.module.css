@@ -58,10 +58,10 @@
 
 .nav li {
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .nav li a {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: bold;
   display: block;
 }
@@ -74,6 +74,9 @@
   .nav {
     text-align: left;
     padding: 30px;
+  }
+  .nav li a {
+    font-size: 5rem;
   }
 
   :global(.layout--with-sidebar) .left {

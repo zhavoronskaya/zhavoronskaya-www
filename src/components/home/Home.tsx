@@ -22,7 +22,7 @@ export default function Home(props: Props) {
       </div>
 
       <div className="mb-sm">
-        <div className="d-f g-md">
+        <div className={styles.cardscontainer}>
           <div className={styles.card}>
             <div className="mb-lg fz-xl">🎼</div>
             Music Collabs & <br /> Compilation
@@ -32,7 +32,7 @@ export default function Home(props: Props) {
             Code & <br /> Digital art
           </div>
           <div className={styles.card}>
-            <div className="mb-lg fz-xl">🎤</div>
+            <div className="mb-lg fz-xl ">🎤</div>
             Live Sets & <br /> Performance
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function Home(props: Props) {
                 <img src={album.cover} alt="Album" />
               </div>
 
-              <div className="fx-1">
+              <div className="fx-1" style={{ width: "20%" }}>
                 <p className="op-04 fz-sm">{album.year}</p>
                 <h3 className="fz-lg">{album.name}</h3>
               </div>

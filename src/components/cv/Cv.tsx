@@ -12,7 +12,7 @@ import styles from "./Cv.module.css";
 export default function Cv() {
   return (
     <div>
-      <div className="items-center g-md mb-lg">
+      <div className="items-center fxw-w g-md mb-lg">
         <Image
           width={100}
           height={100}
@@ -20,8 +20,8 @@ export default function Cv() {
           alt="Avatar"
           className="w-a bdrs-round"
         />
-        <div>
-          <h2 className="fz-xl lh-1 text-ellipsis">Elena Zhavoronskaya</h2>
+        <div className="fx-1">
+          <h2 className="fz-xl lh-1">Elena Zhavoronskaya</h2>
           <p className="op-04 fz-sm">Musician & Digital Atrist</p>
         </div>
       </div>

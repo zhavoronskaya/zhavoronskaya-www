@@ -1,4 +1,4 @@
-export const LeftArrowIcon = ({ color = "var(--clr-text)", width = 16 }) => {
+export const LeftArrowIcon = ({ color = "var(--clr-text)", width = 24 }) => {
   return (
     <svg
       width={width}
@@ -11,7 +11,7 @@ export const LeftArrowIcon = ({ color = "var(--clr-text)", width = 16 }) => {
   );
 };
 
-export const RightArrowIcon = ({ color = "var(--clr-text)", width = 16 }) => {
+export const RightArrowIcon = ({ color = "var(--clr-text)", width = 24 }) => {
   return (
     <svg
       width={width}
