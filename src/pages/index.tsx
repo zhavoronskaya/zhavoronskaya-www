@@ -2,12 +2,12 @@ import Head from "next/head";
 import Layout from "@/components/layout/Layout";
 import Home from "@/components/home/Home";
 
-import { getAlbums, getScenes } from "@/db";
-import { IAlbum, IScene } from "@/interfaces";
+import { getGalleryScenes, getSelectedAlbums } from "@/db";
+import { IAlbum, IScenesGallery } from "@/interfaces";
 
 export async function getStaticProps() {
-  const albums = await getAlbums();
-  const scenes = await getScenes();
+  const albums = await getSelectedAlbums();
+  const scenes = await getGalleryScenes();
   return {
     props: { albums, scenes },
   };
@@ -15,7 +15,7 @@ export async function getStaticProps() {
 
 type Props = {
   albums: IAlbum[];
-  scenes: IScene[];
+  scenes: IScenesGallery;
 };
 
 export default function HomePage({ albums, scenes }: Props) {

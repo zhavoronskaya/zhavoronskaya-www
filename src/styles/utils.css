@@ -1,5 +1,6 @@
 .text-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .items-center { display: flex; align-items: center; }
+/* .items-row {display: flex; flex-direction: column; justify-content: space-between;} */
 .items-space-between { display: flex; justify-content: space-between; }
 .items-space-around { display: flex; justify-content: space-around; }
 

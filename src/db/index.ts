@@ -14,7 +14,9 @@ import goneBeyond from "./albums/gone-beyond";
 import sputnik from "./albums/sputnik";
 import sxema from "./albums/sxema";
 
-
+export async function getSelectedAlbums() {
+  return [twilight, whiteHalf, idreamed];
+}
 export async function getAlbums() {
   return [
     whiteHalf,
@@ -23,16 +25,27 @@ export async function getAlbums() {
     reality,
     pcp,
 
-
-    
     goneBeyond,
     sputnik,
     sxema,
-  ]
+  ];
 }
 
 export async function getScenes() {
-  return [particleFiber, colorField, alienObject, lineBezier, bathroom, birds]
+  return [particleFiber, colorField, alienObject, lineBezier, bathroom, birds];
 }
 
-
+export async function getGalleryScenes() {
+  return [
+    [
+      { size: 2, scene: particleFiber },
+      { size: 1, scene: colorField },
+    ],
+    [
+      { size: 4, scene: alienObject },
+      { size: 1, scene: lineBezier },
+      { size: 2, scene: bathroom },
+    ],
+    [{ size: 1, scene: birds }],
+  ];
+}

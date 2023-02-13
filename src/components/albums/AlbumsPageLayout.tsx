@@ -31,7 +31,7 @@ const Intro = () => {
     <div className="mb-lg">
       <p>
         Here is the small list of my music releases. To see more feel free to
-        visit other social media platforms. Have a nice travelling! :*
+        visit other social media platforms. Have a nice travelling! 🥰
       </p>
 
       <div className="my-sm">

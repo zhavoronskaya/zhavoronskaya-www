@@ -5,6 +5,7 @@ export interface IAlbum {
   coverAlt?: string;
   description: string;
   bandcamp: string; // iframe
+  year: string;
 }
 
 export interface IScene {
@@ -15,3 +16,5 @@ export interface IScene {
   description: string;
   // component: string | React.ReactNode;
 }
+
+export type IScenesGallery = { scene: IScene; size: number }[][];
