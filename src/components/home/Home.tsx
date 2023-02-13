@@ -14,39 +14,34 @@ export default function Home(props: Props) {
   return (
     <>
       <LogoImage />
-      <div className="mt-lg mb-sm ">
-        <h1>
-          Hi! <br />
-          My name is Lena Zhavoronskaya and I'm in love with music and digital
-          art.
-        </h1>
+      <div className="mt-xl mb-sm">
+        <h1 className="fz-xl">Hello, I'm Lena 🙌</h1>
+        <p className="fz-lg">
+          I'm in love with music and digital art. Let's work together:
+        </p>
       </div>
-      <div className="mt-lg mb-sm ">
-        <h2 className="mb-sm">Let's work together 🙌 :</h2>
-        <div className="items-space-between items-center">
-          <p>
-            🎼
-            <br />
-            Music Collaboration & Compilation
-          </p>
-          <p>
-            🎨
-            <br />
-            Code & Digital art
-          </p>
-          <p>
-            🎤
-            <br />
-            Live Sets & Performance
-          </p>
+
+      <div className="mb-sm">
+        <div className="d-f g-md">
+          <div className={styles.card}>
+            <div className="mb-lg fz-xl">🎼</div>
+            Music Collabs & <br /> Compilation
+          </div>
+          <div className={styles.card}>
+            <div className="mb-lg fz-xl">🎨</div>
+            Code & <br /> Digital art
+          </div>
+          <div className={styles.card}>
+            <div className="mb-lg fz-xl">🎤</div>
+            Live Sets & <br /> Performance
+          </div>
         </div>
       </div>
-      <div className="mt-lg mb-sm ">
-        <h2 className="mb-sm">ALBUMS</h2>
-        <p>
-          I create music since 2017. Below present some of my featured music
-          albums. If you want to see other albums, feel free to visit{" "}
-          <Link href="/albums">MUSIC</Link> page.
+
+      <div className="mt-xl mb-sm ">
+        <h2 className="fz-sm op-02">ALBUMS</h2>
+        <p className="fz-lgr fw-b">
+          I create music since 2017. Here are some of my featured music albums.
         </p>
       </div>
 
@@ -54,35 +49,38 @@ export default function Home(props: Props) {
         {props.albums.map((album) => {
           return (
             <Link
-              className="items-space-between items-center g-sm mt-lg mb-sm"
+              className="items-center g-xl mt-lg mb-sm"
               key={album.slug}
               href={`/albums/${album.slug}`}
             >
               <div style={{ width: "20%" }}>
                 <img src={album.cover} alt="Album" />
               </div>
-              <div style={{ width: "30%" }}>
+
+              <div className="fx-1">
                 <p className="op-04 fz-sm">{album.year}</p>
-                <h3>{album.name}</h3>
+                <h3 className="fz-lg">{album.name}</h3>
               </div>
-              <RightArrowIcon />
+
+              <RightArrowIcon width={30} color={"var(--clr-link)"} />
             </Link>
           );
         })}
       </div>
 
-      <div className="mt-lg mb-sm ">
-        <h2 className="mb-sm">ART</h2>
-        <p>
-          Now I'm getting deeper and deeper into a beautiful world of creative
-          coding. Using technologies like WebGL, GLSL, and THREE.js I can
-          finally create scenes from my fantasy. Here is a small gallery of my
-          works. Please visit <Link href="/albums">GENERATIVE ART</Link> page to
-          see all Art Works.
+      <Link href="/albums" className="mt-lg fz-lg fw-b g-md items-end">
+        <RightArrowIcon color={"var(--clr-link)"} /> View all
+      </Link>
+
+      <div className="mt-xl mb-sm ">
+        <h2 className="fz-sm op-02">ART</h2>
+        <p className="fz-lgr fw-b">
+          Using technologies like WebGL, GLSL, and Three.js I can finally create
+          scenes from my fantasy.
         </p>
       </div>
 
-      <div>
+      <div className="mt-lg mb-sm">
         {props.scenes.map((row, idx) => {
           return (
             <div key={idx} className={styles.artcontainer}>
@@ -101,6 +99,9 @@ export default function Home(props: Props) {
           );
         })}
       </div>
+      <Link href="/scenes" className="mt-lg fz-lg fw-b d-f g-md items-end">
+        <RightArrowIcon color={"var(--clr-link)"} /> View all
+      </Link>
 
       {/* <div className="items-space-between items-center mt-lg mb-sm">
         <h2>CONNECT</h2>

@@ -1,18 +1,10 @@
-/* 
-.artcontainer {
-  display: flex;
-  overflow-x: auto;
+.card {
+  padding: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--clr-text);
+  flex: 1;
+  font-weight: bold;
 }
-
-.artcontainer > a {
-  margin-right: 15px;
-  flex-shrink: 0;
-  width: 25%;
-}
-
-.artcontainer::-webkit-scrollbar {
-  display: none;
-} */
 
 .artcontainer {
   display: flex;
