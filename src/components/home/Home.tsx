@@ -50,16 +50,20 @@ export default function Home(props: Props) {
         {props.albums.map((album) => {
           return (
             <Link
-              className="items-center g-xl mt-lg mb-sm"
+              className="items-center desktop_g-xl g-lg mt-lg mb-sm"
               key={album.slug}
               href={`/albums/${album.slug}`}
             >
+              <div className={styles.yearcontainer}>
+                <p>{album.year}</p>
+              </div>
+
               <div style={{ width: "20%" }}>
                 <img src={album.cover} alt="Album" />
               </div>
 
-              <div className="fx-1" style={{ width: "20%" }}>
-                <p className="op-04 fz-sm">{album.year}</p>
+              <div className="fx-1 ov-h">
+                <p className="op-04 fz-sm">{album.genre}</p>
                 <h3 className="fz-lg">{album.name}</h3>
               </div>
 
@@ -68,10 +72,6 @@ export default function Home(props: Props) {
           );
         })}
       </div>
-
-      {/* <Link href="/albums" className="mt-lg fz-lg fw-b g-md items-end">
-        <RightArrowIcon color={"var(--clr-link)"} /> View all
-      </Link> */}
 
       <div className="mt-xl mb-sm ">
         <h2 className="fz-sm op-02">ART</h2>
@@ -100,16 +100,6 @@ export default function Home(props: Props) {
           );
         })}
       </div>
-      {/* <Link href="/scenes" className="mt-lg fz-lg fw-b d-f g-md items-end">
-        <RightArrowIcon color={"var(--clr-link)"} /> View all
-      </Link> */}
-
-      {/* <div className="items-space-between items-center mt-lg mb-sm">
-        <h2>CONNECT</h2>
-        <h2 className={styles.contact}>
-          <Link href="/contact">CONTACT ME</Link>
-        </h2>
-      </div> */}
     </>
   );
 }

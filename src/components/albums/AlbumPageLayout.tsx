@@ -22,10 +22,8 @@ export default function AlbumPageLayout(props: Props) {
 
         <div dangerouslySetInnerHTML={{ __html: props.album.bandcamp }} />
 
-        <p
-          className={styles.discription + " " + "py20"}
-          dangerouslySetInnerHTML={{ __html: props.album.description }}
-        ></p>
+        <p dangerouslySetInnerHTML={{ __html: props.album.description }}></p>
+        <p className="mt-sm mb-sm op-04 fz-sm">{props.album.genre}</p>
       </div>
     </LayoutWithSidebar>
   );

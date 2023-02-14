@@ -4,6 +4,10 @@ import alienObject from "./scenes/alien-object";
 import lineBezier from "./scenes/line-bezier";
 import bathroom from "./scenes/bathroom";
 import birds from "./scenes/birds";
+import liquidImage from "./scenes/liquid-image";
+import bloodySky from "./scenes/bloody-sky";
+import pinkEllipses from "./scenes/pink-ellipses";
+import psyPlane from "./scenes/psychedelic-plane";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -32,7 +36,18 @@ export async function getAlbums() {
 }
 
 export async function getScenes() {
-  return [particleFiber, colorField, alienObject, lineBezier, bathroom, birds];
+  return [
+    particleFiber,
+    colorField,
+    alienObject,
+    lineBezier,
+    bathroom,
+    birds,
+    liquidImage,
+    bloodySky,
+    pinkEllipses,
+    psyPlane,
+  ];
 }
 
 export async function getGalleryScenes() {
@@ -46,6 +61,10 @@ export async function getGalleryScenes() {
       { size: 1, scene: lineBezier },
       { size: 2, scene: bathroom },
     ],
-    [{ size: 1, scene: birds }],
+    [
+      { size: 1, scene: birds },
+      { size: 3, scene: liquidImage },
+      { size: 4, scene: psyPlane },
+    ],
   ];
 }

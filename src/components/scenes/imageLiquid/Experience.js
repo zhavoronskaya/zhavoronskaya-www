@@ -32,11 +32,11 @@ const LiquidMaterial = shaderMaterial(
 extend({ LiquidMaterial });
 
 function Painting() {
-  const textWater = useTexture("./image/cover.png");
+  const textWater = useTexture("/image/cover.png");
   textWater.encoding = THREE.sRGBEncoding;
   const shaderRef = useRef();
   const geomertyRef = useRef();
-  const { width, height } = useThree((state) => state.size);
+  const { viewport } = useThree();
 
   useEffect(() => {
     shaderRef.current.uTex = textWater;
@@ -50,7 +50,7 @@ function Painting() {
     <mesh>
       <planeGeometry
         ref={geomertyRef}
-        args={[width / 60, height / 60, 128, 128]}
+        args={[viewport.width, viewport.height, 128, 64]}
       />
       <liquidMaterial ref={shaderRef} />
       {/* <meshBasicMaterial map={textWater} /> */}

@@ -7,13 +7,15 @@ body {
   margin: 0;
   top: 0;
   left: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+  font-family: "Satoshi", sans-serif;
 }
 body {
   background: var(--clr-bg);
   color: var(--clr-text);
   font-size: var(--fz-md);
+  line-height: calc(var(--fz-md) * 1.5);
 }
 #__next {
   height: 100%;
@@ -44,14 +46,17 @@ h4 {
 
 h1 {
   font-size: var(--fz-xl);
+  line-height: calc(var(--fz-xl) * 1.5);
 }
 
 h2 {
   font-size: var(--fz-lgr);
+  line-height: calc(var(--fz-lgr) * 1.5);
 }
 
 h3 {
   font-size: var(--fz-lg);
+  line-height: calc(var(--fz-lg) * 1.5);
 }
 
 p {

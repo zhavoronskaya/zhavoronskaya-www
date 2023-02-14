@@ -1,10 +1,4 @@
-import {
-  shaderMaterial,
-  Environment,
-  OrbitControls,
-  PresentationControls,
-  CameraShake,
-} from "@react-three/drei";
+import { shaderMaterial, Environment, CameraShake } from "@react-three/drei";
 
 import { useState } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
@@ -13,33 +7,10 @@ import * as THREE from "three";
 
 import pointsVertexShader from "./shaders/vertex.js";
 import pointsFragmentShader from "./shaders/fragment.js";
-import {
-  DepthOfField,
-  Bloom,
-  EffectComposer,
-} from "@react-three/postprocessing";
-
-function Rig() {
-  const [vec] = useState(() => new THREE.Vector3());
-  const { camera, mouse } = useThree();
-  useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, 1, 60), 0.1));
-  return (
-    <CameraShake
-      yawFrequency={1}
-      maxYaw={0.05}
-      pitchFrequency={1}
-      maxPitch={0.05}
-      rollFrequency={0.5}
-      maxRoll={1.5}
-      intensity={0.2}
-    />
-  );
-}
+import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
 
 const count = 10000;
 const size = 80;
-const lightColor = new THREE.Color("#7ab9d8");
-const darkColor = new THREE.Color("#7F34FF");
 
 const PointsFlowMaterial = new shaderMaterial(
   { uSize: 100, uTime: 1 },
@@ -55,8 +26,6 @@ function ParticleLine({ points }) {
   const shaderRef = useRef();
   const pointsRef = useRef();
 
-  // const points = useRef()
-
   useEffect(() => {
     if (pointsRef.current) {
       pointsRef.current.setFromPoints(points);
@@ -64,7 +33,6 @@ function ParticleLine({ points }) {
   }, [points]);
 
   useFrame((state, delta) => {
-    //particlesRef.current.rotation.y = state.clock.getElapsedTime() * 0.051;
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.09;
   });
 
@@ -146,22 +114,10 @@ export default function Experience() {
           bokehScale={0.5}
         />
       </EffectComposer>
-      {/* <PresentationControls
-        enabled={true} // the controls can be disabled by setting this to false
-        global={false} // Spin globally or by dragging the model
-        cursor={true} // Whether to toggle cursor style on drag
-        snap={false} // Snap-back to center (can also be a spring config)
-        speed={1} // Speed factor
-        zoom={1} // Zoom factor when half the polar-max is reached
-        rotation={[0, 0, 0]} // Default rotation
-        polar={[0, Math.PI / 2]} // Vertical limits
-        azimuth={[-Infinity, Infinity]} // Horizontal limits
-        config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
-      ></PresentationControls> */}
+
       <color args={["#0D1117"]} attach="background" />
       <Suspense fallback={null}>
         <ParticleLines linesCount={20} />
-        {/* <Rig /> */}
       </Suspense>
       <Environment preset="night" />
     </>

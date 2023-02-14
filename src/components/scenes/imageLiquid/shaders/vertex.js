@@ -81,8 +81,8 @@ float snoise(vec3 v){
 void main()
 {
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-      float noiseFreq = 0.50;
-      float noiseAmp = 0.1;
+      float noiseFreq = 0.10;
+      float noiseAmp = 0.05;
       vec3 noisePos = vec3(modelPosition.x * noiseFreq + uTime, modelPosition.y, modelPosition.z);
   modelPosition.z +=snoise(noisePos) * noiseAmp;
       vElevation = modelPosition.z;

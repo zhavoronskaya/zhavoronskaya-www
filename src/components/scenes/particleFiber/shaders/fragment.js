@@ -94,31 +94,8 @@ return (value/ distance(uv, mid)) - 2.0 * value;
 }
 
 void main() {
-    // float distanceToCenter  = setDistanceToCenter(gl_PointCoord, vec2(0.5));
     float strength =setShyny(gl_PointCoord, vec2(0.5), 0.06);
-    // strength +=  cnoise(vec3(gl_PointCoord.xy, uTime))*888.0;
     vec3 uvColor = vec3(gl_PointCoord, 1.0);
     vec3 color = mix(uvColor, vec3(0.27,0.33,0.67),  1.0 - strength);
     gl_FragColor = vec4(color,strength*strength);
 }`;
-
-// void main() {
-
-// float strength = cnoise(vec3(gl_PointCoord.xy, uTime))*888.0;
-// // // //        // Final color
-// //     vec2 wavedUv = vec2(
-// //      gl_PointCoord.x + sin(gl_PointCoord.y * 0.5) * 30.1,
-// //     gl_PointCoord.y + cos(gl_PointCoord.x * 0.5) * 30.1
-// // );
-// vec3 uvColor = vec3(gl_PointCoord, 1.0);
-// //     float strength = 1.0 - step(0.06,abs(distance(wavedUv, vec2(0.5)) - 0.15));
-// // float strength = diffusePoint(gl_PointCoord, vec2(0.5), 3.3);
-// // strength += abs(cnoise(vec3(gl_PointCoord, uTime)));
-// // // strength += diffusePoint(newCoord, vec2(0.5), 3.0);
-// // float noiseOffset = cnoise(gl_PointCoord* .5);
-// // strength += noiseOffset;
-// //  // Clamp the value
-// // //  strength = clamp(strength, 0.0, 1.0);
-// vec3 color = mix(uvColor, vec3(0.87,0.33,0.67),  strength);
-//     gl_FragColor = vec4 (color, 1.0);
-// }

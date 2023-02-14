@@ -1,8 +1,7 @@
-export default /*glsl */ `varying vec2 vUv;
+export default /*glsl */ `
+varying vec2 vUv;
 
 uniform float uTime;
-// uniform vec3 uColorStart;
-// uniform vec3 uColorEnd;
 
 //	Simplex 3D Noise 
 //	by Ian McEwan, Ashima Arts
@@ -83,13 +82,12 @@ void main() {
 
     //Displace the modelpoz
     vec2 displacedUv = vUv + snoise(vec3(vUv * 0.50, uTime ));
-    // displacedUv = clamp(displacedUv, 0.0,1.0);
+ 
     float strength = snoise(vec3(displacedUv * 9.80, uTime))*0.8;
     float strengthTwo = snoise(vec3(displacedUv * 8.0, uTime*0.5));
 
-    float outerGlow = step(0.2, abs(distance(displacedUv, vec2(0.5))) * 0.8);
+    float outerGlow = step(0.2, abs(distance(displacedUv, vec2(0.5))) * 0.08);
     strength += outerGlow;
-    // strength +=strengthTwo;
     strength += step(-0.2, strength) * 0.5;
     strength = clamp(strength, 0.0, 1.0);
     vec3 color = mix(vec3(0.7,0.3,0.56) * 0.99, vec3(0.2, 0.1,0.6), strength);
@@ -97,22 +95,6 @@ void main() {
   strength = clamp(strength, 0.0, 1.0);
   vec3 colorTwo = mix(vec3(0.2,0.3,0.56), vec3(0.9, 0.1,0.6), strength);
   vec3 finalColor = mix(color, colorTwo, strength*0.5);
-
-
-
-    // //outer glow
-    // float outerGlow = distance(displacedUv, vec2(0.5)) * 0.2;
-    // strength += outerGlow;
-    
-    // // Apply cool step
-    // strength += step(- 0.2, strength) * 11.8;
-
-    // // Clamp the value
-    // strength = clamp(strength, 0.0, 1.0);
-
-    // //Final Color
-    // vec3 color = mix(vec3(0.4,0.3,0.56),vec3(0.2, 0.1,0.6), strength*strength);
-    // vec3 finalColor =  mix(vec3(0.4,0.1,0.9),color, strengthTwo*0.5);
 
     gl_FragColor = vec4(finalColor,1.0);
 }`;

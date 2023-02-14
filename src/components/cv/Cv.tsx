@@ -16,7 +16,7 @@ export default function Cv() {
         <Image
           width={100}
           height={100}
-          src="/image/profphoto.png"
+          src="/image/cvphoto.png"
           alt="Avatar"
           className="w-a bdrs-round"
         />

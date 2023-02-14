@@ -5,7 +5,7 @@ import React from "react";
 
 export default function Scene() {
   return (
-    <Canvas className={styles.canvas} dpr={[1, 2]}>
+    <Canvas className={styles.canvas} dpr={[1, 2]} orthographic>
       <Experience />
     </Canvas>
   );

@@ -4,7 +4,7 @@ export const scene: IScene = {
   name: "Birds",
   slug: "birds",
   description: "Sky with birds, stars and clouds",
-  cover: "/art/7.png",
+  cover: "/art/Bird.png",
   coverAlt: "Something",
 };
 

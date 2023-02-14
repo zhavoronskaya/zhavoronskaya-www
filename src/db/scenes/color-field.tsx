@@ -4,7 +4,7 @@ export const scene: IScene = {
   name: "Color Field",
   slug: "color-field",
   description: "Color Field created with Noise Function.",
-  cover: "/art/1.png",
+  cover: "/art/ColorField.png",
   coverAlt: "Something",
   // component: <ColorField />,
 };

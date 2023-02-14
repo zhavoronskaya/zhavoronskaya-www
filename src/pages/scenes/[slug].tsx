@@ -4,12 +4,16 @@ import { GetStaticPropsContext } from "next";
 import { IScene } from "@/interfaces";
 import { getScenes } from "@/db";
 import ScenePageLayout from "@/components/scenes/ScenePageLayout";
-import ColorField from "@/components/scenes/psyhoColorField";
+import ColorField from "@/components/scenes/colorField";
 import ParticleFiber from "@/components/scenes/particleFiber";
 import AlienObject from "@/components/scenes/alienObject";
 import LineBezier from "@/components/scenes/lineBezier";
 import BathRoom from "@/components/scenes/bathRoom";
 import Birds from "@/components/scenes/birds";
+import LiquidImage from "@/components/scenes/imageLiquid";
+import BloodySky from "@/components/scenes/bloodySky";
+import PinkEllipses from "@/components/scenes/pinkEllipses";
+import PsyPlane from "@/components/scenes/psyPlane";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -54,6 +58,14 @@ const ScenePage = (props: Props) => {
         return BathRoom;
       case "birds":
         return Birds;
+      case "liquid-image":
+        return LiquidImage;
+      case "bloody-sky":
+        return BloodySky;
+      case "pink-ellipses":
+        return PinkEllipses;
+      case "psychedelic-plane":
+        return PsyPlane;
       default:
         return null;
     }

@@ -20,9 +20,6 @@ extend({ MirrorMaterial });
 export default function Mirror() {
   const textMirror = useTexture("../../image/meduza.jpeg");
   textMirror.encoding = THREE.sRGBEncoding;
-  const geomertyRef = useRef();
-  // const { width, height } = useThree((state) => state.size);
-  //   const {camera} = useThree((state) => state.camera);
 
   useEffect(() => {
     mirror.current.uTex = textMirror;

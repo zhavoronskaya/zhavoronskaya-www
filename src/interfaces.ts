@@ -6,6 +6,7 @@ export interface IAlbum {
   description: string;
   bandcamp: string; // iframe
   year: string;
+  genre: string;
 }
 
 export interface IScene {

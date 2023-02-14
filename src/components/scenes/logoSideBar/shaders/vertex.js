@@ -1,4 +1,5 @@
-export default /*glsl */ `varying vec2 vUv;
+export default /*glsl */ `
+varying vec2 vUv;
 varying float vElevation;
 
 uniform float uTime;

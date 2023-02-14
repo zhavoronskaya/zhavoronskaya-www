@@ -11,6 +11,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Zhavoronskaya</title>
         <meta name="description" content="Artist portfolio" />
         <link rel="icon" href="/Zhavoronok.ico" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Component {...pageProps} className="test" />
     </>

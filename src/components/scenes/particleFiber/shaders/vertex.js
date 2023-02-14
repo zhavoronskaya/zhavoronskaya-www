@@ -1,7 +1,5 @@
-export default /*glsl */ `#define PI 3.1415926535897932384626433832795
-
-// attribute float aScale;
-// attribute vec2 aVelocity;
+export default /*glsl */ `
+#define PI 3.1415926535897932384626433832795
 
 
 uniform float uSize;

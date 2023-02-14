@@ -7,7 +7,6 @@ import { shaderMaterial, OrbitControls } from "@react-three/drei";
 import paintingVertexShader from "./shaders/vertex.js";
 import paintingFragmentShader from "./shaders/fragment";
 
-import * as THREE from "three";
 import { useThree, useFrame, extend } from "@react-three/fiber";
 
 import {
@@ -28,8 +27,7 @@ extend({ PaintMaterial });
 function Painting() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
-  const { width, height } = useThree((state) => state.size);
-  //   console.log(width);
+  const { viewport } = useThree();
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.1;
   });
@@ -37,7 +35,7 @@ function Painting() {
     <mesh>
       <planeGeometry
         ref={geomertyRef}
-        args={[width / 50, height / 50, 32, 32]}
+        args={[viewport.width, viewport.height, 64, 32]}
       />
       <paintMaterial ref={shaderRef} />
     </mesh>

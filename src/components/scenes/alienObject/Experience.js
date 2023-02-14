@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useRef, useState } from "react";
-// import { Environment, CameraShake } from "@react-three/drei";
 import React from "react";
 
 import { shaderMaterial, OrbitControls, Stage } from "@react-three/drei";
@@ -7,7 +6,6 @@ import { shaderMaterial, OrbitControls, Stage } from "@react-three/drei";
 import paintingVertexShader from "./shaders/vertex.js";
 import paintingFragmentShader from "./shaders/fragment.js";
 
-// import * as THREE from "three";
 import { useThree, useFrame, extend } from "@react-three/fiber";
 
 import { EffectComposer, SSR } from "@react-three/postprocessing";
@@ -27,20 +25,14 @@ function Object() {
   const ref = useRef();
   const { width, height } = useThree((state) => state.size);
 
-  // useEffect(() => {
-  //   shaderRef.current.uTex = textWater;
-  // }, []);
-
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.1;
-    // ref.current.rotation.y += delta * 0.08;
   });
 
   return (
     <mesh ref={ref}>
       <torusKnotGeometry ref={geomertyRef} args={[1.5, 0.3, 512, 512]} />
       <figureMaterial ref={shaderRef} />
-      {/* <meshBasicMaterial map={textWater} /> */}
     </mesh>
   );
 }

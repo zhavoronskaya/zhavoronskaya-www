@@ -4,8 +4,6 @@ export default function Mirror() {
   return (
     <mesh position={[0.9, 5.6, -5.2]}>
       <planeGeometry args={[5.4, 3.6]} />
-      {/* <meshBasicMaterial color="ivory" /> */}
-      {/* <mirrorMaterial ref={mirror} blending={THREE.AdditiveBlending} /> */}
       <MeshReflectorMaterial
         blur={[300, 100]}
         resolution={2048}
