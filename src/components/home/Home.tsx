@@ -3,7 +3,7 @@ import Link from "next/link";
 import { IAlbum, IScenesGallery } from "@/interfaces";
 import styles from "./Home.module.css";
 import LogoImage from "../scenes/logoImage";
-import { RightArrowIcon } from "../icons/Arrows";
+import { RightArrowIcon } from "../theme/Icon/Arrows";
 
 type Props = {
   albums: IAlbum[];

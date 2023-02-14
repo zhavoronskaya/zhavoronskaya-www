@@ -1,12 +1,12 @@
 import styles from "./Contact.module.css";
 
-import IconHome from "../icons/iconHome/IconHome";
+import IconHome from "../theme/Icon/iconHome/IconHome";
 import {
   BandcampIcon,
   EmailIcon,
   InstagramIcon,
   TelegramIcon,
-} from "../icons/SocialIcons";
+} from "../theme/Icon/SocialIcons";
 import { SocialLinks } from "@/constants";
 
 export default function Contact() {
@@ -25,12 +25,12 @@ export default function Contact() {
         <EmailIcon /> {SocialLinks.EMAIL}
       </a>
 
-      <a className="g-sm mb-md items-center" href={SocialLinks.INSTAGRAM}>
-        <InstagramIcon /> instagram
-      </a>
-
       <a className="g-sm mb-md items-center" href={SocialLinks.TELEGRAM}>
         <TelegramIcon /> telegram
+      </a>
+
+      <a className="g-sm mb-md items-center" href={SocialLinks.INSTAGRAM}>
+        <InstagramIcon /> instagram
       </a>
 
       <a className="g-sm mb-md items-center" href={SocialLinks.BANDCAMP}>

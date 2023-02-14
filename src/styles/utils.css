@@ -50,8 +50,8 @@
 .bdrs-round { border-radius: 50% }
 
 /* FONTS */
-.lh-1 { line-height: 1;}
 .fw-b { font-weight: bold; }
+.fw-n { font-weight: normal;}
 .fz-xs { font-size: var(--fz-xs); line-height: calc(var(--fz-xs) * 1.5);}
 .fz-smr { font-size: var(--fz-smr); line-height: calc(var(--fz-smr) * 1.5);}
 .fz-sm { font-size: var(--fz-sm); line-height: calc(var(--fz-sm) * 1.5);}
@@ -60,6 +60,9 @@
 .fz-lgr { font-size: var(--fz-lgr); line-height: calc(var(--fz-lgr) * 1.5);}
 .fz-xl { font-size: var(--fz-xl); line-height: calc(var(--fz-xl) * 1.5);}
 .fz-xxl { font-size: var(--fz-xxl); line-height: calc(var(--fz-xxl) * 1.5);}
+.lh-1 { line-height: 1;}
+.tt-u { text-transform: uppercase; }
+.td-u { text-decoration: underline; }
 
 
 /* OPACITY */

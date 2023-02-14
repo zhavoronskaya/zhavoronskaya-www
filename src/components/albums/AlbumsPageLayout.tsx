@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./AlbumsPageLayout.module.css";
 import { LayoutWithSidebar } from "../layout/Layout";
-import { BandcampIcon, SoundcloudIcon } from "../icons/SocialIcons";
+import { BandcampIcon, SoundcloudIcon } from "../theme/Icon/SocialIcons";
 import { SocialLinks } from "@/constants";
 
 type Props = {

@@ -1,12 +1,14 @@
-import { SocialLinks } from "@/constants";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
+import { SocialLinks } from "@/constants";
 import {
-  BandcampIcon,
+  EmailIcon,
   InstagramIcon,
-  SoundcloudIcon,
   TelegramIcon,
-} from "../icons/SocialIcons";
+} from "@/components/theme/Icon/SocialIcons";
+import Badge from "@/components/theme/Badge";
 import styles from "./Cv.module.css";
 
 export default function Cv() {
@@ -16,7 +18,7 @@ export default function Cv() {
         <Image
           width={100}
           height={100}
-          src="/image/cvphoto.png"
+          src="/image/profphoto.png"
           alt="Avatar"
           className="w-a bdrs-round"
         />
@@ -31,9 +33,24 @@ export default function Cv() {
           I'm a musician and a digital artist based in Porto, Portugal. I
           specialize in and truly enjoy creating conceptual experimental
           electronic, cross-genre sound (field recording, jazz, ambient, etc.)
-          and digital arts using web technologies like WebGL, GLSL, Three.js.
-          I'm always open to learning new things and experiment.
+          and digital arts. I'm always open to learning new things and
+          experiment.
         </p>
+      </Section>
+
+      <Section title="Contact">
+        <p className="mb-md">You can contact me via:</p>
+        <a className="g-sm items-center" href={`mailto:${SocialLinks.EMAIL}`}>
+          <EmailIcon /> {SocialLinks.EMAIL}
+        </a>
+
+        <a className="g-sm items-center" href={SocialLinks.TELEGRAM}>
+          <TelegramIcon /> telegram
+        </a>
+
+        <a className="g-sm items-center" href={SocialLinks.INSTAGRAM}>
+          <InstagramIcon /> instagram
+        </a>
       </Section>
 
       <Section title="Music">
@@ -82,22 +99,27 @@ export default function Cv() {
         <p className="mb-sm">
           Also I had a plasure to play live on some events:
         </p>
+
         <ul className="mb-md mt-0 pl-lg">
           <li>
+            {/* <div className="mb-lg fz-lg d-i mr-md">🗡</div> */}
             <a href="http://www.facebook.com/events/637499056701108/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22page%22%7D]%7D">
               Osnova Kyiv
             </a>
           </li>
           <li>
+            {/* <div className="mb-lg fz-lg d-i mr-md">🐍</div> */}
             <a href="https://www.facebook.com/snakes808/">Snakes Kyiv</a>
           </li>
           <li>
+            {/* <div className="mb-lg fz-lg d-i mr-md">🎧</div> */}
             <a href="http://www.20ftradio.net/events/2019/4/25/osnova-kyiv-w-zhavoronskaya">
               20ft Radio Kyiv
             </a>{" "}
-            watch on <a href="http://youtu.be/ueJSy5WJhnE"> Youtube</a>
+            on <a href="http://youtu.be/ueJSy5WJhnE"> Youtube</a>
           </li>
           <li>
+            {/* <div className="mb-lg fz-lg d-i mr-md">🔮</div> */}
             <a href="http://www.facebook.com/events/915269409319172?acontext=%7B%22source%22%3A%223%22%2C%22action_history%22%3A%22null%22%7D&aref=3">
               Symphonic Silence Inside NOISEROOM (Sound Museum)
             </a>
@@ -107,17 +129,45 @@ export default function Cv() {
 
       <Section title="Code">
         <p>
-          I'm a musician and a digital artist based in Porto, Portugal. I
-          specialize in and truly enjoy creating conceptual experimental
-          electronic, cross-genre sound (field recording, jazz, ambient, etc.)
-          and digital arts using web technologies like WebGL, GLSL, Three.js.
-          I'm always open to learning new things and experiment.
+          Currently I'm learning and exploring various digital art techniques
+          powered by mostly web technologies like{" "}
+          <a href="https://en.wikipedia.org/wiki/WebGL">WebGL</a>,{" "}
+          <a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">
+            GLSL
+          </a>
+          , <a href="https://threejs.org/">Three.js</a>, etc. You can explore
+          source code of the <Link href="/scenes">scenes</Link> I've made on
+          Github{" "}
+          <a href="https://github.com/zhavoronskaya/zhavoronskaya.github.io/tree/main/src/components/scenes">
+            repository
+          </a>
+          .
         </p>
+
+        <p className="mt-md">
+          Here are small list of technologies / libraries / frameworks which I'm
+          currently using and constanly improving my skills at those:{" "}
+        </p>
+        <div>
+          <Badge>WebGL</Badge> <Badge>GLSL</Badge> <Badge>Three.js</Badge>{" "}
+          <Badge>React</Badge> <Badge>@react-three/fiber</Badge>{" "}
+          <Badge>@react-three/drei</Badge> <Badge>Next.js</Badge>{" "}
+          <Badge>C++</Badge>
+        </div>
+
+        <p className="mt-md">
+          Also I'm comfortable working with this software:
+        </p>
+        <div>
+          <Badge>Blender</Badge> <Badge>VS Code</Badge>{" "}
+          <Badge>Visual Studio</Badge> <Badge>Photoshop</Badge>{" "}
+          <Badge>XCode</Badge>
+        </div>
       </Section>
 
       <Section title="Education">
-        <h4 className="md-sm">
-          National Research Nuclear University MEPHI, Moscow, Russia
+        <h4 className="mb-xs">
+          National Research Nuclear University MEPHI Moscow, Russia
         </h4>
         {/* www.mephi.ru */}
         <ul className="mb-md mt-0 pl-lg">
@@ -134,25 +184,6 @@ export default function Cv() {
   );
 }
 
-function SideBarCv() {
-  return (
-    <div className={styles.cvside}>
-      <h3 className="py10">SOCIAL</h3>
-      <p className="py10">
-        <a href="https://www.instagram.com/glslsketch/">
-          <InstagramIcon /> instagram
-        </a>
-      </p>
-      <h3 className="py10">CONTACT</h3>
-      <p className="py10">
-        <a href="https://t.me/zhavoronoki/">
-          <TelegramIcon /> t me
-        </a>
-      </p>
-    </div>
-  );
-}
-
 const Section = ({
   title,
   children,
@@ -161,8 +192,8 @@ const Section = ({
   children: React.ReactNode;
 }) => {
   return (
-    <section className="mb-lg">
-      <h3 className="fz-lg">{title}</h3>
+    <section className="mb-xl">
+      <h3 className="fz-lgr mb-md">{title}</h3>
       {children}
     </section>
   );

@@ -3,7 +3,7 @@ import {
   BandcampIcon,
   SoundcloudIcon,
   TelegramIcon,
-} from "../../icons/SocialIcons";
+} from "../../theme/Icon/SocialIcons";
 import styles from "./Footer.module.css";
 
 type Props = {

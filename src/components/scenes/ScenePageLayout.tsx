@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IScene } from "../../interfaces";
 import { LayoutWithSidebar } from "../layout/Layout";
 import styles from "./ScenePageLayout.module.css";
-import { LeftArrowIcon, RightArrowIcon } from "../icons/Arrows";
+import { LeftArrowIcon, RightArrowIcon } from "../theme/Icon/Arrows";
 
 type Props = {
   children: React.ReactNode;

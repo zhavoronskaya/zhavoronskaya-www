@@ -17,12 +17,14 @@ import pcp from "./albums/pcp";
 import goneBeyond from "./albums/gone-beyond";
 import sputnik from "./albums/sputnik";
 import sxema from "./albums/sxema";
+import states from "./albums/states";
 
 export async function getSelectedAlbums() {
-  return [twilight, whiteHalf, idreamed];
+  return [states, idreamed, whiteHalf, twilight];
 }
 export async function getAlbums() {
   return [
+    states,
     whiteHalf,
     twilight,
     idreamed,

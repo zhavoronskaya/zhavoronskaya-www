@@ -3,8 +3,8 @@ import React from "react";
 import classNames from "classnames";
 
 import styles from "./Header.module.css";
-import IconMenu from "../../icons/iconMenu/IconMenu";
-import IconLogo from "../../icons/iconLogo/IconLogo";
+import IconMenu from "../../theme/Icon/iconMenu/IconMenu";
+import IconLogo from "../../theme/Icon/iconLogo/IconLogo";
 
 type Props = {
   centerSlotMaxWidth?: string;
