@@ -1,6 +1,5 @@
-import { shaderMaterial, Environment, CameraShake } from "@react-three/drei";
+import { shaderMaterial, Environment } from "@react-three/drei";
 
-import { useState } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useRef, useMemo, useEffect, useCallback } from "react";
 import * as THREE from "three";

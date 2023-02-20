@@ -100,14 +100,18 @@ float snoise(vec4 v){
 
 void main() {
 
+  vec3 displacement;
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
     float displacementX = snoise(vec4(modelPosition.xyz, 0.5* uTime)* 0.5) * 0.6;
     float displacementZ = snoise(vec4 (modelPosition.xyz, 0.5*uTime)* 0.1) * 0.5;
     float displacementY = snoise(vec4 (modelPosition.xyz, 0.5*uTime)* 0.3) * 0.3;
-    modelPosition.x += clamp(displacementX, 0.0,0.1);
-    modelPosition.z += clamp(displacementZ, 0.0,0.1);
-    modelPosition.y += clamp(displacementY, 0.0,0.1);
-    vDisplacement = normalize(vec3(displacementX, displacementZ, displacementY));
+    displacementX = clamp(displacementX, 0.0,0.1);
+    displacementZ= clamp(displacementZ, 0.0,0.1);
+    displacementY= clamp(displacementY, 0.0,0.1);
+    displacement = normal * vec3(displacementX,displacementY, displacementZ);
+    modelPosition.xyz +=displacement;
+    //vDisplacement = normalize(vec3(displacementX, displacementY, displacementZ));
+    vDisplacement = displacement;
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

@@ -8,6 +8,8 @@ import liquidImage from "./scenes/liquid-image";
 import bloodySky from "./scenes/bloody-sky";
 import pinkEllipses from "./scenes/pink-ellipses";
 import psyPlane from "./scenes/psychedelic-plane";
+import distortion from "./scenes/distortion";
+import particlesTwist from "./scenes/particles-twist";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -49,6 +51,8 @@ export async function getScenes() {
     bloodySky,
     pinkEllipses,
     psyPlane,
+    distortion,
+    particlesTwist,
   ];
 }
 
@@ -67,6 +71,10 @@ export async function getGalleryScenes() {
       { size: 1, scene: birds },
       { size: 3, scene: liquidImage },
       { size: 4, scene: psyPlane },
+    ],
+    [
+      { size: 1, scene: distortion },
+      { size: 3, scene: particlesTwist },
     ],
   ];
 }

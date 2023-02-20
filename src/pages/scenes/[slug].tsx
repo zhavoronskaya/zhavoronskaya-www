@@ -14,6 +14,8 @@ import LiquidImage from "@/components/scenes/imageLiquid";
 import BloodySky from "@/components/scenes/bloodySky";
 import PinkEllipses from "@/components/scenes/pinkEllipses";
 import PsyPlane from "@/components/scenes/psyPlane";
+import Distortion from "@/components/scenes/distortion";
+import ParticlesTwist from "@/components/scenes/particlesTwist";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -66,6 +68,10 @@ const ScenePage = (props: Props) => {
         return PinkEllipses;
       case "psychedelic-plane":
         return PsyPlane;
+      case "distortion":
+        return Distortion;
+      case "particles-twist":
+        return ParticlesTwist;
       default:
         return null;
     }

@@ -43,7 +43,7 @@ function Painting() {
   }, []);
 
   useFrame((state, delta) => {
-    if (shaderRef.current) shaderRef.current.uTime += delta * 0.1;
+    if (shaderRef.current) shaderRef.current.uTime += delta * 0.8;
   });
 
   return (
