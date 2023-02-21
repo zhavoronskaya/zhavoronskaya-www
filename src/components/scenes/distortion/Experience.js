@@ -48,7 +48,7 @@ export default function Experience() {
     <>
       <OrbitControls />
       <EffectComposer>
-        <DepthOfField focusDistance={0.25} focalLength={0.45} bokehScale={0} />
+        <DepthOfField focusDistance={0.025} focalLength={0.15} bokehScale={0} />
         {/* <Bloom mipmapBlur intensity={0.1} luminanceThreshold={0} /> */}
       </EffectComposer>
 
