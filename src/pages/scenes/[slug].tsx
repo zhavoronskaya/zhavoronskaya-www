@@ -16,6 +16,7 @@ import PinkEllipses from "@/components/scenes/pinkEllipses";
 import PsyPlane from "@/components/scenes/psyPlane";
 import Distortion from "@/components/scenes/distortion";
 import ParticlesTwist from "@/components/scenes/particlesTwist";
+import Mandelbrot from "@/components/scenes/mandelbrot";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -72,6 +73,8 @@ const ScenePage = (props: Props) => {
         return Distortion;
       case "particles-twist":
         return ParticlesTwist;
+      case "mandelbrot":
+        return Mandelbrot;
       default:
         return null;
     }

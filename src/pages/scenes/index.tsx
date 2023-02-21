@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 import { getScenes } from "@/db";
 import { IScene } from "@/interfaces";
 import ScenesPageLayout from "@/components/scenes/ScenesPageLayout";

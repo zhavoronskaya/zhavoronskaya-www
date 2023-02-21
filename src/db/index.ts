@@ -10,6 +10,7 @@ import pinkEllipses from "./scenes/pink-ellipses";
 import psyPlane from "./scenes/psychedelic-plane";
 import distortion from "./scenes/distortion";
 import particlesTwist from "./scenes/particles-twist";
+import mandelbrot from "./scenes/mandelbrot";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -53,6 +54,7 @@ export async function getScenes() {
     psyPlane,
     distortion,
     particlesTwist,
+    mandelbrot,
   ];
 }
 
