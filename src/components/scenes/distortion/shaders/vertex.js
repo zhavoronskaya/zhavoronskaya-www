@@ -1,9 +1,11 @@
 export default /*glsl */ `
 #define PI 3.1415926535897932384626433832795
 uniform float uTime;
+uniform vec3 uColor;
 
 varying vec2 vUv;
 varying float vDisplacement;
+varying vec3 vNormal;
 
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson
@@ -283,9 +285,10 @@ void main() {
   float displacement;
 
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-displacement = sin(modelPosition.x+uTime*1.4)*sin(0.4*modelPosition.y+uTime*0.45)*sin(modelPosition.z+uTime*0.5)*0.333;
-displacement += cnoise(vec4(modelPosition.xzy + cos(uTime), uTime)*0.666) * 0.87666;
+    displacement = cos(modelPosition.x+uTime*.4)*sin(0.4*modelPosition.y+uTime*0.45)*sin(modelPosition.z+uTime*0.5)*0.86;
+    displacement += cnoise(vec4(modelPosition.xyz + cos(uTime), uTime)*0.666) * 0.67666;
     modelPosition.xyz += normal*displacement;
+    vNormal = normal;
     vDisplacement = (displacement); 
   
     vUv=uv;

@@ -62,12 +62,8 @@ function Particles() {
 export default function Experience() {
   return (
     <>
-      <OrbitControls
-      // makeDefault
-      // autoRotate
-      // autoRotateSpeed={1.5}
-      // zoomSpeed={0.5}
-      />
+      {/* <OrbitControls
+      /> */}
 
       {/* <color args={["#0D1117"]} attach="background" /> */}
       <Suspense fallback={null}>

@@ -11,6 +11,7 @@ import psyPlane from "./scenes/psychedelic-plane";
 import distortion from "./scenes/distortion";
 import particlesTwist from "./scenes/particles-twist";
 import mandelbrot from "./scenes/mandelbrot";
+import pulsingBubble from "./scenes/pulsing-bubble";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -55,6 +56,7 @@ export async function getScenes() {
     distortion,
     particlesTwist,
     mandelbrot,
+    pulsingBubble,
   ];
 }
 
@@ -75,8 +77,8 @@ export async function getGalleryScenes() {
       { size: 4, scene: psyPlane },
     ],
     [
-      { size: 1, scene: distortion },
-      { size: 3, scene: particlesTwist },
+      { size: 4, scene: particlesTwist },
+      { size: 2, scene: distortion },
     ],
   ];
 }

@@ -1,7 +1,7 @@
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useRef } from "react";
 import React from "react";
 
-import { shaderMaterial, OrbitControls, Stage } from "@react-three/drei";
+import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
 import paintingFragmentShader from "./shaders/fragment.js";
@@ -15,14 +15,14 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const SphereMaterial = shaderMaterial(
+const DistortionMaterial = shaderMaterial(
   {
     uTime: 0,
   },
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ SphereMaterial });
+extend({ DistortionMaterial });
 
 function Object() {
   const shaderRef = useRef();
@@ -32,13 +32,14 @@ function Object() {
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
     ref.current.rotation.y += delta;
+    state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 20 + 45;
+    state.camera.updateProjectionMatrix();
   });
 
   return (
     <mesh ref={ref}>
-      {/* <extrudeGeometry ref={geomertyRef} args={[shape, extrudeSettings]} /> */}
-      <icosahedronGeometry ref={geomertyRef} args={[2, 16, 8]} />
-      <sphereMaterial ref={shaderRef} />
+      <sphereGeometry ref={geomertyRef} args={[2, 512, 256]} />
+      <distortionMaterial ref={shaderRef} />
     </mesh>
   );
 }
@@ -48,11 +49,15 @@ export default function Experience() {
     <>
       <OrbitControls />
       <EffectComposer>
-        <DepthOfField focusDistance={0.025} focalLength={0.15} bokehScale={0} />
-        {/* <Bloom mipmapBlur intensity={0.1} luminanceThreshold={0} /> */}
+        <DepthOfField
+          focusDistance={0.025}
+          focalLength={0.15}
+          bokehScale={0.5}
+        />
+        <Bloom mipmapBlur intensity={0.01} luminanceThreshold={0} />
       </EffectComposer>
 
-      {/* <color args={["#0D1117"]} attach="background" /> */}
+      {/* <color args={["#132F44"]} attach="background" /> */}
 
       <Suspense fallback={null}>
         <Object />

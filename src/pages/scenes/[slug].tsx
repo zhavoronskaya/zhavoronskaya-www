@@ -17,6 +17,7 @@ import PsyPlane from "@/components/scenes/psyPlane";
 import Distortion from "@/components/scenes/distortion";
 import ParticlesTwist from "@/components/scenes/particlesTwist";
 import Mandelbrot from "@/components/scenes/mandelbrot";
+import PulsingBubble from "@/components/scenes/pulsingBubble";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -75,6 +76,9 @@ const ScenePage = (props: Props) => {
         return ParticlesTwist;
       case "mandelbrot":
         return Mandelbrot;
+      case "pulsing-bubble":
+        return PulsingBubble;
+
       default:
         return null;
     }
