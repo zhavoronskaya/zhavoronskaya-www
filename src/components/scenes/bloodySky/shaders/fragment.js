@@ -2,6 +2,7 @@ export default /*glsl */ `varying vec2 vUv;
 
 uniform float uTime;
 uniform float uIterration;
+uniform vec2 uResolution;
 // uniform vec3 uColorStart;
 // uniform vec3 uColorEnd;
 
@@ -82,22 +83,23 @@ float snoise(vec3 v){
 
 void main() {
 
+vec2 pixelCoords = (vUv - 0.5)*uResolution;
     //Displace the uv
-    vec2 displacedUv = vUv + snoise(vec3(vUv * 6.0, uTime )*10.0);
-    float strength =snoise(vec3(vUv, uTime))*30.5 - 0.2;
+    vec2 displacedUv = pixelCoords + snoise(vec3(pixelCoords * 6.0, uTime )*10.0);
+    float strength =snoise(vec3(pixelCoords, uTime))*20.5 - 0.2;
 
 
     //add fractal Noise
     for (float i = 1.0; i <= uIterration; i++) {
 
-      strength -= abs(snoise(vec3(vUv * 2.80 * i, uTime)))*(12.0/i);
+      strength -= abs(snoise(vec3(pixelCoords * 2.80 * i, uTime)))*(12.0/i);
     }
 
-float strengthTwo = snoise(vec3(vUv, uTime))*15.5;
+float strengthTwo = snoise(vec3(pixelCoords, uTime))*15.5;
     //add fractal Noise
     for (float i = 1.0; i <= uIterration*5.0; i++) {
 
-      strengthTwo -= abs(snoise(vec3(vUv * 2.80 * i, uTime)))*(10.0/i);
+      strengthTwo -= abs(snoise(vec3(pixelCoords * 2.80 * i, uTime)))*(10.0/i);
     }
 
 

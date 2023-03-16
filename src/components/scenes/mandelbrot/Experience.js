@@ -18,6 +18,7 @@ import {
 const MandelbrotMaterial = shaderMaterial(
   {
     uTime: 0,
+    uResolution: new THREE.Vector2(0, 0),
   },
   paintingVertexShader,
   paintingFragmentShader
@@ -30,7 +31,13 @@ function Painting() {
   const { viewport } = useThree();
 
   useFrame((state, delta) => {
-    if (shaderRef.current) shaderRef.current.uTime += delta * 0.8;
+    if (shaderRef.current) {
+      shaderRef.current.uTime += delta * 0.8;
+      shaderRef.current.uResolution = new THREE.Vector2(
+        1,
+        viewport.height / viewport.width
+      );
+    }
   });
 
   return (
@@ -40,7 +47,6 @@ function Painting() {
         args={[viewport.width, viewport.height, 128, 64]}
       />
       <mandelbrotMaterial ref={shaderRef} />
-      {/* <meshBasicMaterial map={textWater} /> */}
     </mesh>
   );
 }

@@ -15,6 +15,15 @@ const fragmentShader = /* glsl */ `
           return smoothstep(disc_radius+border_size, disc_radius-border_size, dist);
         }
 
+    vec3 linearTosRGB(vec3 value ) {
+        vec3 lt = vec3(lessThanEqual(value.rgb, vec3(0.0031308)));
+        
+        vec3 v1 = value * 12.92;
+        vec3 v2 = pow(value.xyz, vec3(0.41666)) * 1.055 - vec3(0.055);
+
+        return mix(v2, v1, lt);
+      }
+
 void mainUv(inout vec2 uv)
 {
     //uv.y += sin(uv.x * frequency+offset*0.5) * amplitude*sin(uMouse.x*frequency);
@@ -36,12 +45,14 @@ void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor)
             float r = texture2D(uDiffuse, uv).x ;
             float g = texture2D(uDiffuse, uv).y;
             float b = texture2D(uDiffuse, uv).z ;
-            vec4 color = vec4(r, g, b, 1.);
+            vec3 color = vec3(r,g,b);
+            color = linearTosRGB(color);
+            vec4 finalColor = vec4(color, 1.);
 
     
 
 
-    outputColor = color;
+    outputColor = finalColor;
 }`;
 
 export default class PostEffect extends Effect {

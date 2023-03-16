@@ -109,14 +109,10 @@ const float k = 0.2; // or some other amount
 
 
 
-// //rotate
-
-
 vec4 viewPosition = viewMatrix * modelPosition;
 vec4 projectedPosition = projectionMatrix * viewPosition;
 gl_Position = projectedPosition;
 
-// vColor = color;
 
 //Size
 gl_PointSize = uSize;

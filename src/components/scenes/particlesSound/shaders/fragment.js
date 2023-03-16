@@ -1,17 +1,10 @@
 export default /*glsl */ `
 varying vec3 vColor;
 uniform float uTime;
+uniform vec3 uColor;
 
 
-float setDistanceToCenter(vec2 uv, vec2 mid) {
-    return distance(uv, mid);
- }
-
-float setShyny(vec2 uv, vec2 mid, float value) {
-return (value/ distance(uv, mid)) - 2.0 * value;
-}
-
-float sdStar(vec2 p, float r,  int n, float m)
+float flower(vec2 p, float r,  int n, float m)
 {
     // next 4 lines can be precomputed for a given shape
     float an = 3.141593/float(n);
@@ -27,9 +20,9 @@ float sdStar(vec2 p, float r,  int n, float m)
 }
 
 void main() {
-   float strength =0.1/setDistanceToCenter(gl_PointCoord, vec2(0.5)) - 0.1*2.0;
-    //float strength =1.0 - sdStar((gl_PointCoord - vec2(0.5)), 0.5, 5, 5.3);
-   
-    vec3 color = mix( vec3(0.897,0.26,0.91), vec3(1.0), strength);
-    gl_FragColor = vec4(color, strength);
+
+    float  strength = 1.0 - flower((gl_PointCoord - vec2(0.5)), 0.2, 5, 10.3)*3.5;
+
+    vec3 color = mix( uColor,vColor,  (strength));
+    gl_FragColor = vec4(color,strength);
 }`;

@@ -18,6 +18,9 @@ import Distortion from "@/components/scenes/distortion";
 import ParticlesTwist from "@/components/scenes/particlesTwist";
 import Mandelbrot from "@/components/scenes/mandelbrot";
 import PulsingBubble from "@/components/scenes/pulsingBubble";
+import ParticlesSound from "@/components/scenes/particlesSound";
+import FractalTrees from "@/components/scenes/fractalTrees";
+import Mushroom from "@/components/scenes/mushroom";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -78,6 +81,12 @@ const ScenePage = (props: Props) => {
         return Mandelbrot;
       case "pulsing-bubble":
         return PulsingBubble;
+      case "particles-cross":
+        return ParticlesSound;
+      case "fractal-trees":
+        return FractalTrees;
+      case "mushroom":
+        return Mushroom;
 
       default:
         return null;

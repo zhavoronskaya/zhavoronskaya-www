@@ -2,6 +2,7 @@ export default /*glsl */ `
 
 
 uniform float uTime;
+uniform vec2 uResolution;
 varying vec2 vUv;
 
     // //simple Mandelbrot
@@ -68,10 +69,10 @@ vec3 sinColorPalette(float s, vec3 a, vec3 b, vec3 c, vec3 d) {
 }  
 
   void main(){ 
-
-    vec2 newUv = ((vUv.yx)-vec2(0.5))*3.7;
+vec2 pixelCoords = (vUv - 0.5)*uResolution;
+    vec2 newUv = ((pixelCoords.yx))*3.7;
     float s =1.0- mandelbrot(newUv, uTime*0.5);
-    vec2 newUv2 = -((vUv.yx)-vec2(0.5))*3.7;
+    vec2 newUv2 = -((pixelCoords.yx))*3.7;
     s +=1.0 - mandelbrot(newUv2, uTime*0.5);
     
     vec3 coord = vec3(s);

@@ -47,6 +47,7 @@ const LogoMaterial = React.memo(() => {
       shaderRef.current.uniforms.uTime.value += delta * 0.3;
     }
   });
+  const { viewport } = useThree();
 
   return (
     <shaderMaterial
@@ -58,6 +59,9 @@ const LogoMaterial = React.memo(() => {
       uniforms={{
         uTime: { value: 1 },
         uTex: { value: textLogo },
+        uResolution: {
+          value: new THREE.Vector2(viewport.width, viewport.height),
+        },
       }}
     />
   );

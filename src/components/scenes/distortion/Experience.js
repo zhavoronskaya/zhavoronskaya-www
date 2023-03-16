@@ -47,7 +47,7 @@ function Object() {
 export default function Experience() {
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <EffectComposer>
         <DepthOfField
           focusDistance={0.025}
@@ -56,8 +56,6 @@ export default function Experience() {
         />
         <Bloom mipmapBlur intensity={0.01} luminanceThreshold={0} />
       </EffectComposer>
-
-      {/* <color args={["#132F44"]} attach="background" /> */}
 
       <Suspense fallback={null}>
         <Object />

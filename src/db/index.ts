@@ -12,6 +12,9 @@ import distortion from "./scenes/distortion";
 import particlesTwist from "./scenes/particles-twist";
 import mandelbrot from "./scenes/mandelbrot";
 import pulsingBubble from "./scenes/pulsing-bubble";
+import particlesCross from "./scenes/particles-cross";
+import fractalTrees from "./scenes/fractal-trees";
+import mushroom from "./scenes/mushroom";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -57,6 +60,9 @@ export async function getScenes() {
     particlesTwist,
     mandelbrot,
     pulsingBubble,
+    particlesCross,
+    fractalTrees,
+    mushroom,
   ];
 }
 
@@ -77,8 +83,8 @@ export async function getGalleryScenes() {
       { size: 4, scene: psyPlane },
     ],
     [
-      { size: 4, scene: particlesTwist },
       { size: 2, scene: distortion },
+      { size: 4, scene: particlesTwist },
     ],
   ];
 }

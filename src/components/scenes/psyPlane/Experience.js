@@ -6,7 +6,7 @@ import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
 import paintingFragmentShader from "./shaders/fragment";
-
+import * as THREE from "three";
 import { useThree, useFrame, extend } from "@react-three/fiber";
 
 import {
@@ -18,6 +18,7 @@ import {
 const PsyMaterial = shaderMaterial(
   {
     uTime: 0,
+    uResolution: new THREE.Vector2(0, 0),
   },
   paintingVertexShader,
   paintingFragmentShader
@@ -29,7 +30,13 @@ function Painting() {
   const geomertyRef = useRef();
   const { viewport } = useThree();
   useFrame((state, delta) => {
-    if (shaderRef.current) shaderRef.current.uTime += delta * 0.1;
+    if (shaderRef.current) {
+      shaderRef.current.uTime += delta * 0.1;
+      shaderRef.current.uResolution = new THREE.Vector2(
+        1,
+        viewport.height / viewport.width
+      );
+    }
   });
   return (
     <mesh>

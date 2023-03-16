@@ -2,6 +2,7 @@ export default /*glsl */ `
 varying vec2 vUv;
 
 uniform float uTime;
+uniform vec2 uResolution;
 // uniform vec3 uColorStart;
 // uniform vec3 uColorEnd;
 
@@ -85,8 +86,9 @@ float cnoise(vec3 P)
 
 void main() {
 
+vec2 pixelCoords = (vUv - 0.5)*uResolution;
     //Displace the uv
-    vec2 displacedUv = vUv + abs(sin(vUv.x * 22.0+ uTime )*cos(vUv.y * 12.0+ uTime ))*5.0;
+    vec2 displacedUv = pixelCoords + abs(sin(pixelCoords.x * 22.0+ uTime )*cos(pixelCoords.y * 12.0+ uTime ))*5.0;
     float strength = cnoise(vec3(displacedUv * 2.0, uTime));
 
     // Clamp the value

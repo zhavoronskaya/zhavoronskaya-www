@@ -2,6 +2,7 @@ export default /*glsl */ `
 varying vec2 vUv;
 
 uniform float uTime;
+uniform vec2 uResolution;
 
 //	Simplex 3D Noise 
 //	by Ian McEwan, Ashima Arts
@@ -80,8 +81,9 @@ float snoise(vec3 v){
 
 void main() {
 
+    vec2 pixelCoords = (vUv - 0.5)*uResolution;
     //Displace the modelpoz
-    vec2 displacedUv = vUv + snoise(vec3(vUv * 0.50, uTime ));
+    vec2 displacedUv = pixelCoords + snoise(vec3(pixelCoords * 0.50, uTime ));
  
     float strength = snoise(vec3(displacedUv * 9.80, uTime))*0.8;
     float strengthTwo = snoise(vec3(displacedUv * 8.0, uTime*0.5));
