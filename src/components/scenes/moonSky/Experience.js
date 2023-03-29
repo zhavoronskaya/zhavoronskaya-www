@@ -15,7 +15,7 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const PsyMaterial = shaderMaterial(
+const MoonSkyMaterial = shaderMaterial(
   {
     uTime: 0,
     uResolution: new THREE.Vector2(0, 0),
@@ -23,7 +23,7 @@ const PsyMaterial = shaderMaterial(
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ PsyMaterial });
+extend({ MoonSkyMaterial });
 
 function Painting() {
   const shaderRef = useRef();
@@ -44,7 +44,7 @@ function Painting() {
         ref={geomertyRef}
         args={[viewport.width, viewport.height, 128, 64]}
       />
-      <psyMaterial ref={shaderRef} />
+      <moonSkyMaterial ref={shaderRef} />
     </mesh>
   );
 }
