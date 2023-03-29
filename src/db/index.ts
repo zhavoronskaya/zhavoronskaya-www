@@ -15,6 +15,8 @@ import pulsingBubble from "./scenes/pulsing-bubble";
 import particlesCross from "./scenes/particles-cross";
 import fractalTrees from "./scenes/fractal-trees";
 import mushroom from "./scenes/mushroom";
+import loveGeometry from "./scenes/love-geometry";
+import moonSky from "./scenes/moon-sky";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -63,6 +65,8 @@ export async function getScenes() {
     particlesCross,
     fractalTrees,
     mushroom,
+    loveGeometry,
+    moonSky,
   ];
 }
 

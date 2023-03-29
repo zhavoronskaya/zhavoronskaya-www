@@ -21,6 +21,8 @@ import PulsingBubble from "@/components/scenes/pulsingBubble";
 import ParticlesSound from "@/components/scenes/particlesSound";
 import FractalTrees from "@/components/scenes/fractalTrees";
 import Mushroom from "@/components/scenes/mushroom";
+import LoveGeometry from "@/components/scenes/loveGeometry";
+import MoonSky from "@/components/scenes/moonSky";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -87,7 +89,10 @@ const ScenePage = (props: Props) => {
         return FractalTrees;
       case "mushroom":
         return Mushroom;
-
+      case "love-geometry":
+        return LoveGeometry;
+      case "moon-sky":
+        return MoonSky;
       default:
         return null;
     }
