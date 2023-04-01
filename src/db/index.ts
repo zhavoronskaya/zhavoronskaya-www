@@ -17,6 +17,8 @@ import fractalTrees from "./scenes/fractal-trees";
 import mushroom from "./scenes/mushroom";
 import loveGeometry from "./scenes/love-geometry";
 import moonSky from "./scenes/moon-sky";
+import rapture from "./scenes/rapture";
+import spaceShip from "./scenes/t-1000";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -67,6 +69,8 @@ export async function getScenes() {
     mushroom,
     loveGeometry,
     moonSky,
+    rapture,
+    spaceShip,
   ];
 }
 
@@ -75,6 +79,10 @@ export async function getGalleryScenes() {
     [
       { size: 2, scene: particleFiber },
       { size: 1, scene: colorField },
+    ],
+    [
+      { size: 4, scene: spaceShip },
+      { size: 1, scene: moonSky },
     ],
     [
       { size: 4, scene: alienObject },

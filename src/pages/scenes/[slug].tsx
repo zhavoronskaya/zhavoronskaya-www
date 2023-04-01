@@ -23,6 +23,8 @@ import FractalTrees from "@/components/scenes/fractalTrees";
 import Mushroom from "@/components/scenes/mushroom";
 import LoveGeometry from "@/components/scenes/loveGeometry";
 import MoonSky from "@/components/scenes/moonSky";
+import Rapture from "@/components/scenes/rapture";
+import SpaceShip from "@/components/scenes/spaceShip";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -93,6 +95,10 @@ const ScenePage = (props: Props) => {
         return LoveGeometry;
       case "moon-sky":
         return MoonSky;
+      case "rapture":
+        return Rapture;
+      case "t-1000":
+        return SpaceShip;
       default:
         return null;
     }
