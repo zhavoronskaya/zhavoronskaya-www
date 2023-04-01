@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls, Environment } from "@react-three/drei";
 
-import raptureVertexShader from "./shaders/vertex.js";
-import raptureFragmentShader from "./shaders/fragment.js";
+import flowerVertexShader from "./shaders/vertex.js";
+import flowerFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -15,15 +15,15 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const AloneTogetherMaterial = shaderMaterial(
+const AlienFlowerMaterial = shaderMaterial(
   {
     uTime: 0,
   },
 
-  raptureVertexShader,
-  raptureFragmentShader
+  flowerVertexShader,
+  flowerFragmentShader
 );
-extend({ AloneTogetherMaterial });
+extend({ AlienFlowerMaterial });
 
 function Object() {
   const shaderRef = useRef();
@@ -40,17 +40,7 @@ function Object() {
   return (
     <mesh ref={ref}>
       <icosahedronGeometry ref={geomertyRef} args={[2, 64]} />
-      <aloneTogetherMaterial ref={shaderRef} />
-      {/* <shaderMaterial
-        ref={shaderRef}
-        key="stable"
-        vertexShader={raptureVertexShader}
-        fragmentShader={raptureFragmentShader}
-        wireframe={true}
-        uniforms={{
-          uTime: { value: 0 },
-        }}
-      /> */}
+      <alienFlowerMaterial ref={shaderRef} />
     </mesh>
   );
 }

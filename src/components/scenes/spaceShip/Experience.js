@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls, Environment } from "@react-three/drei";
 
-import raptureVertexShader from "./shaders/vertex.js";
-import raptureFragmentShader from "./shaders/fragment.js";
+import spaceVertexShader from "./shaders/vertex.js";
+import spaceFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -30,16 +30,16 @@ function createSkyBox() {
   return texture;
 }
 
-const AloneTogetherMaterial = shaderMaterial(
+const SpaceShipMaterial = shaderMaterial(
   {
     uTime: 0,
     specMap: null,
   },
 
-  raptureVertexShader,
-  raptureFragmentShader
+  spaceVertexShader,
+  spaceFragmentShader
 );
-extend({ AloneTogetherMaterial });
+extend({ SpaceShipMaterial });
 
 function Object() {
   const shaderRef = useRef();
@@ -51,14 +51,14 @@ function Object() {
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
     // ref.current.rotation.y += delta;
-    state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 10 + 45;
-    state.camera.updateProjectionMatrix();
+    // state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 2 + 45;
+    // state.camera.updateProjectionMatrix();
   });
 
   return (
     <mesh ref={ref}>
       <icosahedronGeometry ref={geomertyRef} args={[2, 128]} />
-      <aloneTogetherMaterial ref={shaderRef} />
+      <spaceShipMaterial ref={shaderRef} />
       {/* <shaderMaterial
         ref={shaderRef}
         key="stable"
