@@ -50,7 +50,7 @@ function Object() {
   }, []);
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
-    ref.current.rotation.y += delta;
+    // ref.current.rotation.y += delta;
     state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 10 + 45;
     state.camera.updateProjectionMatrix();
   });
