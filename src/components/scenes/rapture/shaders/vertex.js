@@ -84,29 +84,48 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 }
 
+
+float sdfCircle(vec2 p, float r) {
+    return length(p) - r;
+}
+
+float fbm(vec3 p, int octaves, float persistence, float lacunarity) {
+  float amplitude = 1.0;
+  float frequency = 1.0;
+  float total = 0.0;
+  float normalization = 0.0;
+
+  for (int i = 0; i < octaves; ++i) {
+    float noiseValue = cnoise(p * frequency);
+    total += noiseValue * amplitude;
+    normalization += amplitude;
+    amplitude *= persistence;
+    frequency *= lacunarity;
+  }
+
+  total /= normalization;
+  total = smoothstep(-1.0, 1.0, total);
+
+  return total;
+}
+
 void main() {
 
     vUv=uv;
-    vPosition = position;
     vNormal = normal;
-    
-    // displacement = cos(modelPosition.x+uTime*.4)*sin(0.4*modelPosition.y+uTime*0.45)*sin(modelPosition.z+uTime*0.5)*0.86;
-    // displacement += cnoise(vec4(modelPosition.xyz + cos(uTime), uTime)*0.666) * 0.67666;
-    // modelPosition.xyz += normal*displacement;
-    // vNormal = normal;
-    // vDisplacement = (displacement);
 
-    float noiseDir =clamp(smoothstep(0.0,0.5, abs(((length(vUv - 0.5)*2.0 - 0.1)))), 0.0,1.0) ;
-    vDisplacement = 4.5*abs(cnoise(vec3((vUv - 0.5), uTime))) * noiseDir;
-
+   
+    float circle = smoothstep(0.0,0.5, sdfCircle(vUv-0.5, 0.25));
+    vDisplacement = fbm(vec3(vUv, uTime) , 4, 15.0, 2.0);
     vColor = mix(
-      vec3(0.79, 0.0, 0.5),
-      vec3(0.1, 0.1, 0.8),
-      smoothstep(0.0, 0.5, vDisplacement));
-vec3 newPosition;
-    newPosition.x = position.x + vDisplacement;
-    newPosition.y = position.y + vDisplacement;
-    newPosition.z = position.z;
+    vec3(0.79, 0.0, 0.5),
+    vec3(0.1, 0.1, 0.8),
+    smoothstep(0.0, 0.5, vDisplacement));
+    vec3 newPosition = position;
+    newPosition.x = position.x + vDisplacement* circle;
+    newPosition.y = position.y + vDisplacement* circle;
+    vPosition = newPosition;
+  
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

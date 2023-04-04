@@ -22,29 +22,31 @@ float remap(float v, float inMin, float inMax, float outMin, float outMax) {
   return mix(outMin, outMax, t);
 }
 
+float sdfCircle(vec2 p, float r) {
+    return length(p) - r;
+}
+
 void main() {
-  vec3 modelColour = sinColorPalette(vDisplacement, vColor, vec3(0.4,0.28,0.89), vec3(0.044,0.008,0.785), vec3(0.78,0.32,0.81));
+vec3 modelColour = sinColorPalette(vDisplacement, vColor, vec3(0.67,0.18,0.89), vec3(0.044,0.008,0.785), vec3(0.78,0.12,0.81));
+   //vec3 modelColour = vColor;
   vec3 lighting = vec3(0.0);
 
-  // vec3 normal = normalize(vNormal);
-  vec3 normal = normalize(
-      cross(
-          dFdx(vec3(vPosition.z)),
-          dFdy(vec3(vPosition.z))));
+  vec3 normal = normalize(vNormal);
+
   vec3 viewDir = normalize(cameraPosition - vPosition);
 
   // Ambient
   vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.6);
-  vec3 groundColour = vec3(0.6, 0.3, 0.1);
+  vec3 skyColour = vec3(0.0, 0.3, 0.76);
+  vec3 groundColour = vec3(0.54, 0.33, 0.1);
 
-  vec3 hemi = mix(groundColour, skyColour, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
+  vec3 hemi = mix(groundColour, skyColour, remap(normal.z, -1.0, 1.0, 0.0, 1.0));
 
   // Diffuse lighting
-  vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.9);
+  vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
+  vec3 lightColour = vec3(1.0, 1.0, 0.98);
   float dp = max(0.0, dot(lightDir, normal));
 
   vec3 diffuse = dp * lightColour;
@@ -53,24 +55,16 @@ void main() {
   // Specular
   vec3 r = normalize(reflect(-lightDir, normal));
   float phongValue = max(0.0, dot(viewDir, r));
-  phongValue = pow(phongValue, 32.0);
+  phongValue = pow(phongValue, 2.0);
 
-  specular += phongValue * 0.15;
-
-
-  // Fresnel
-  float fresnel = 1.0 - max(0.0, dot(viewDir, normal));
-  fresnel = pow(fresnel, 2.0);
-
-  specular *= fresnel;
+  specular += phongValue * 3.15;
 
   // Combine lighting
   lighting = hemi * 0.1 + diffuse;
 
   vec3 colour = modelColour * lighting + specular;
 
-  gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
+gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.0)), 1.0);
 
-  // gl_FragColor = vec4(vec3(vUv.x),1.0);
 
 }`;

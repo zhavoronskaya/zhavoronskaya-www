@@ -4,7 +4,7 @@ export const scene: IScene = {
   name: "Rapture",
   slug: "rapture",
   description: "rapture",
-  cover: "/art/4.png",
+  cover: "/art/Rapture.png",
   coverAlt: "Something",
 };
 

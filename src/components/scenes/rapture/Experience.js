@@ -31,16 +31,16 @@ function Object() {
   const ref = useRef();
 
   useFrame((state, delta) => {
-    if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
+    if (shaderRef.current) shaderRef.current.uTime += delta * 0.07;
     // ref.current.rotation.y += delta;
     // state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 20 + 45;
     // state.camera.updateProjectionMatrix();
   });
 
   return (
-    <mesh rotation={[-Math.sin(Math.PI / 2), 0, 0]} ref={ref}>
-      <planeGeometry ref={geomertyRef} args={[2, 2, 64, 32]} />
-      <raptureMaterial ref={shaderRef} />
+    <mesh rotation={[-Math.sin(Math.PI / 4), 0, 0]} ref={ref}>
+      <planeGeometry ref={geomertyRef} args={[2, 2, 128, 64]} />
+      <raptureMaterial wireframe={true} ref={shaderRef} />
       {/* <shaderMaterial
         ref={shaderRef}
         key="stable"
@@ -67,8 +67,8 @@ export default function Experience() {
         />
         <Bloom mipmapBlur intensity={0.01} luminanceThreshold={0} />
       </EffectComposer> */}
-
-      <color args={["#62266C"]} attach="background" />
+      {/* 
+      <color args={["#62266C"]} attach="background" /> */}
 
       <Suspense fallback={null}>
         <Object />
