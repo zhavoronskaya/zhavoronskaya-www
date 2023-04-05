@@ -26,6 +26,7 @@ import MoonSky from "@/components/scenes/moonSky";
 import Rapture from "@/components/scenes/rapture";
 import SpaceShip from "@/components/scenes/spaceShip";
 import AlienFlower from "@/components/scenes/alienFlower";
+import Snake from "@/components/scenes/snake";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -102,6 +103,8 @@ const ScenePage = (props: Props) => {
         return AlienFlower;
       case "t-1000":
         return SpaceShip;
+      case "snake":
+        return Snake;
       default:
         return null;
     }

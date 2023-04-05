@@ -20,6 +20,7 @@ import moonSky from "./scenes/moon-sky";
 import rapture from "./scenes/rapture";
 import spaceShip from "./scenes/t-1000";
 import alienFlower from "./scenes/alien-flower";
+import snake from "./scenes/snake";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -73,6 +74,7 @@ export async function getScenes() {
     rapture,
     alienFlower,
     spaceShip,
+    snake,
   ];
 }
 
