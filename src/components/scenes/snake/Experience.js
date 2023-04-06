@@ -39,7 +39,7 @@ function Snake() {
 
   return (
     <mesh ref={ref}>
-      <torusKnotGeometry ref={geomertyRef} args={[1.5, 0.3, 64, 64]} />
+      <torusKnotGeometry ref={geomertyRef} args={[1.5, 0.3, 256, 256]} />
       <snakeMaterial ref={shaderRef} />
     </mesh>
   );

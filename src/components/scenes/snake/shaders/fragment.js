@@ -67,7 +67,7 @@ float remap(float v, float inMin, float inMax, float outMin, float outMax) {
 
 void main() {
   vec3 modelColour =  vColor;
-  vec3 coords = vec3(vUv.x*100.0, vUv.y*200.0, uTime);
+  vec3 coords = vec3(vPosition*10.0);
   float noiseSample = 1.0 -cellular(coords);
   modelColour = mix(vec3(0.167,0.74,0.789), modelColour, noiseSample);
   vec3 lighting = vec3(0.0);
@@ -101,7 +101,7 @@ void main() {
   float phongValue = max(0.0, dot(viewDir, r));
   phongValue = pow(phongValue, 64.0);
 
-  specular += phongValue * 0.15;
+  specular += phongValue * 4.15;
 
 
   // Fresnel

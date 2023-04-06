@@ -287,26 +287,26 @@ float cnoise(vec4 P, vec4 rep){
 void main() {
 
     vUv=uv;
-    vPosition = position;
     vNormal = normal;
-    
-    // displacement = cos(modelPosition.x+uTime*.4)*sin(0.4*modelPosition.y+uTime*0.45)*sin(modelPosition.z+uTime*0.5)*0.86;
-    // displacement += cnoise(vec4(modelPosition.xyz + cos(uTime), uTime)*0.666) * 0.67666;
-    // modelPosition.xyz += normal*displacement;
-    // vNormal = normal;
-    // vDisplacement = (displacement);
 
-    float noiseDir =clamp(( abs(((vNormal.x-0.5)*0.5 ))), 0.0,1.0) ;
-    vDisplacement =cnoise(vec4(vNormal, uTime*0.2)*7.0);
+    float noiseDir =clamp((abs(vUv.x-0.5)-0.3+sin(uTime))*3.0, 0.0,1.0) ;
+    vDisplacement =cnoise(vec4(vNormal, uTime));
     vDisplacement *=noiseDir;
 
     vColor = mix(
-      vec3(0.79, 0.0, 0.5),
-      vec3(0.1, 0.1, 0.8),
-      smoothstep(0.1, 0.9, vDisplacement));
-vec3 newPosition = position + normal*vDisplacement;
+      vec3(0.79, 0.0, 0.522),
+      vec3(0.34, 0.1, 0.8),
+      smoothstep(0.1, 0.4, vDisplacement));
 
-    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+    vec3 newPosition = position + normal*vDisplacement;
+
+    
+
+
+    vPosition = newPosition;
+
+
+    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
     gl_Position = projectedPosition;
