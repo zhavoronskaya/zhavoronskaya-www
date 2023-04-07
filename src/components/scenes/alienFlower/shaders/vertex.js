@@ -287,7 +287,7 @@ float cnoise(vec4 P, vec4 rep){
 void main() {
 
     vUv=uv;
-    vPosition = position;
+
     vNormal = normal;
     
     // displacement = cos(modelPosition.x+uTime*.4)*sin(0.4*modelPosition.y+uTime*0.45)*sin(modelPosition.z+uTime*0.5)*0.86;
@@ -302,9 +302,9 @@ void main() {
     vColor = mix(
       vec3(0.79, 0.0, 0.5),
       vec3(0.1, 0.1, 0.8),
-      smoothstep(0.1, 0.9, vDisplacement));
+      smoothstep(0.1, 0.5, vDisplacement));
 vec3 newPosition = position + normal*vDisplacement;
-
+vPosition = newPosition;
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

@@ -15,7 +15,7 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const AlienFlowerMaterial = shaderMaterial(
+const FlowerMaterial = shaderMaterial(
   {
     uTime: 0,
   },
@@ -23,9 +23,9 @@ const AlienFlowerMaterial = shaderMaterial(
   flowerVertexShader,
   flowerFragmentShader
 );
-extend({ AlienFlowerMaterial });
+extend({ FlowerMaterial });
 
-function Object() {
+function AlienFlower() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
   const ref = useRef();
@@ -39,8 +39,8 @@ function Object() {
 
   return (
     <mesh ref={ref}>
-      <icosahedronGeometry ref={geomertyRef} args={[2, 64]} />
-      <alienFlowerMaterial ref={shaderRef} />
+      <icosahedronGeometry ref={geomertyRef} args={[2, 128]} />
+      <flowerMaterial ref={shaderRef} />
     </mesh>
   );
 }
@@ -49,19 +49,11 @@ export default function Experience() {
   return (
     <>
       <OrbitControls />
-      <EffectComposer>
-        <DepthOfField
-          focusDistance={0.025}
-          focalLength={0.15}
-          bokehScale={0.5}
-        />
-        <Bloom mipmapBlur intensity={0.2} luminanceThreshold={0} />
-      </EffectComposer>
 
-      <color args={["#000000"]} attach="background" />
-      <Environment preset="night" />
+      {/* <color args={["#000000"]} attach="background" /> */}
+
       <Suspense fallback={null}>
-        <Object />
+        <AlienFlower />
       </Suspense>
     </>
   );
