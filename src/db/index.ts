@@ -21,6 +21,8 @@ import rapture from "./scenes/rapture";
 import spaceShip from "./scenes/t-1000";
 import alienFlower from "./scenes/alien-flower";
 import snake from "./scenes/snake";
+import shell from "./scenes/shell";
+import strangeObject from "./scenes/strange-object";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -75,6 +77,8 @@ export async function getScenes() {
     alienFlower,
     spaceShip,
     snake,
+    strangeObject,
+    shell,
   ];
 }
 
@@ -84,6 +88,11 @@ export async function getGalleryScenes() {
       { size: 2, scene: particleFiber },
       { size: 1, scene: colorField },
     ],
+    [
+      { size: 1, scene: shell },
+      { size: 2, scene: snake },
+    ],
+
     [
       { size: 4, scene: spaceShip },
       { size: 1, scene: moonSky },
