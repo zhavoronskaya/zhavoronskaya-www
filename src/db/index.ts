@@ -22,7 +22,9 @@ import spaceShip from "./scenes/t-1000";
 import alienFlower from "./scenes/alien-flower";
 import snake from "./scenes/snake";
 import shell from "./scenes/shell";
-import strangeObject from "./scenes/strange-object";
+import coral from "./scenes/coral";
+import cameo from "./scenes/cameo";
+import paintedFlower from "./scenes/painted-flower";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -77,21 +79,24 @@ export async function getScenes() {
     alienFlower,
     spaceShip,
     snake,
-    strangeObject,
+    coral,
     shell,
+    // cameo,
+    paintedFlower,
   ];
 }
 
 export async function getGalleryScenes() {
   return [
-    [
-      { size: 2, scene: particleFiber },
-      { size: 1, scene: colorField },
-    ],
+    // [
+    //   { size: 2, scene: particleFiber },
+    //   { size: 1, scene: colorField },
+    // ],
     [
       { size: 1, scene: shell },
       { size: 2, scene: snake },
     ],
+    [{ size: 1, scene: paintedFlower }],
 
     [
       { size: 4, scene: spaceShip },

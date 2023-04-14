@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls, Environment } from "@react-three/drei";
 
-import strangeVertexShader from "./shaders/vertex.js";
-import strangeFragmentShader from "./shaders/fragment.js";
+import coralVertexShader from "./shaders/vertex.js";
+import coralFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -15,17 +15,17 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const StrangeMaterial = shaderMaterial(
+const CoralMaterial = shaderMaterial(
   {
     uTime: 0,
   },
 
-  strangeVertexShader,
-  strangeFragmentShader
+  coralVertexShader,
+  coralFragmentShader
 );
-extend({ StrangeMaterial });
+extend({ CoralMaterial });
 
-function StrangeObject() {
+function Coral() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
   const ref = useRef();
@@ -40,7 +40,7 @@ function StrangeObject() {
   return (
     <mesh ref={ref}>
       <coneGeometry ref={geomertyRef} args={[2, 6, 512, 512, true]} />
-      <strangeMaterial side={THREE.DoubleSide} ref={shaderRef} />
+      <coralMaterial side={THREE.DoubleSide} ref={shaderRef} />
     </mesh>
   );
 }
@@ -61,7 +61,7 @@ export default function Experience() {
       {/* <color args={["#000000"]} attach="background" /> */}
       <Environment preset="night" />
       <Suspense fallback={null}>
-        <StrangeObject />
+        <Coral />
       </Suspense>
     </>
   );

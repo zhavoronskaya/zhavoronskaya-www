@@ -28,7 +28,9 @@ import SpaceShip from "@/components/scenes/spaceShip";
 import AlienFlower from "@/components/scenes/alienFlower";
 import Snake from "@/components/scenes/snake";
 import Shell from "@/components/scenes/shell";
-import StrangeObject from "@/components/scenes/strangeObject";
+import Coral from "@/components/scenes/coral";
+import Cameo from "@/components/scenes/cameo";
+import PaintedFlower from "@/components/scenes/paintedFlower";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -107,10 +109,14 @@ const ScenePage = (props: Props) => {
         return SpaceShip;
       case "snake":
         return Snake;
-      case "strange-object":
-        return StrangeObject;
+      case "coral":
+        return Coral;
       case "shell":
         return Shell;
+      case "cameo":
+        return Cameo;
+      case "painted-flower":
+        return PaintedFlower;
 
       default:
         return null;

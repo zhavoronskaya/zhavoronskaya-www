@@ -1,9 +1,9 @@
 import { IScene } from "../../interfaces";
 
 export const scene: IScene = {
-  name: "Strange Object",
-  slug: "strange-object",
-  description: "Strange Object",
+  name: "Coral",
+  slug: "coral",
+  description: "Coral",
   cover: "/art/StrangeObject.png",
   coverAlt: "Something",
 };

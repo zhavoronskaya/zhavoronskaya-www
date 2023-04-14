@@ -293,60 +293,34 @@ float remap(float v, float inMin, float inMax, float outMin, float outMax) {
 }
 
 
-
-
 void main() {
 
     vUv=uv;
+    vNormal = normal;
+    vec3 nwPos = position;
+    float t = sin(nwPos.y*100.0)+cos(nwPos.y);
+    t = remap(t, -1.0, 1.0, 0.3, 0.7);
+    nwPos += vNormal * t;
 
-
-     float shellDir =clamp((abs(vUv.y-0.5)*10.0), 0.0,1.0) ;
-     float angle = atan(position.x, position.z);
-     float distanceToCenter = length(position.xz);
-     float angleOffset = (PI*1.0 /(distanceToCenter*0.5));
-     angle += angleOffset;
-
- 
-
-    float c = cos(2.2*position.y+angleOffset);
-    float s = sin(2.2*position.y+angleOffset);
-    mat2  m = mat2(c,-s,s,c);
-
-
-    vec3 spitalPos = vec3(0.0);
-    // spitalPos.x = normal.x*0.5*cos(angle+ uTime)*(distanceToCenter);
-    // spitalPos.z = normal.z*0.5*sin(angle+uTime)*(distanceToCenter);
-    // spitalPos.y = position.y+ abs(sin(position.y*2.0));
-
-  spitalPos =vec3(m*position.xz,position.y)*shellDir;
-
-    // vec3 spiralNormal = normalize(spitalPos);
-
-
-    vec3 newPosition =spitalPos +position;
-    vec3 spiralNormal = normalize(newPosition);
-
-    vDisplacement =cnoise(vec4(spiralNormal,0.0))*.40;
-  //vDisplacement = clamp(vDisplacement, 0.0,3.0);
-    //vDisplacement *=shellDir;
+    
+    vDisplacement =cnoise(vec4(nwPos, uTime))*1.3;
+   // vDisplacement = clamp(vDisplacement, 0.0,3.0);
+    vDisplacement *=1.0;
 
     vColor = mix(
       vec3(0.899, 0.889, 0.922),
       vec3(0.34, 0.1, 0.8),
-      smoothstep(0.1, 0.9, vDisplacement));
+      smoothstep(0.1, 0.5, vDisplacement));
+
+    vec3 newPosition =  nwPos + normal*vDisplacement;
 
     
 
-     newPosition += spiralNormal*vDisplacement*1.0;
 
-//newPosition += normal*vDisplacement;
     vPosition = newPosition;
 
-    
-    vNormal = spiralNormal;
 
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
-
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
     gl_Position = projectedPosition;
