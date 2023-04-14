@@ -17,7 +17,7 @@ import fractalTrees from "./scenes/fractal-trees";
 import mushroom from "./scenes/mushroom";
 import loveGeometry from "./scenes/love-geometry";
 import moonSky from "./scenes/moon-sky";
-import rapture from "./scenes/rapture";
+import grid from "./scenes/grid";
 import spaceShip from "./scenes/t-1000";
 import alienFlower from "./scenes/alien-flower";
 import snake from "./scenes/snake";
@@ -75,14 +75,14 @@ export async function getScenes() {
     mushroom,
     loveGeometry,
     moonSky,
-    rapture,
+    grid,
     alienFlower,
     spaceShip,
     snake,
     coral,
     shell,
-    // cameo,
     paintedFlower,
+    // cameo,
   ];
 }
 

@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
-import raptureVertexShader from "./shaders/vertex.js";
-import raptureFragmentShader from "./shaders/fragment.js";
+import gridVertexShader from "./shaders/vertex.js";
+import gridFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -15,15 +15,15 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const RaptureMaterial = shaderMaterial(
+const GridMaterial = shaderMaterial(
   {
     uTime: 0,
   },
 
-  raptureVertexShader,
-  raptureFragmentShader
+  gridVertexShader,
+  gridFragmentShader
 );
-extend({ RaptureMaterial });
+extend({ GridMaterial });
 
 function Object() {
   const shaderRef = useRef();
@@ -40,7 +40,7 @@ function Object() {
   return (
     <mesh rotation={[-Math.sin(Math.PI / 4), 0, 0]} ref={ref}>
       <planeGeometry ref={geomertyRef} args={[2, 2, 128, 64]} />
-      <raptureMaterial wireframe={true} ref={shaderRef} />
+      <gridMaterial wireframe={true} ref={shaderRef} />
       {/* <shaderMaterial
         ref={shaderRef}
         key="stable"

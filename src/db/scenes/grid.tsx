@@ -1,10 +1,10 @@
 import { IScene } from "../../interfaces";
 
 export const scene: IScene = {
-  name: "Rapture",
-  slug: "rapture",
-  description: "rapture",
-  cover: "/art/Rapture.png",
+  name: "Grid",
+  slug: "grid",
+  description: "Grid",
+  cover: "/art/Grid.png",
   coverAlt: "Something",
 };
 

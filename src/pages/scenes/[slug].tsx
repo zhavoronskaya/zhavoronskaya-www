@@ -23,7 +23,7 @@ import FractalTrees from "@/components/scenes/fractalTrees";
 import Mushroom from "@/components/scenes/mushroom";
 import LoveGeometry from "@/components/scenes/loveGeometry";
 import MoonSky from "@/components/scenes/moonSky";
-import Rapture from "@/components/scenes/rapture";
+import Grid from "@/components/scenes/grid";
 import SpaceShip from "@/components/scenes/spaceShip";
 import AlienFlower from "@/components/scenes/alienFlower";
 import Snake from "@/components/scenes/snake";
@@ -101,8 +101,8 @@ const ScenePage = (props: Props) => {
         return LoveGeometry;
       case "moon-sky":
         return MoonSky;
-      case "rapture":
-        return Rapture;
+      case "grid":
+        return Grid;
       case "alien-flower":
         return AlienFlower;
       case "t-1000":
