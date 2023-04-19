@@ -31,6 +31,8 @@ import Shell from "@/components/scenes/shell";
 import Coral from "@/components/scenes/coral";
 import Cameo from "@/components/scenes/cameo";
 import PaintedFlower from "@/components/scenes/paintedFlower";
+import Mold from "@/components/scenes/mold";
+import Sea from "@/components/scenes/sea";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -117,7 +119,10 @@ const ScenePage = (props: Props) => {
         return Cameo;
       case "painted-flower":
         return PaintedFlower;
-
+      case "mold":
+        return Mold;
+      case "sea":
+        return Sea;
       default:
         return null;
     }

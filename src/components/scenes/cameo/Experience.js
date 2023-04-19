@@ -32,14 +32,12 @@ function Cameo() {
 
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
-    // ref.current.rotation.y += delta;
-    // state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 20 + 45;
-    // state.camera.updateProjectionMatrix();
+    // ref.current.rotation.y += Math.sin(delta * Math.PI * 0.5);
   });
 
   return (
     <mesh rotation={[0, 0, 0]} ref={ref}>
-      <coneGeometry ref={geomertyRef} args={[1.0, 3.0, 512, 512, true]} />
+      <coneGeometry ref={geomertyRef} args={[1.0, 1.0, 512, 512, true]} />
       {/* <planeGeometry ref={geomertyRef} args={[1, 1, 2.0, 512, 512]} /> */}
       <cameoMaterial side={THREE.DoubleSide} ref={shaderRef} />
     </mesh>

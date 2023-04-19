@@ -1,22 +1,50 @@
 export default /*glsl */ `
-#define PI 3.1415926535897932384626433832795
-uniform float uTime;
+//	Classic Perlin 2D Noise 
+//	by Stefan Gustavson
+//
+vec2 fade2(vec2 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}
+vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 
-varying vec2 vUv;
-varying vec3 vPosition;
-varying vec3 vNormal;
-
-varying vec3 vColor;
-varying float vDisplacement;
-
+float cnoise2(vec2 P){
+  vec4 Pi = floor(P.xyxy) + vec4(0.0, 0.0, 1.0, 1.0);
+  vec4 Pf = fract(P.xyxy) - vec4(0.0, 0.0, 1.0, 1.0);
+  Pi = mod(Pi, 289.0); // To avoid truncation effects in permutation
+  vec4 ix = Pi.xzxz;
+  vec4 iy = Pi.yyww;
+  vec4 fx = Pf.xzxz;
+  vec4 fy = Pf.yyww;
+  vec4 i = permute(permute(ix) + iy);
+  vec4 gx = 2.0 * fract(i * 0.0243902439) - 1.0; // 1/41 = 0.024...
+  vec4 gy = abs(gx) - 0.5;
+  vec4 tx = floor(gx + 0.5);
+  gx = gx - tx;
+  vec2 g00 = vec2(gx.x,gy.x);
+  vec2 g10 = vec2(gx.y,gy.y);
+  vec2 g01 = vec2(gx.z,gy.z);
+  vec2 g11 = vec2(gx.w,gy.w);
+  vec4 norm = 1.79284291400159 - 0.85373472095314 * 
+    vec4(dot(g00, g00), dot(g01, g01), dot(g10, g10), dot(g11, g11));
+  g00 *= norm.x;
+  g01 *= norm.y;
+  g10 *= norm.z;
+  g11 *= norm.w;
+  float n00 = dot(g00, vec2(fx.x, fy.x));
+  float n10 = dot(g10, vec2(fx.y, fy.y));
+  float n01 = dot(g01, vec2(fx.z, fy.z));
+  float n11 = dot(g11, vec2(fx.w, fy.w));
+  vec2 fade_xy = fade2(Pf.xy);
+  vec2 n_x = mix(vec2(n00, n01), vec2(n10, n11), fade_xy.x);
+  float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
+  return 2.3 * n_xy;
+}
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson
 //
-vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 vec3 fade(vec3 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}
 
-float cnoise(vec3 P){
+float cnoise3(vec3 P){
   vec3 Pi0 = floor(P); // Integer part for indexing
   vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
   Pi0 = mod(Pi0, 289.0);
@@ -84,52 +112,30 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 }
 
+    uniform float uTime;
+    uniform float uBigWavesElevation;
+    uniform float uBigWavesSpeed;
+    uniform vec2 uBigWavesFrequency;
 
-float sdfCircle(vec2 p, float r) {
-    return length(p) - r;
-}
+    uniform float uSmallWavesElevation;
+    uniform float uSmallWavesFrequency;
+    uniform float uSmallWavesSpeed;
+    uniform float uSmallIterations;
 
-float fbm(vec3 p, int octaves, float persistence, float lacunarity) {
-  float amplitude = 1.0;
-  float frequency = 1.0;
-  float total = 0.0;
-  float normalization = 0.0;
+    varying float vElevation;
 
-  for (int i = 0; i < octaves; ++i) {
-    float noiseValue = cnoise(p * frequency);
-    total += noiseValue * amplitude;
-    normalization += amplitude;
-    amplitude *= persistence;
-    frequency *= lacunarity;
-  }
-
-  total /= normalization;
-  total = smoothstep(-1.0, 1.0, total);
-
-  return total;
-}
-
-void main() {
-
-    vUv=uv;
-    vNormal = normal;
-
-   
-    float circle = smoothstep(0.0,0.5, sdfCircle(vUv-0.5, 0.1));
-    vDisplacement = fbm(vec3(vUv, uTime) , 4, 15.0, 2.0);
-    vColor = mix(
-    vec3(0.79, 0.0, 0.5),
-    vec3(0.1, 0.1, 0.8),
-    smoothstep(0.0, 0.5, vDisplacement));
-    vec3 newPosition = position;
-    // newPosition.x = position.x + vDisplacement* circle;
-    // newPosition.y = position.y + vDisplacement* circle;
-    newPosition += normal*vDisplacement * circle;
-    vPosition = newPosition;
-  
-    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
-    vec4 viewPosition = viewMatrix * modelPosition;
-    vec4 projectedPosition = projectionMatrix * viewPosition;
-    gl_Position = projectedPosition;
-
-} `;
+    void main() {
+      vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+      float elevation = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed) *
+        sin(modelPosition.y * uBigWavesFrequency.y + uTime * uBigWavesSpeed) *
+        (cnoise3(vec3(modelPosition.xy / 5.0, (uTime / 5.0))) * 2.0) * uBigWavesElevation;
+      for (float i = 1.0; i <= uSmallIterations; i++) {
+        elevation -= abs(cnoise3(vec3(modelPosition.xy * uSmallWavesFrequency * i, uTime * uSmallWavesSpeed)) * uSmallWavesElevation / i);
+      }
+      modelPosition.y += elevation;
+      vec4 viewPosition = viewMatrix * modelPosition;
+      vec4 projectedPosition = projectionMatrix * viewPosition;
+      gl_Position = projectedPosition;
+      vElevation = elevation;
+    }
+  `;

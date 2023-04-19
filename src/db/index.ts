@@ -24,7 +24,9 @@ import snake from "./scenes/snake";
 import shell from "./scenes/shell";
 import coral from "./scenes/coral";
 import cameo from "./scenes/cameo";
+import mold from "./scenes/mold";
 import paintedFlower from "./scenes/painted-flower";
+import sea from "./scenes/sea";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -55,7 +57,7 @@ export async function getAlbums() {
 }
 
 export async function getScenes() {
-  return [
+  const scenes = [
     particleFiber,
     colorField,
     alienObject,
@@ -75,15 +77,18 @@ export async function getScenes() {
     mushroom,
     loveGeometry,
     moonSky,
-    grid,
     alienFlower,
     spaceShip,
+    grid,
     snake,
     coral,
     shell,
     paintedFlower,
-    // cameo,
+    cameo,
+    mold,
+    // sea,
   ];
+  return scenes.reverse();
 }
 
 export async function getGalleryScenes() {
@@ -97,25 +102,30 @@ export async function getGalleryScenes() {
       { size: 2, scene: snake },
     ],
     [{ size: 1, scene: paintedFlower }],
+    [
+      { size: 1, scene: mold },
+      { size: 1, scene: cameo },
+    ],
+    [{ size: 1, scene: spaceShip }],
 
-    [
-      { size: 4, scene: spaceShip },
-      { size: 1, scene: moonSky },
-      { size: 1, scene: alienFlower },
-    ],
-    [
-      { size: 4, scene: alienObject },
-      { size: 1, scene: lineBezier },
-      { size: 2, scene: bathroom },
-    ],
-    [
-      { size: 1, scene: birds },
-      { size: 3, scene: liquidImage },
-      { size: 4, scene: psyPlane },
-    ],
-    [
-      { size: 2, scene: distortion },
-      { size: 4, scene: particlesTwist },
-    ],
+    // [
+    //   { size: 4, scene: spaceShip },
+    //   { size: 1, scene: moonSky },
+    //   { size: 1, scene: alienFlower },
+    // ],
+    // [
+    //   { size: 4, scene: alienObject },
+    //   { size: 1, scene: lineBezier },
+    //   { size: 2, scene: bathroom },
+    // ],
+    // [
+    //   { size: 1, scene: birds },
+    //   { size: 3, scene: liquidImage },
+    //   { size: 4, scene: psyPlane },
+    // ],
+    // [
+    //   { size: 2, scene: distortion },
+    //   { size: 4, scene: particlesTwist },
+    // ],
   ];
 }

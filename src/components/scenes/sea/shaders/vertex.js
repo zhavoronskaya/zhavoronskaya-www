@@ -1,6 +1,7 @@
 export default /*glsl */ `
 #define PI 3.1415926535897932384626433832795
 uniform float uTime;
+uniform vec2 uResolution;
 
 varying vec2 vUv;
 varying vec3 vPosition;
@@ -85,10 +86,6 @@ float cnoise(vec3 P){
 }
 
 
-float sdfCircle(vec2 p, float r) {
-    return length(p) - r;
-}
-
 float fbm(vec3 p, int octaves, float persistence, float lacunarity) {
   float amplitude = 1.0;
   float frequency = 1.0;
@@ -109,25 +106,37 @@ float fbm(vec3 p, int octaves, float persistence, float lacunarity) {
   return total;
 }
 
+float sdfCircle(vec2 p, float r) {
+    return length(p) - r;
+}
+
+
+
+
+
+
+
 void main() {
+
 
     vUv=uv;
     vNormal = normal;
+    vPosition = position;
 
    
-    float circle = smoothstep(0.0,0.5, sdfCircle(vUv-0.5, 0.1));
+    float circle = smoothstep(0.0,0.5, sdfCircle(vUv-0.5, 0.25));
     vDisplacement = fbm(vec3(vUv, uTime) , 4, 15.0, 2.0);
-    vColor = mix(
-    vec3(0.79, 0.0, 0.5),
-    vec3(0.1, 0.1, 0.8),
-    smoothstep(0.0, 0.5, vDisplacement));
-    vec3 newPosition = position;
+    // vColor = mix(
+    // colour,
+    // vec3(0.1, 0.1, 0.8),
+    // smoothstep(0.0, 0.5, vDisplacement));
+    vColor = mix(vec3(0.2,0.6,0.78), vec3(0.99,0.978,0.856), smoothstep(vDisplacement, 0.0,0.3));
+    // vec3 newPosition = position;
     // newPosition.x = position.x + vDisplacement* circle;
     // newPosition.y = position.y + vDisplacement* circle;
-    newPosition += normal*vDisplacement * circle;
-    vPosition = newPosition;
+    // vPosition = position;
   
-    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
     gl_Position = projectedPosition;

@@ -7,7 +7,7 @@ import gridVertexShader from "./shaders/vertex.js";
 import gridFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
-import { useFrame, extend } from "@react-three/fiber";
+import { useFrame, extend, useThree } from "@react-three/fiber";
 
 import {
   DepthOfField,
@@ -29,6 +29,7 @@ function Object() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
   const ref = useRef();
+  const viewport = useThree();
 
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.07;
@@ -39,7 +40,7 @@ function Object() {
 
   return (
     <mesh rotation={[-Math.sin(Math.PI / 4), 0, 0]} ref={ref}>
-      <planeGeometry ref={geomertyRef} args={[2, 2, 128, 64]} />
+      <planeGeometry ref={geomertyRef} args={[3, 6, 512, 256]} />
       <gridMaterial wireframe={true} ref={shaderRef} />
       {/* <shaderMaterial
         ref={shaderRef}
@@ -58,7 +59,9 @@ function Object() {
 export default function Experience() {
   return (
     <>
-      <OrbitControls />
+      <OrbitControls
+        onEnd={(e) => console.log(e.target.object.position.toArray())}
+      />
       {/* <EffectComposer>
         <DepthOfField
           focusDistance={0.025}

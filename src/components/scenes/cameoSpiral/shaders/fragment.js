@@ -101,7 +101,7 @@ void main() {
   vec3 light = normalize(vec3(3., 2., -1.));
   float str = max(dot(nor(vUv), light),0.25);
  
-  modelColour = mix(vec3(0.658,0.446,0.343), modelColour, str);
+  modelColour = mix(vec3(0.858,0.56,0.63), modelColour, str);
   vec3 lighting = vec3(0.0);
 
   // vec3 normal = normalize(vNormal);

@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls, Environment } from "@react-three/drei";
 
-import paintedFlowerVertexShader from "./shaders/vertex.js";
-import paintedFlowerFragmentShader from "./shaders/fragment.js";
+import cameoSpiralVertexShader from "./shaders/vertex.js";
+import cameoSpiralFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -15,17 +15,17 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const PaintedFlowerMaterial = shaderMaterial(
+const CameoSpiralMaterial = shaderMaterial(
   {
     uTime: 0,
   },
 
-  paintedFlowerVertexShader,
-  paintedFlowerFragmentShader
+  cameoSpiralVertexShader,
+  cameoSpiralFragmentShader
 );
-extend({ PaintedFlowerMaterial });
+extend({ CameoSpiralMaterial });
 
-function PaintedFlower() {
+function CameoSpiral() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
   const ref = useRef();
@@ -39,9 +39,9 @@ function PaintedFlower() {
 
   return (
     <mesh rotation={[0, 0, 0]} ref={ref}>
-      <coneGeometry ref={geomertyRef} args={[1.0, 3.0, 512, 512, true]} />
+      <coneGeometry ref={geomertyRef} args={[1.0, 1.0, 512, 512, true]} />
       {/* <planeGeometry ref={geomertyRef} args={[1, 1, 2.0, 512, 512]} /> */}
-      <paintedFlowerMaterial side={THREE.DoubleSide} ref={shaderRef} />
+      <cameoSpiralMaterial side={THREE.DoubleSide} ref={shaderRef} />
     </mesh>
   );
 }
@@ -49,7 +49,7 @@ function PaintedFlower() {
 export default function Experience() {
   return (
     <>
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       {/* <EffectComposer>
         <DepthOfField
           focusDistance={0.025}
@@ -62,7 +62,7 @@ export default function Experience() {
       {/* <color args={["#000000"]} attach="background" /> */}
       <Environment preset="night" />
       <Suspense fallback={null}>
-        <PaintedFlower />
+        <CameoSpiral />
       </Suspense>
     </>
   );

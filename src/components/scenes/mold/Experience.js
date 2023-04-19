@@ -3,8 +3,8 @@ import React from "react";
 
 import { shaderMaterial, OrbitControls, Environment } from "@react-three/drei";
 
-import paintedFlowerVertexShader from "./shaders/vertex.js";
-import paintedFlowerFragmentShader from "./shaders/fragment.js";
+import moldVertexShader from "./shaders/vertex.js";
+import moldFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
@@ -15,17 +15,17 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const PaintedFlowerMaterial = shaderMaterial(
+const MoldMaterial = shaderMaterial(
   {
     uTime: 0,
   },
 
-  paintedFlowerVertexShader,
-  paintedFlowerFragmentShader
+  moldVertexShader,
+  moldFragmentShader
 );
-extend({ PaintedFlowerMaterial });
+extend({ MoldMaterial });
 
-function PaintedFlower() {
+function Mold() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
   const ref = useRef();
@@ -33,15 +33,15 @@ function PaintedFlower() {
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
     // ref.current.rotation.y += delta;
-    // state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 20 + 45;
-    // state.camera.updateProjectionMatrix();
+    state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 20 + 45;
+    state.camera.updateProjectionMatrix();
   });
 
   return (
     <mesh rotation={[0, 0, 0]} ref={ref}>
-      <coneGeometry ref={geomertyRef} args={[1.0, 3.0, 512, 512, true]} />
+      <coneGeometry ref={geomertyRef} args={[1.0, 1.0, 512, 512, true]} />
       {/* <planeGeometry ref={geomertyRef} args={[1, 1, 2.0, 512, 512]} /> */}
-      <paintedFlowerMaterial side={THREE.DoubleSide} ref={shaderRef} />
+      <moldMaterial side={THREE.DoubleSide} ref={shaderRef} />
     </mesh>
   );
 }
@@ -62,7 +62,7 @@ export default function Experience() {
       {/* <color args={["#000000"]} attach="background" /> */}
       <Environment preset="night" />
       <Suspense fallback={null}>
-        <PaintedFlower />
+        <Mold />
       </Suspense>
     </>
   );

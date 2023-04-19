@@ -360,39 +360,42 @@ void main() {
     t = remap(t, -1.0, 1.0, 0.3, 0.7);
  
 
-     float shellDir =clamp(smoothstep( 0.0,0.5, ((abs(vUv.y-0.5))*3.0)), 0.5,1.0) ;
+     float shellDir =clamp((1.0 - abs(vUv.y-0.5)*3.0), 0.0,1.0) ;
      float angle = atan(position.x, position.z);
      float distanceToCenter = length(position.xz);
-     float angleOffset = (PI*1.0 /(distanceToCenter)*0.4);
+     float angleOffset = (PI*1.0 /(distanceToCenter)*3.4);
      angle += angleOffset;
 
 
     vec3 spitalPos = vec3(0.0);
     spitalPos = position;
-    spitalPos += normal*(sin(angle*PI*0.3))*distanceToCenter;
-    spitalPos*=shellDir;
+     spitalPos.y += normal.y*(sin(angle*PI*0.3)+22.0)*distanceToCenter;
+    //  spitalPos. = normal*-abs(sin(angle*PI*0.3)+22.0)*distanceToCenter;
+    //  spitalPos *=rotateY(PI*angle/4.0);
+    //  spitalPos*=shellDir;
+// spitalPos *=t;
+
+    // vec3 spiralNormal = normalize(spitalPos);
 
 
-   
-
-
-    vec3 newPosition =spitalPos+position*shellDir;
+    vec3 newPosition =spitalPos;
     // newPosition *=rotateY(PI/4.0);
     vec3 spiralNormal = normalize(newPosition);
-    float cell = cellular(newPosition*10.0 +uTime*0.2)*0.062;
+    float cell = cellular(newPosition*30.0)*0.062;
     newPosition += spiralNormal*cell;
   
-    vDisplacement =cnoise(vec4(newPosition,0.0))*0.780;
-
+    vDisplacement =cnoise(vec4(newPosition,0.0))*0.40;
+  //vDisplacement = clamp(vDisplacement, 0.0,3.0);
+    //vDisplacement *=shellDir;
 
     vColor = mix(
-      vec3(0.999, 0.79, 0.84),
-      vec3(0.965, 0.56, 0.768),
-      smoothstep(0.0, 0.2, vDisplacement*10.0));
+      vec3(0.39, 0.889, 0.922),
+      vec3(0.34, 0.1, 0.8),
+      smoothstep(0.1, 0.9, vDisplacement));
 
     
 
-     newPosition += spiralNormal*vDisplacement*sin(uTime);
+     newPosition += spiralNormal*vDisplacement*1.0;
 
     //newPosition += normal*vDisplacement;
     vPosition = newPosition;
