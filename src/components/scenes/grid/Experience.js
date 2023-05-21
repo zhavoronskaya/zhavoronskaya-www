@@ -59,9 +59,9 @@ function Object() {
 export default function Experience() {
   return (
     <>
-      <OrbitControls
+      {/* <OrbitControls
         onEnd={(e) => console.log(e.target.object.position.toArray())}
-      />
+      /> */}
       {/* <EffectComposer>
         <DepthOfField
           focusDistance={0.025}

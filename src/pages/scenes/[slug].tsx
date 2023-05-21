@@ -33,6 +33,8 @@ import Cameo from "@/components/scenes/cameo";
 import PaintedFlower from "@/components/scenes/paintedFlower";
 import Mold from "@/components/scenes/mold";
 import Sea from "@/components/scenes/sea";
+import Robot from "@/components/scenes/robot";
+import HighVoltage from "@/components/scenes/highVoltage";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -123,6 +125,10 @@ const ScenePage = (props: Props) => {
         return Mold;
       case "sea":
         return Sea;
+      case "robot":
+        return Robot;
+      case "high-voltage":
+        return HighVoltage;
       default:
         return null;
     }

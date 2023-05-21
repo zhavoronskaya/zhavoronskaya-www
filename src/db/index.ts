@@ -27,6 +27,8 @@ import cameo from "./scenes/cameo";
 import mold from "./scenes/mold";
 import paintedFlower from "./scenes/painted-flower";
 import sea from "./scenes/sea";
+import robot from "./scenes/robot";
+import highVoltage from "./scenes/high-voltage";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -86,6 +88,8 @@ export async function getScenes() {
     paintedFlower,
     cameo,
     mold,
+    robot,
+    highVoltage,
     // sea,
   ];
   return scenes.reverse();
