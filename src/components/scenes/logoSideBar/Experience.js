@@ -29,7 +29,7 @@ function Logo() {
 }
 
 const LogoMaterial = React.memo(() => {
-  const textLogo = useTexture("/image/logoSideBar.png");
+  const textLogo = useTexture("/image/logoSideBarTr.png");
   textLogo.encoding = THREE.sRGBEncoding;
 
   // textLogo.minFilter = THREE.NearestFilter;
@@ -52,6 +52,7 @@ const LogoMaterial = React.memo(() => {
     <shaderMaterial
       ref={shaderRef}
       key="stable"
+      transparent
       vertexShader={logoVertexShader}
       fragmentShader={logoFragmentShader}
       vertexColors={true}

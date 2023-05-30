@@ -11,7 +11,9 @@ varying vec2 vUv;
 void main() {
 
 
-    vec3 color = texture2D(uTex, vUv + vElevation).rgb;
-    gl_FragColor = vec4(color, 1.0);
+    // vec3 color = texture2D(uTex, vUv + vElevation).rgb;
+    // gl_FragColor = vec4(color, 1.0);
+    vec4 color = texture2D(uTex, vUv + vElevation);
+    gl_FragColor = vec4(color);
 
 }`;

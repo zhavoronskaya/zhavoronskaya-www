@@ -82,7 +82,7 @@ void main()
 {
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
       float noiseFreq = 0.08;
-      float noiseAmp = 0.005;
+      float noiseAmp = 0.009;
       vec3 noisePos = vec3(modelPosition.x * noiseFreq + uTime, modelPosition.y, modelPosition.z);
   float noise =snoise(noisePos) * noiseAmp;
   for (float i = 1.0; i <= 10.0; i++) {

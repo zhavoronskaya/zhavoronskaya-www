@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { IAlbum, IScenesGallery } from "@/interfaces";
 import styles from "./Home.module.css";
-import LogoImage from "../scenes/logoImage";
 import { RightArrowIcon } from "../theme/Icon/Arrows";
 
 type Props = {
@@ -13,7 +12,6 @@ type Props = {
 export default function Home(props: Props) {
   return (
     <>
-      <LogoImage />
       <div className="mt-xl mb-sm">
         <h1 className="fz-xl">Hello, I'm Lena 🙌</h1>
         <p className="fz-lg">
