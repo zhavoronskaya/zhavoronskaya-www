@@ -88,7 +88,7 @@ export async function getScenes() {
     paintedFlower,
     cameo,
     mold,
-    robot,
+    // robot,
     highVoltage,
     // sea,
   ];
