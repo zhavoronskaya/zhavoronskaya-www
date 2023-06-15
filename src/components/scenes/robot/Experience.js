@@ -12,12 +12,6 @@ import { useThree, useFrame } from "@react-three/fiber";
 
 import Model from "./Model.js";
 
-import {
-  DepthOfField,
-  Bloom,
-  EffectComposer,
-} from "@react-three/postprocessing";
-
 export default function Experience() {
   useFrame((state, delta) => {});
   return (
@@ -26,7 +20,6 @@ export default function Experience() {
       // onEnd={(e) => console.log(e.target.object.position.toArray())}
       />
 
-      <color args={["#F3CBFE"]} attach="background" />
       {/* <EffectComposer multisampling={4}>
         <DepthOfField
           focusDistance={0.025}
@@ -40,7 +33,7 @@ export default function Experience() {
       {/* <color args={["#000000"]} attach="background" /> */}
 
       <Suspense fallback={"LOADING"}>
-        <Model url="/music/track8.mp3" />
+        <Model url="/music/track10.mp3" rotation={[0, (3 * Math.PI) / 2, 0]} />
       </Suspense>
     </>
   );

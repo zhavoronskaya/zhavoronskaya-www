@@ -87,10 +87,10 @@ void main() {
   float delta =1.0- uTime/uDuration;
   vec2 uv = mix(vUv,uvRipple, delta);
   vec4 sample1 = texture2D(uTex, uv);
-  vec4 sample2 = texture2D(uTex2, uv);
+  vec4 sample2 = texture2D(uTex2, vUv);
 
   float fade = smoothstep(delta*2.5, delta*1.0, len);
   vec4 color = mix(sample1, sample2, fade);
-  gl_FragColor = vec4(color); 
+  gl_FragColor = vec4(sample2); 
 
 }`;

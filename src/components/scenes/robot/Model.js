@@ -1,14 +1,10 @@
-import { useGLTF, useTexture, Stage } from "@react-three/drei";
+import { useAnimations, useGLTF, useTexture, Stage } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
 
-import { handsTwistMaterial } from "./handsTwistMaterial.js";
-
 import * as THREE from "three";
 
-// import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { CubeTextureLoader } from "three";
-import { LightningStrike } from "three/addons/geometries/LightningStrike.js";
 
 import metalVertex from "./shaders/metalVertex.js";
 import metalFragment from "./shaders/metalFragment.js";
@@ -22,8 +18,6 @@ import earsVertex from "./shaders/earsVertex.js";
 import earsFragment from "./shaders/earsFragment.js";
 import headphonesVertex from "./shaders/headphonesUpVertex.js";
 import headphonesFragment from "./shaders/headphonesUpFragment.js";
-import lightningVertexShader from "./shaders/lightningVertex.js";
-import lightningFragmentShader from "./shaders/lightningFragment.js";
 import pointsVertexShader from "./shaders/pointsVertex.js";
 import pointsFragmentShader from "./shaders/pointsFragment.js";
 
@@ -34,6 +28,9 @@ const meshesSettings = {
   fluffy: { type: "fluffy", group: "head" },
   up: { type: "rough", group: "head" },
   screen: { type: "screen", group: "head" },
+  screenBack: { type: "screenBack", group: "head" },
+  head: { type: "metal", group: "head" },
+
   body: { type: "metal", group: "torso" },
   handsLUp: { type: "metal", group: "torso" },
   handsLDwn: { type: "metal", group: "torso" },
@@ -41,18 +38,17 @@ const meshesSettings = {
   handsRDwn: { type: "metal", group: "torso" },
   fingersL: { type: "metal", group: "torso" },
   fingersR: { type: "metal", group: "torso" },
-  head: { type: "metal", group: "head" },
+
   legL: { type: "metal", group: "legs" },
   legR: { type: "metal", group: "legs" },
   bowl: { type: "emission", group: "legs" },
+  neck: { type: "emission", group: "legs" },
+  shoulderR: { type: "emission", group: "torso" },
+  shoulderL: { type: "emission", group: "torso" },
+  wristR: { type: "emission", group: "torso" },
+  wristL: { type: "emission", group: "torso" },
   DEFAULT: { type: "emission", group: "torso" },
 };
-
-// const groups = {
-//   head: new THREE.Group(),
-//   legs: new THREE.Group(),
-//   torso: new THREE.Group(),
-// };
 
 function createSkyBox() {
   const loader = new CubeTextureLoader();
@@ -68,24 +64,6 @@ function createSkyBox() {
   return texture;
 }
 
-function createRayMaterial() {
-  return new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uAvg: { value: 110 },
-      // uResolution: {
-      //   value: new THREE.Vector2(window.innerWidth, window.innerHeight),
-      // },
-      // uResolution: {
-      //   value: new THREE.Vector2(window.innerWidth, window.innerHeight),
-      // },
-      // uAvg: { value: 110 },
-    },
-    vertexShader: lightningVertexShader,
-    fragmentShader: lightningFragmentShader,
-    transparent: true,
-  });
-}
 function createPointsMaterial() {
   return new THREE.ShaderMaterial({
     uniforms: {
@@ -110,7 +88,6 @@ function createScreenBackMaterial() {
   });
 }
 
-// const rayMaterial = createRayMaterial();
 const screenBackMaterial = createScreenBackMaterial();
 const pointsMaterial = createPointsMaterial();
 
@@ -127,59 +104,52 @@ export default function Model({ url, ...props }) {
 
   //Model
 
-  const gltf = useGLTF("../../model/robot.glb");
-  // const { nodes } = useGLTF("../../model/rob.glb");
+  const gltf = useGLTF("../../model/robotAnimate.glb");
+  const animations = useAnimations(gltf.animations, gltf.scene);
+  console.log(animations);
+
   const screenMesh = useRef();
   const pointsGeometryRef = useRef();
-  const pointsRef = useRef();
+  // const pointsRef = useRef();
   const fluffyMesh = useRef();
-
-  const materialRef = useRef();
   const shaderRef = useRef();
-  // const rayRef = useRef();
+
+  const [isReady, setIsReady] = useState(false);
 
   const headphonesMesh = useRef();
   const emissionMesh = useRef([]);
-  const groups = useRef({
-    head: [],
-    legs: [],
-    torso: [],
-  });
-
-  const ray = React.useRef();
-  const screenBack = React.useRef();
 
   // console.log("ray", ray.current);
 
   //Download textures
   const face = useTexture("/texture/robot/face.png");
   face.flipY = false;
-  face.encoding = THREE.sRGBEncoding;
+
   face.magFilter = THREE.NearestFilter;
   face.minFilter = THREE.NearestFilter;
   const faceTalk = useTexture("/texture/robot/face-talk.png");
   faceTalk.flipY = false;
-  faceTalk.encoding = THREE.sRGBEncoding;
+
   faceTalk.magFilter = THREE.NearestFilter;
   faceTalk.minFilter = THREE.NearestFilter;
   const faceSleep = useTexture("/texture/robot/face-sleep.png");
   faceSleep.flipY = false;
-  faceSleep.encoding = THREE.sRGBEncoding;
+
   faceSleep.magFilter = THREE.NearestFilter;
   faceSleep.minFilter = THREE.NearestFilter;
   const faceTuff = useTexture("/texture/robot/face-tuff.png");
   faceTuff.flipY = false;
-  faceTuff.encoding = THREE.sRGBEncoding;
+
   faceTuff.magFilter = THREE.NearestFilter;
   faceTuff.minFilter = THREE.NearestFilter;
   const faceIdle = useTexture("/texture/robot/face-idle.png");
   faceIdle.flipY = false;
-  faceIdle.encoding = THREE.sRGBEncoding;
+
   faceIdle.magFilter = THREE.NearestFilter;
   faceIdle.minFilter = THREE.NearestFilter;
   const faceBlink = useTexture("/texture/robot/face-blink.png");
   faceBlink.flipY = false;
-  faceBlink.encoding = THREE.sRGBEncoding;
+
   faceBlink.magFilter = THREE.NearestFilter;
   faceBlink.minFilter = THREE.NearestFilter;
 
@@ -211,12 +181,11 @@ export default function Model({ url, ...props }) {
 
       screenMesh.current.material.uniforms.uTex.value =
         screenMesh.current.material.uniforms.uTex2.value;
-    }, 1000.0);
+    }, 500);
   }, [face, faceTalk, faceTuff, faceSleep, faceIdle, faceBlink]);
 
   useFrame((state, delta) => {
     if (!audio) return;
-    // groups.current.head.rotation.y += 0.0 * delta;
 
     let avg = audio.update();
     let length = audio.data.length;
@@ -231,67 +200,44 @@ export default function Model({ url, ...props }) {
     // console.log(length, avg);
 
     // console.log(avg);
-    // state.camera.fov = 45 - audio.data.avg / 15;
+    // state.camera.fov = 45 - avg / 15;
     // state.camera.updateProjectionMatrix();
 
     updateFace(avg, delta);
     // console.log(avg);
     // if (avg > 110) screenMesh.current.material.uniforms.uTex.value = faceTuff;
 
-    // ray.current.sourceOffset = new THREE.Vector3(1.5, 2.0, 0.0);
-    // ray.current.destOffset = new THREE.Vector3(-1.5, 2.0, 0.0);
+    fluffyMesh.current.scale.set(1 + avg / 800, 1, 1);
+    // fluffyMesh.current.material.uniforms.uTime += delta;
 
-    // console.log(ray.current.destOffset.x);
-
-    // screenBack.current.material.uniforms.uTime.value += delta;
-
-    // rayRef.current.material.uniforms.uTime.value += delta;
-    // rayRef.current.material.uniforms.uAvg.value = avg;
-
-    // if (ray.current) {
-    //   // console.log("stra", ray.current);
-    //   ray.current.rayParameters.straightness = 1.0 - avg / 200;
-    //   ray.current.update(state.clock.getElapsedTime());
-    // }
-
-    fluffyMesh.current.scale.set(1, 1 + avg / 800, 1);
     headphonesMesh.current.scale.set(1 + avg / 800, 1, 1);
-    fluffyMesh.current.material.uniforms.uTime += delta;
-    pointsRef.current.material.uniforms.uTime.value += delta;
+
+    // pointsRef.current.material.uniforms.uTime.value += delta;
     // pointsRef.current.material.uniforms.uAvg.value = avg;
     emissionMesh.current.forEach((child) => {
       child.material.uniforms.uColor.value = new THREE.Vector3(
-        0.026 + avg / 300,
-        0.32,
-        0.338
+        0.8 + avg / 300,
+        0.3,
+        0.796
       );
     });
-    //rayParams.sourceOffset.x = headphonesMesh.current.position.z - 0.05;
-
-    // console.log(headphonesMesh.current.position);
-
-    // earsMesh.current.updateProjectionMatrix();
   });
 
   useEffect(() => {
     if (!gltf || !gltf.scene) return;
-    // screenMesh.current.material.uniforms.uTex = face;
-    // const groups = {
-    //   head: new THREE.Group(),
-    //   legs: new THREE.Group(),
-    //   torso: new THREE.Group(),
-    // };
 
-    console.log("gltf.scene", gltf.scene);
+    // screenMesh.current.material.uniforms.uTex = face;
+
+    console.log("gltf", gltf);
 
     gltf.scene.traverse((child) => {
-      const meshSettings = meshesSettings[child.name] || meshesSettings.DEFAULT;
-      const group = groups.current[meshSettings.group];
-
-      // console.log("child.name", child.name);
-      // console.log("group", group.name);
-
+      // console.log("child", child.name, child);
       if (child.name === "Scene") return;
+      if (child.name === "Armature") return;
+      const meshSettings = meshesSettings[child.name];
+
+      if (child.type != "SkinnedMesh" || !meshSettings) return;
+      child.bindMode = "detached";
 
       if (meshSettings.type === "metal") {
         child.material = new THREE.ShaderMaterial({
@@ -304,12 +250,10 @@ export default function Model({ url, ...props }) {
         });
 
         // materialRef.current = child.material;
-        handsTwistMaterial(
-          child.material,
-          (shader) => (shaderRef.current = shader)
-        );
       } else if (meshSettings.type === "screen") {
-        console.log("screen", child);
+        // const screenBack = child.clone();
+        // screenBack.material = screenBackMaterial;
+        // gltf.scene.add(screenBack);
 
         child.material = new THREE.ShaderMaterial({
           uniforms: {
@@ -328,24 +272,31 @@ export default function Model({ url, ...props }) {
         });
 
         screenMesh.current = child;
-        screenBack.current = child.geometry;
+      } else if (meshSettings.type === "screenBack") {
+        child.material = screenBackMaterial;
       } else if (meshSettings.type === "fluffy") {
         child.material = new THREE.ShaderMaterial({
           uniforms: {
             uTime: { value: 0 },
             uImpulse: { value: new THREE.Vector2(0.0, 0.0) },
-            uSpikeCount: { value: 200.0 },
+            uSpikeCount: { value: 100.0 },
             uSpikeLength: { value: 1.0 },
             uSceneRotationY: { value: 0.0 },
           },
           vertexShader: earsVertex,
           fragmentShader: earsFragment,
-          // wireframe: true,
         });
 
         fluffyMesh.current = child;
-        // child.material.blending = THREE.AdditiveBlending;
-        // console.log("child", child);
+
+        // detached option
+        // fluffyMesh.current.bindMode = "detached";
+        // fluffyMesh.current.position.set(0, 1.4, 1.3);
+
+        // attached option
+        // fluffyMesh.current.bindMatrix.scale(new THREE.Vector3(1.1, 1, 1));
+
+        console.log("fluffyMesh.current.", fluffyMesh.current);
       } else if (meshSettings.type === "rough") {
         child.material = new THREE.ShaderMaterial({
           uniforms: { uTime: { value: 0 } },
@@ -354,47 +305,12 @@ export default function Model({ url, ...props }) {
           // wireframe: true,
         });
         headphonesMesh.current = child;
-
-        // const sourceOffset = child.position.clone();
-        // sourceOffset.x -= 1.4735;
-        // sourceOffset.y += 0.86;
-
-        // const destOffset = child.position.clone();
-        // destOffset.x += 1.4735;
-        // destOffset.y += 0.86;
-
-        // ray.current = new LightningStrike({
-        //   sourceOffset,
-        //   destOffset,
-
-        //   radius0: 0.03,
-        //   radius1: 0.03,
-        //   minRadius: 0.015,
-        //   maxIterations: 7,
-
-        //   isEternal: true,
-
-        //   timeScale: 0.7,
-        //   propagationTimeFactor: 0.05,
-        //   vanishingTimeFactor: 0.95,
-        //   subrayPeriod: 3.5,
-        //   subrayDutyCycle: 0.6,
-        //   maxSubrayRecursion: 3,
-        //   ramification: 7,
-        //   recursionProbability: 0.6,
-
-        //   roughness: 0.85,
-        //   straightness: 0.73,
-        // });
-
-        // ray.current.destOffset = headphonesMesh.current.position;
-        // child.material.blending = THREE.AdditiveBlending;
-        console.log("child", child);
+        // headphonesMesh.current.scale.set(10, 1, 1);
       } else {
         child.material = new THREE.ShaderMaterial({
           uniforms: {
             uTime: { value: 0 },
-            uColor: { value: new THREE.Vector3(0.026, 0.32, 0.338) },
+            uColor: { value: new THREE.Vector3(0.8, 0.3, 0.796) },
           },
           vertexShader: emissionVertex,
           fragmentShader: emissionFragment,
@@ -402,55 +318,45 @@ export default function Model({ url, ...props }) {
         emissionMesh.current.push(child);
         // child.material = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
       }
-
-      // console.log("child", child);
-
-      // group.add(child.clone());
     });
-  }, [gltf, screenBack]);
 
-  // const isReady = screenBack.current && ray.current;
-  const isReady = screenBack.current;
+    // gltf.nodes.scale.set(2, 1, 1);
+    // gltf.scene.position.set(0, , 0);
+    // gltf.scene.rotateY(Math.PI);
 
-  if (!isReady) return null;
+    setIsReady(true);
+  }, [gltf]);
+
+  useEffect(() => {
+    // animations.actions.HelloAction.time = 1.0;
+    animations.actions.HelloAction.play();
+    // console.log(animations.actions.HelloAction);
+    // window.setTimeout(() => {
+    //   animations.actions.HelloAction.play();
+    //   animations.actions.HelloAction.crossFadeFrom(
+    //     animations.actions.DanceAction,
+    //     1
+    //   );
+    // }, 2000);
+  }, []);
+
+  // if (!isReady) return null;
 
   return (
-    <Stage environment="sunset" preset="portrait" intensity={2}>
-      <group {...props} dispose={null}>
-        <primitive object={gltf.scene} rotation={[0, Math.PI, 0]} />
-        {/* <primitive object={groups.current.head} />
-      <primitive object={groups.current.torso} />
-      <primitive object={groups.current.legs} /> */}
+    <group {...props} dispose={null}>
+      <Stage adjustCamera={2} intensity={1}>
+        <primitive object={gltf.scene} />
 
-        <mesh
-          geometry={screenBack.current}
-          material={screenBackMaterial}
-          position={[0.0111626535654068, 5.2866973876953125, 0.610754698608398]}
-          rotation={[-Math.PI / 2.0, 0.0, 0.0]}
-        />
-
-        <points
-          material={pointsMaterial}
-          ref={pointsRef}
-          position={[-1.45, 7.5, 0.0]}
-        >
-          <bufferGeometry attach="geometry" ref={pointsGeometryRef} />
-        </points>
-        {/* <Points ref={pointsGeometryRef} limit={10000} material={pointsMaterial}>
-          {Array.from({ length: 500.0 }).map((_, i) => {
-            const position = [
-              (Math.random() - 0.5) * 3.0,
-              7.56025,
-              (Math.random() - 0.5) * 0.01,
-            ];
-            const scale = Math.random() * 300.0;
-
-            return <Point key={i} position={position} size={scale} />;
-          })}
-        </Points> */}
-        {/* 
+        {/* <points
+        // ref={pointsRef}
+        material={pointsMaterial}
+        position={[-1.45, 7.5, 0.0]}
+      >
+        <bufferGeometry attach="geometry" ref={pointsGeometryRef} />
+      </points> */}
+      </Stage>
+      {/* 
         <mesh ref={rayRef} geometry={ray.current} material={rayMaterial} /> */}
-      </group>
-    </Stage>
+    </group>
   );
 }

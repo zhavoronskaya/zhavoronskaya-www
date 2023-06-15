@@ -1,10 +1,10 @@
 import { IScene } from "../../interfaces";
 
 export const scene: IScene = {
-  name: "High Voltage",
+  name: "High Voltage (in progress)",
   slug: "high-voltage",
   description: "High Voltage",
-  cover: "/art/4.png",
+  cover: "/art/HighVoltage.png",
   coverAlt: "Something",
 };
 

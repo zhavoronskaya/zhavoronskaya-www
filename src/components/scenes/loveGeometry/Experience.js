@@ -219,7 +219,7 @@ function LoveGeometry({ size = 3 }) {
 export default function Experience() {
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <EffectComposer>
         <DepthOfField focusDistance={0.05} focalLength={0.5} bokehScale={6} />
         <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0} />
@@ -242,7 +242,7 @@ export default function Experience() {
         <LoveGeometry />
       </Suspense>
 
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
     </>
   );
 }

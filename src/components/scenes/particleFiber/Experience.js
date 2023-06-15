@@ -118,7 +118,7 @@ export default function Experience() {
       <Suspense fallback={null}>
         <ParticleLines linesCount={20} />
       </Suspense>
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
     </>
   );
 }

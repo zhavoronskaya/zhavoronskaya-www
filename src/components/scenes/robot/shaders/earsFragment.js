@@ -27,12 +27,11 @@ void main() {
   vec3 lighting = vec3(0.0);
 
 
-//  vec3 normal = (vNormal);
-  vec3 normal = normalize(vNormal);
-  // vec3 normal = normalize(
-  //     cross(
-  //         dFdx(vec3(vPosition)),
-  //         dFdy(vec3(vPosition))));
+  // vec3 normal = normalize(vNormal);
+  vec3 normal = normalize(
+      cross(
+          dFdx(vec3(vPosition)),
+          dFdy(vec3(vPosition))));
   vec3 viewDir = normalize(cameraPosition - vPosition);
 
   // Ambient

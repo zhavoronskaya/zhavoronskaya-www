@@ -47,7 +47,7 @@ export default function Experience() {
         <Bloom mipmapBlur intensity={0.2} luminanceThreshold={1} />
       </EffectComposer>
 
-      <Environment preset="sunset"></Environment>
+      {/* <Environment preset="sunset"></Environment> */}
       <Suspense fallback={null}>
         <Model />
         <Back />

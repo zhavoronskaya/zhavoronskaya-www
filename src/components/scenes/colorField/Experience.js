@@ -61,7 +61,7 @@ export default function Experience() {
       <Suspense fallback={null}>
         <Painting />
       </Suspense>
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
     </>
   );
 }

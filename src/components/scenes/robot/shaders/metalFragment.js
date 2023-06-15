@@ -3,7 +3,7 @@ uniform float uTime;
 varying vec3 vPosition;
 varying vec3 vNormal;
 varying vec2 vUv;
-varying vec3 vwPosition;
+
 
 uniform samplerCube specMap;
 
@@ -30,11 +30,11 @@ void main() {
   vec3 modelColour = vec3(0.16,0.009,0.8);
   vec3 lighting = vec3(0.0);
 
-  // vec3 normal = normalize(vNormal);
-  vec3 normal = normalize(
-      cross(
-          dFdx(vec3(vPosition)),
-          dFdy(vec3(vPosition))));
+  vec3 normal = normalize(vNormal);
+  // vec3 normal = normalize(
+  //     cross(
+  //         dFdx(vec3(vPosition)),
+  //         dFdy(vec3(vPosition))));
   vec3 viewDir = normalize(cameraPosition - vPosition);
 
   // Ambient
@@ -59,12 +59,12 @@ void main() {
   float phongValue = max(0.0, dot(viewDir, r));
   phongValue = pow(phongValue, 64.0);
 
-  specular += phongValue * 2.15;
+  specular += phongValue * 0.5;
     // IBL Specular
     vec3 iblCoord = normalize(reflect(-viewDir, normal));
   vec3 iblSample = textureCube(specMap, iblCoord).xyz;
 
-  specular += 2.0*iblSample;
+  specular += 0.5*iblSample;
 
   // Fresnel
   float fresnel = 1.0 - max(0.0, dot(viewDir, normal));

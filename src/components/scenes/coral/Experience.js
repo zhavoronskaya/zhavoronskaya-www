@@ -59,7 +59,7 @@ export default function Experience() {
       </EffectComposer> */}
 
       {/* <color args={["#000000"]} attach="background" /> */}
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
       <Suspense fallback={null}>
         <Coral />
       </Suspense>

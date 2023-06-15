@@ -15,5 +15,5 @@ void main() {
 //   glowAmount = 1.0 - pow(glowAmount, 0.025);
 //   colour += glowAmount * vec3(1.0, 0.2, 0.05);
 
-    gl_FragColor = vec4(colour, 0.34);
+    gl_FragColor = vec4(colour, 0.24);
 }`;

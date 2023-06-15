@@ -1,27 +1,13 @@
+"use client";
 import { Canvas } from "@react-three/fiber";
 import styles from "./Canvas.module.css";
 import Experience from "./Experience.js";
 import React, { useState, useEffect } from "react";
 
-function useSceneKey() {
-  const [key, setKey] = useState(1);
-  useEffect(() => {
-    const title = document.getElementById("scenename");
-    const handleClick = () => setKey(Date.now());
-    title.addEventListener("click", handleClick);
-    return () => {
-      title.removeEventListener("click", handleClick);
-    };
-  }, []);
-  return key;
-}
-
 export default function Scene() {
-  const key = useSceneKey();
   return (
     <>
       <Canvas
-        key={key}
         shadows
         className={styles.canvas}
         dpr={[1, 2]}
@@ -29,7 +15,7 @@ export default function Scene() {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [5, 7, 20.5],
+          position: [0, 12, 8],
         }}
       >
         <Experience />

@@ -369,22 +369,22 @@ void main() {
 
     vec3 spitalPos = vec3(0.0);
     spitalPos = position;
-    spitalPos += normal*(sin(angle*PI*0.3))*distanceToCenter;
+    spitalPos += normal*((sin(angle*PI*0.3)))*distanceToCenter*0.3;
     spitalPos*=shellDir;
 
 
    
 
 
-    vec3 newPosition =spitalPos+position*shellDir;
+    vec3 newPosition =spitalPos;
     // newPosition *=rotateY(PI/4.0);
     vec3 spiralNormal = normalize(newPosition);
-    float cell = cellular(newPosition*10.0 +uTime*0.2)*0.062;
+    float cell =cellular(newPosition*10.0 +uTime*0.2)*0.052;
     newPosition += spiralNormal*cell;
   
-    vDisplacement =cnoise(vec4(newPosition,0.0))*0.780;
+    vDisplacement =remap(cnoise(vec4(newPosition,0.0))*0.0380,-100.0,100.0,0.0,0.001);
 
-
+    vDisplacement=cnoise(vec4(newPosition,0.0))*0.0380;
     vColor = mix(
       vec3(0.999, 0.79, 0.84),
       vec3(0.965, 0.56, 0.768),
@@ -392,7 +392,7 @@ void main() {
 
     
 
-     newPosition += spiralNormal*vDisplacement*sin(uTime);
+     newPosition += spiralNormal*vDisplacement*abs(sin(uTime));
 
     //newPosition += normal*vDisplacement;
     vPosition = newPosition;
@@ -400,7 +400,7 @@ void main() {
     
     vNormal = spiralNormal;
 
-    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(spitalPos, 1.0);
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

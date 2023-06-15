@@ -1,5 +1,5 @@
 export default /*glsl */ `
-#define PI 3.1415926535897932384626433832795
+// #define PI 3.1415926535897932384626433832795
 
 
 varying vec2 vUv;
@@ -14,6 +14,8 @@ uniform float uSpikeCount;
 uniform float uSpikeLength;
 uniform float uSceneRotationY;
 
+#include <common>
+#include <skinning_pars_vertex>
 
 
 float inverseLerp(float v, float minValue, float maxValue) {
@@ -209,6 +211,13 @@ float snoise(vec4 v){
 void main()
 {
 
+ #include <skinbase_vertex>
+      #include <begin_vertex>
+      #include <beginnormal_vertex>
+      #include <defaultnormal_vertex>
+      #include <skinning_vertex>
+      #include <project_vertex>
+  
 // vec3 coords= vec3(position);
 
 // float noiseSample = 1.0 - cellular(coords);
@@ -219,13 +228,14 @@ void main()
       
       // noiseSample = smoothstep(0.0,1.0,noiseSample);
 
-
-      vec3 pos = position.xyz;
+      vNormal = normalize(normalMatrix * normal);
+      vec3 pos = mvPosition.xyz;
+      // vec3 pos = position;
       // extrusion length based on simplex noise. Capping minimum at -1.0
-     float uvNoise = snoise(vec4(position.xyz*uSpikeCount,10.0)) * uSpikeLength + (uSpikeLength - 1.0);
+     float uvNoise = snoise(vec4(pos*uSpikeCount,10.0)) * uSpikeLength + (uSpikeLength - 1.0);
      vNoise = uvNoise;
       float noiseLength = uvNoise * 0.35;
-      pos += normal * noiseLength;
+      pos += vNormal * noiseLength;
       // apply velocity only to vertices that 'stick' out
       if (uvNoise > 0.0) {
         float intensity = uvNoise * 40.0;
@@ -243,40 +253,24 @@ void main()
         float yPos = cos(angleV) * vLength;
         pos = vec3(xpos,yPos,zPos);
       }
+    mvPosition.xyz = pos ;
 
 
-  vec4 modelPosition = modelMatrix * vec4((pos), 1.0);
-//modelPosition.xyz += normal* step((modelPosition.y), 2.3)*smoothstep(-1.0,10.0,modelPosition.y);
 
-    vec4 viewPosition = viewMatrix * modelPosition;
-    vec4 projectionPosition = projectionMatrix * viewPosition;
+    vec4 projectionPosition = projectionMatrix * mvPosition;
 
+    //vec4 projectionPosition = projectionMatrix * viewMatrix * modelMatrix * vec4(pos, 1.0);
 
 
 
 
     gl_Position = projectionPosition;
-    vNormal =  -normal*modelPosition.xyz;
-    vPosition = modelPosition.xyz;
-
+   
+    // vNormal = normalize(normalMatrix * normal);
+    // vNormal =  -normal*modelPosition.xyz;
+    vPosition = vec3(mvPosition.xyz);
     vUv = uv;
-    vwPosition = vec3(viewPosition.xyz);
-
-    // float cover = .25;
-    //   vec3 pos = position.xyz;
-    //   vec3 base = vec3(pos.x, pos.y, 0.0);
-    //   vec4 baseGP = instanceMatrix * vec4(base, 1.0);
-    //   v_pos = baseGP.xyz;
-    //   vec2 noise = (lamina_noise_curl(baseGP.xyz * vec3(0.1) + u_time * 0.5 * u_sway)).xy;
-    //   noise = smoothstep(-1.0, 1.0, noise);
-    //   float swingX = sin( 2.0 + noise.x * 2.0 * PI) * pow(pos.z, 2.0);
-    //   float swingY = cos(2.0 + noise.y * 2.0 * PI) * pow(pos.z, 2.0);
-    //   float d = distance(u_spherePos, baseGP.xyz);
-    //   float radius = 0.75;
-    //   float intensity = (1. - min(d, radius) / radius) * 0.5;
-    //   pos.x += swingX + intensity;
-    //   pos.y += swingY + intensity;
-    //   return (pos * u_length);
+   
 
 
 

@@ -3,16 +3,27 @@ varying float vElevation;
 varying vec2 vUv;
 uniform float uTime;
 
+#include <common>
+    #include <skinning_pars_vertex>
 
 void main()
 {
-  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+  #include <skinbase_vertex>
+      #include <begin_vertex>
+      #include <beginnormal_vertex>
+      #include <defaultnormal_vertex>
+      #include <skinning_vertex>
+      #include <project_vertex>
+
+
+    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectionPosition = projectionMatrix * viewPosition;
 
-    gl_Position = projectionPosition;
+    gl_Position = projectionMatrix * mvPosition;
 
     vUv = uv;
 } `;
