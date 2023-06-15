@@ -105,6 +105,7 @@ export default function Model({ url, ...props }) {
   //Model
 
   const gltf = useGLTF("../../model/robotAnimate.glb");
+  // const gltf = null;
   const animations = useAnimations(gltf.animations, gltf.scene);
   console.log(animations);
 
