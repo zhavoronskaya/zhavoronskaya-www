@@ -95,7 +95,7 @@ export async function getScenes() {
     mold,
     // robot,
     cameoSpiral,
-    logoPage,
+    // logoPage,
     // highVoltage,
     // normalMap,
     // logoPage,
