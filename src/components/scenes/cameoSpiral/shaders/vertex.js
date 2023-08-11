@@ -360,7 +360,7 @@ void main() {
     t = remap(t, -1.0, 1.0, 0.3, 0.7);
  
 
-     float shellDir =clamp((1.0 - abs(vUv.y-0.5)*3.0), 0.0,1.0) ;
+    // float shellDir =clamp((1.0 - abs(vUv.y-0.5)*3.0), 0.0,1.0) ;
      float angle = atan(position.x, position.z);
      float distanceToCenter = length(position.xz);
      float angleOffset = (PI*1.0 /(distanceToCenter)*3.4);
@@ -369,9 +369,9 @@ void main() {
 
     vec3 spitalPos = vec3(0.0);
     spitalPos = position;
-     spitalPos.y += normal.y*(sin(angle*PI*0.3)+22.0)*distanceToCenter;
+    // spitalPos.y += normal.y*(sin(angle*PI*0.3)+22.0)*distanceToCenter;
     //  spitalPos. = normal*-abs(sin(angle*PI*0.3)+22.0)*distanceToCenter;
-    //  spitalPos *=rotateY(PI*angle/4.0);
+     //spitalPos *=rotateY(PI*angle/4.0) *shellDir;
     //  spitalPos*=shellDir;
 // spitalPos *=t;
 
@@ -379,23 +379,29 @@ void main() {
 
 
     vec3 newPosition =spitalPos;
-    // newPosition *=rotateY(PI/4.0);
+    float shellDir =clamp(((vUv.y-0.5)*10.3), 0.0,1.0) ;
+    const float k = PI/8.0*1.0; // or some other amount
+    float c = cos(k*position.x);
+    float s = sin(k*position.x);
+    mat2  m = mat2(c,-s,s,c);
+    vec3  q = vec3(m*position.xy,position.z);
+    newPosition =position+q;
     vec3 spiralNormal = normalize(newPosition);
-    float cell = cellular(newPosition*30.0)*0.062;
+    float cell = cellular(newPosition*0.20)*0.022;
     newPosition += spiralNormal*cell;
   
-    vDisplacement =cnoise(vec4(newPosition,0.0))*0.40;
+    vDisplacement =cnoise(vec4(newPosition,0.0))*0.90;
   //vDisplacement = clamp(vDisplacement, 0.0,3.0);
     //vDisplacement *=shellDir;
 
     vColor = mix(
-      vec3(0.39, 0.889, 0.922),
-      vec3(0.34, 0.1, 0.8),
-      smoothstep(0.1, 0.9, vDisplacement));
+      vec3(0.99, 0.9, 0.922),
+      vec3(0.14, 0.1, 0.8),
+      smoothstep(0.1, 0.9, q));
 
     
 
-     newPosition += spiralNormal*vDisplacement*1.0;
+     newPosition += spiralNormal*vDisplacement*0.5;
 
     //newPosition += normal*vDisplacement;
     vPosition = newPosition;

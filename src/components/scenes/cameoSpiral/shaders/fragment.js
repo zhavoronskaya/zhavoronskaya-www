@@ -101,7 +101,7 @@ void main() {
   vec3 light = normalize(vec3(3., 2., -1.));
   float str = max(dot(nor(vUv), light),0.25);
  
-  modelColour = mix(vec3(0.858,0.56,0.63), modelColour, str);
+  modelColour = mix(vec3(0.858,0.16,.963), modelColour, 1.0 - str);
   vec3 lighting = vec3(0.0);
 
   // vec3 normal = normalize(vNormal);
@@ -146,9 +146,10 @@ void main() {
   lighting = hemi * 0.1 + diffuse;
 
   vec3 colour = modelColour * lighting + specular;
+ 
+ gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
 
-  gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
-//   float noiseDir =clamp(1.0 - 2.0*(abs(vUv.y)), 0.0,1.0) ;
-//  gl_FragColor = vec4(vec3(noiseDir),1.0);
+// float shellDir =clamp(((vUv.y-0.5)*5.0), 0.0,1.0) ;
+// gl_FragColor = vec4(vec3(shellDir),1.0);
 
 }`;

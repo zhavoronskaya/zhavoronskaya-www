@@ -39,7 +39,10 @@ function CameoSpiral() {
 
   return (
     <mesh rotation={[0, 0, 0]} ref={ref}>
-      <coneGeometry ref={geomertyRef} args={[1.0, 1.0, 512, 512, true]} />
+      <coneGeometry
+        ref={geomertyRef}
+        args={[1.0, 0.5, 512, 512, true, 0, Math.PI / 1.22112]}
+      />
       {/* <planeGeometry ref={geomertyRef} args={[1, 1, 2.0, 512, 512]} /> */}
       <cameoSpiralMaterial side={THREE.DoubleSide} ref={shaderRef} />
     </mesh>

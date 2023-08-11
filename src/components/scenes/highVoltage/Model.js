@@ -60,15 +60,11 @@ export default function Model({ position, ...props }) {
   });
 
   useEffect(() => {
-    if (!gltf || !gltf.scene) return;
-
-    console.log("gltf.scene", props.yo, gltf.scene);
-
+    // if (!gltf || !gltf.scene) return;
+    // console.log("gltf.scene", props.yo, gltf.scene);
     // gltf.scene.traverse((child) => {
     //   const meshSettings = meshesSettings[child.name] || meshesSettings.DEFAULT;
-
     //   if (child.name === "Scene") return;
-
     //   if (meshSettings.type === "spiral") {
     //     child.material = new THREE.ShaderMaterial({
     //       uniforms: {
@@ -78,7 +74,6 @@ export default function Model({ position, ...props }) {
     //       vertexShader: spiralVertex,
     //       fragmentShader: spiralFragment,
     //     });
-
     //     spiralMaterialRef.current = child.material;
     //   } else {
     //     child.material = new THREE.ShaderMaterial({
