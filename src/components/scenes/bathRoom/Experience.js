@@ -23,7 +23,6 @@ import {
 export default function Experience() {
   useFrame((state, delta) => {
     const angle = state.clock.elapsedTime;
-
     state.camera.position.x =
       Math.abs(Math.sin((angle * Math.PI) / 70) / 1.4) * 11.5;
     state.camera.position.z =
@@ -37,7 +36,7 @@ export default function Experience() {
     <>
       {/* <OrbitControls /> */}
 
-      <color args={["#F3CBFE"]} attach="background" />
+      {/* <color args={["#F3CBFE"]} attach="background" />
       <EffectComposer multisampling={4}>
         <DepthOfField
           focusDistance={0.025}
@@ -45,13 +44,15 @@ export default function Experience() {
           bokehScale={10}
         />
         <Bloom mipmapBlur intensity={0.2} luminanceThreshold={1} />
-      </EffectComposer>
+      </EffectComposer> */}
 
       {/* <Environment preset="sunset"></Environment> */}
+      <ambientLight intensity={0.5} />
       <Suspense fallback={null}>
         <Model />
-        <Back />
+
         <Mirror />
+        <Back />
       </Suspense>
     </>
   );

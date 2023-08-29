@@ -88,7 +88,7 @@ void main()
   for (float i = 1.0; i <= 10.0; i++) {
     noise -= abs(snoise(vec3(noisePos*i)*0.01))*(0.005/i);
   }
-  modelPosition.y += noise;
+  modelPosition.y += 0.3*noise;
       vElevation = (noise);
 
     vec4 viewPosition = viewMatrix * modelPosition;

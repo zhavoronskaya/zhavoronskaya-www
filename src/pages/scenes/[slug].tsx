@@ -35,11 +35,11 @@ import Mold from "@/components/scenes/mold";
 import Sea from "@/components/scenes/sea";
 import Robot from "@/components/scenes/robot";
 import HighVoltage from "@/components/scenes/highVoltage";
-import CameoSpiral from "@/components/scenes/cameoSpiral";
-import NormalMap from "@/components/scenes/normalMap";
-import LogoPage from "@/components/scenes/logoPage";
-import MirrorSphere from "@/components/scenes/mirrorSphere";
-import Park from "@/components/scenes/park";
+// import CameoSpiral from "@/components/scenes/cameoSpiral";
+// import NormalMap from "@/components/scenes/normalMap";
+// import LogoPage from "@/components/scenes/logoPage";
+// import MirrorSphere from "@/components/scenes/mirrorSphere";
+// import Park from "@/components/scenes/park";
 
 export async function getStaticPaths() {
   const scenes = await getScenes();
@@ -134,16 +134,16 @@ const ScenePage = (props: Props) => {
         return Robot;
       case "high-voltage":
         return HighVoltage;
-      case "cameo-spiral":
-        return CameoSpiral;
-      case "normal-map":
-        return NormalMap;
-      case "logo-page":
-        return LogoPage;
-      case "mirror-sphere":
-        return MirrorSphere;
-      case "park":
-        return Park;
+      // case "cameo-spiral":
+      //   return CameoSpiral;
+      // case "normal-map":
+      //   return NormalMap;
+      // case "logo-page":
+      //   return LogoPage;
+      // case "mirror-sphere":
+      //   return MirrorSphere;
+      // case "park":
+      // return Park;
       default:
         return null;
     }

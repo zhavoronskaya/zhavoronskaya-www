@@ -77,14 +77,10 @@ export default function Experience() {
       <color args={["#F3CBFE"]} attach="background" />
 
       <Suspense fallback={null}>
-        <Stage
-          contactShadow={{ opacity: 0.5, blur: 3 }}
-          environment="sunset"
-          preset="portrait"
-          intensity={2}
-        >
+        <Object />
+        {/* <Stage contactShadow={{ opacity: 0.5, blur: 3 }} intensity={2}>
           <Object castShadow />
-        </Stage>
+        </Stage> */}
       </Suspense>
     </>
   );

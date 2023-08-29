@@ -26,14 +26,11 @@ import coral from "./scenes/coral";
 import cameo from "./scenes/cameo";
 import mold from "./scenes/mold";
 import paintedFlower from "./scenes/painted-flower";
-import sea from "./scenes/sea";
+
 import robot from "./scenes/robot";
 import highVoltage from "./scenes/high-voltage";
-import cameoSpiral from "./scenes/cameo-spiral";
-import normalMap from "./scenes/normal-map";
+
 import logoPage from "./scenes/logo-page";
-import mirrorSphere from "./scenes/mirror-sphere";
-import park from "./scenes/park";
 
 import whiteHalf from "./albums/white-half";
 import idreamed from "./albums/i-dream-in-dreams";
@@ -93,8 +90,8 @@ export async function getScenes() {
     paintedFlower,
     cameo,
     mold,
-    // robot,
-    cameoSpiral,
+    robot,
+    // cameoSpiral,
     // logoPage,
     // highVoltage,
     // normalMap,

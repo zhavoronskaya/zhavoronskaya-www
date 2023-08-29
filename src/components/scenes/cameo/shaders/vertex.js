@@ -382,9 +382,9 @@ void main() {
     float cell =cellular(newPosition*10.0 +uTime*0.2)*0.052;
     newPosition += spiralNormal*cell;
   
-    vDisplacement =remap(cnoise(vec4(newPosition,0.0))*0.0380,-100.0,100.0,0.0,0.001);
+    vDisplacement =remap(cnoise(vec4(newPosition,0.0))*0.0380,-100.0,100.0,0.0,0.01);
 
-    vDisplacement=cnoise(vec4(newPosition,0.0))*0.0380;
+    vDisplacement=cnoise(vec4(newPosition,0.0))*0.380;
     vColor = mix(
       vec3(0.999, 0.79, 0.84),
       vec3(0.965, 0.56, 0.768),
@@ -400,7 +400,7 @@ void main() {
     
     vNormal = spiralNormal;
 
-    vec4 modelPosition = modelMatrix * vec4(spitalPos, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

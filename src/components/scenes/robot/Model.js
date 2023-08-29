@@ -345,17 +345,16 @@ export default function Model({ url, ...props }) {
 
   return (
     <group {...props} dispose={null}>
-      <Stage adjustCamera={2} intensity={1}>
-        <primitive object={gltf.scene} />
+      <primitive object={gltf.scene} position={[0, -2, 0]} />
 
-        {/* <points
+      {/* <points
         // ref={pointsRef}
         material={pointsMaterial}
         position={[-1.45, 7.5, 0.0]}
       >
         <bufferGeometry attach="geometry" ref={pointsGeometryRef} />
       </points> */}
-      </Stage>
+
       {/* 
         <mesh ref={rayRef} geometry={ray.current} material={rayMaterial} /> */}
     </group>

@@ -13,7 +13,7 @@ export default function Scene() {
         fov: 45,
         near: 0.1,
         far: 200,
-        position: [5, 7, 20.5],
+        position: [15, 7, 30.5],
       }}
     >
       <Experience />

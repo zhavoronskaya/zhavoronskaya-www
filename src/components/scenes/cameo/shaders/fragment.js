@@ -25,7 +25,7 @@ void main() {
     vec3 viewDir = normalize(cameraPosition - vPosition);
 
 // Ambient
-vec3 ambient = vec3(0.5);
+vec3 ambient = vec3(0.3);
 lighting= ambient;
 
 
@@ -40,7 +40,7 @@ vec3 specular = vec3(0.0);
 // Specular
 vec3 r = normalize(reflect(-lightDir, normal));
 float phongValue = max(0.0, dot(viewDir, r));
-phongValue = pow(phongValue, 16.0);
+phongValue = pow(phongValue, 20.0);
 
 specular += phongValue ;
 
