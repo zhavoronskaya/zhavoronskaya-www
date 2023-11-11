@@ -35,6 +35,9 @@ import Mold from "@/components/scenes/mold";
 import Sea from "@/components/scenes/sea";
 import Robot from "@/components/scenes/robot";
 import HighVoltage from "@/components/scenes/highVoltage";
+import Experimental from "@/components/scenes/experimental";
+import Mush from "@/components/scenes/mushrooms";
+import ShellSea from "@/components/scenes/shellsea";
 // import CameoSpiral from "@/components/scenes/cameoSpiral";
 // import NormalMap from "@/components/scenes/normalMap";
 // import LogoPage from "@/components/scenes/logoPage";
@@ -134,6 +137,12 @@ const ScenePage = (props: Props) => {
         return Robot;
       case "high-voltage":
         return HighVoltage;
+      case "experimental":
+        return Experimental;
+      case "mush":
+        return Mush;
+      case "shell-sea":
+        return ShellSea;
       // case "cameo-spiral":
       //   return CameoSpiral;
       // case "normal-map":

@@ -7,14 +7,14 @@ import spaceVertexShader from "./shaders/vertex.js";
 import spaceFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
-import { useFrame, extend } from "@react-three/fiber";
+import { useFrame, extend, useThree } from "@react-three/fiber";
 
 import {
   DepthOfField,
   Bloom,
   EffectComposer,
 } from "@react-three/postprocessing";
-import { CubeTextureLoader } from "three";
+import { CubeTextureLoader, textureLoader } from "three";
 
 function createSkyBox() {
   const loader = new CubeTextureLoader();
@@ -28,6 +28,27 @@ function createSkyBox() {
   ]);
   console.log(texture);
   return texture;
+
+  // const textureLoader = new THREE.TextureLoader();
+  // const environmentMap = textureLoader.load(
+  //   "/texture/alonetogether/sky_extra_colored_milkyway_in_the_space_without_gr.jpg"
+  // );
+
+  // environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+  // environmentMap.colorSpace = THREE.SRGBColorSpace;
+  // environmentMap.envMapIntensity = 100;
+  // return environmentMap;
+}
+function createEnvironment() {
+  const textureLoader = new THREE.TextureLoader();
+  const environmentMap = textureLoader.load(
+    "/texture/alonetogether/sky_extra_colored_milkyway_in_the_space_without_gr.jpg"
+  );
+
+  environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+  environmentMap.colorSpace = THREE.SRGBColorSpace;
+  environmentMap.envMapIntensity = 4;
+  return environmentMap;
 }
 
 const SpaceShipMaterial = shaderMaterial(
@@ -51,10 +72,13 @@ function Object() {
   useFrame((state, delta) => {
     if (shaderRef.current) shaderRef.current.uTime += delta * 0.3;
     // ref.current.rotation.y += delta;
-    // state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 2 + 45;
-    // state.camera.updateProjectionMatrix();
+    state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 2 + 45;
+    state.camera.updateProjectionMatrix();
   });
-
+  const { scene } = useThree();
+  // console.log(scene);
+  scene.background = createEnvironment();
+  // scene.environment = createEnvironment();
   return (
     <mesh ref={ref}>
       <icosahedronGeometry ref={geomertyRef} args={[2, 128]} />
