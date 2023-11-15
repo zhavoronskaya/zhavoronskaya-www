@@ -29,6 +29,9 @@ import paintedFlower from "./scenes/painted-flower";
 import experimental from "./scenes/experimental";
 import mush from "./scenes/mush";
 import shellsea from "./scenes/shell-sea";
+import experimentalshape from "./scenes/experimental-shape";
+import experimentalshapeone from "./scenes/experimental-shape-one";
+import experimentalshapetwo from "./scenes/experimental-shape-two";
 
 import robot from "./scenes/robot";
 import highVoltage from "./scenes/high-voltage";
@@ -94,9 +97,12 @@ export async function getScenes() {
     cameo,
     mold,
     robot,
-    // experimental,
     mush,
     shellsea,
+    // experimental,
+    // experimentalshape,
+    // experimentalshapeone,
+    // experimentalshapetwo,
     // cameoSpiral,
     // logoPage,
     // highVoltage,

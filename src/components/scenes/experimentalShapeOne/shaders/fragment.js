@@ -4,6 +4,11 @@ varying vec2 vUv;
 uniform vec2 uResolution;
 uniform float uTime;
 
+varying vec3 vNormal;
+varying vec3 vPosition;
+varying vec3 vColour;
+
+
 float inverseLerp(float v, float minValue, float maxValue) {
   return (v - minValue) / (maxValue - minValue);
 }
@@ -159,34 +164,22 @@ float random(vec2 st)
 }
 
 void main() {
-  vec3 coords = vec3(vUv * 1.0, uTime * 3.2);
-  float noiseSample = 0.0;
+  vec3 modelColour = vColour.xyz;
+  vec3 lighting = vec3(0.0);
 
+  // vec3 normal = normalize(vNormal);
+  vec3 normal = normalize(
+      cross(
+          dFdx(vPosition.xyz),
+          dFdy(vPosition.xyz)));
+  vec3 viewDir = normalize(cameraPosition - vPosition);
 
-  // noiseSample = remap(noise(coords), -1.0, 1.0, 0.0, 1.0);
-  // noiseSample = remap(fbm(coords, 16, 0.5, 2.0), -1.0, 1.0, 0.0, 1.0);
-noiseSample = ridgedFBM(coords, 4, 0.5, 2.0);
-  float noiseSample1 = turbulenceFBM(coords, 4, 0.5, 2.0);
-  //  noiseSample = remap(
-  //    noiseSample, -1.0, 1.0, 0.0, 100.0);
-  // noiseSample = 1.0 - cellular(coords);
-  // noiseSample = stepped(noiseSample);
-  // noiseSample = remap(
-  //     domainWarpingFBM(coords1), -1.0, 1.0, 0.0, 1.0);
-
-  vec3 colour = vec3(noiseSample);
-
-  vec3 pixel = vec3(0.5 / uResolution, 0.0);
-
-  float s1 = turbulenceFBM(coords + pixel.xzz, 4, 0.5, 2.0);
-  float s2 = turbulenceFBM(coords - pixel.xzz, 4, 0.5, 2.0);
-  float s3 = turbulenceFBM(coords + pixel.zyz, 4, 0.5, 2.0);
-  float s4 = turbulenceFBM(coords - pixel.zyz, 4, 0.5, 2.0);
-  vec3 normal = normalize(vec3(s1 - s2, s3 - s4, 0.1));
+  // Ambient
+  vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.4);
-  vec3 groundColour = vec3(0.2, 0.3, 0.87);
+  vec3 skyColour = vec3(0.0, 0.3, 0.6);
+  vec3 groundColour = vec3(0.6, 0.3, 0.1);
 
   vec3 hemi = mix(groundColour, skyColour, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
 
@@ -200,22 +193,22 @@ noiseSample = ridgedFBM(coords, 4, 0.5, 2.0);
 
   // Specular
   vec3 r = normalize(reflect(-lightDir, normal));
-  float phongValue = max(0.0, dot(vec3(0.0, 0.0, 1.0), r));
-  phongValue = pow(phongValue, 64.0);
+  float phongValue = max(0.0, dot(viewDir, r));
+  phongValue = pow(phongValue, 32.0);
 
-  specular += phongValue;
+  specular += phongValue * 0.15;
 
 
-  vec3 baseColour = mix(
-    vec3(0.547, 0.2, 0.325),
-    vec3(0.147, 0.2, 0.25), smoothstep(0.0, 0.1, noiseSample1));
-    baseColour = mix(vec3(0.347, 0.2, 0.725),
-    baseColour, smoothstep(0.0, 0.9,  noiseSample));
-  vec3 lighting = hemi * 0.0125 + diffuse;
+  // Fresnel
+  float fresnel = 1.0 - max(0.0, dot(viewDir, normal));
+  fresnel = pow(fresnel, 2.0);
 
-  colour = baseColour * lighting + specular;
-  // colour = baseColour;
-  colour = pow(colour, vec3(1.0 / 1.9));
+  specular *= fresnel;
 
-  gl_FragColor = vec4(colour, 1.0);
+  // Combine lighting
+  lighting = hemi * 0.1 + diffuse;
+
+  vec3 colour = modelColour * lighting + specular;
+
+  gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
 }`;

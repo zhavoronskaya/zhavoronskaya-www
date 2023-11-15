@@ -5,7 +5,7 @@ import React from "react";
 import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
-import paintingFragmentShader from "./shaders/fragment";
+import paintingFragmentShader from "./shaders/fragment.js";
 
 import { useThree, useFrame, extend } from "@react-three/fiber";
 import * as THREE from "three";
@@ -13,9 +13,11 @@ import {
   DepthOfField,
   Bloom,
   EffectComposer,
+  Noise,
+  Vignette,
 } from "@react-three/postprocessing";
 
-const ExperimentalMaterial = shaderMaterial(
+const ExperimentalShapeMaterial = shaderMaterial(
   {
     uTime: 0,
     uIterration: 4,
@@ -24,7 +26,7 @@ const ExperimentalMaterial = shaderMaterial(
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ ExperimentalMaterial });
+extend({ ExperimentalShapeMaterial });
 
 function Painting() {
   const shaderRef = useRef();
@@ -40,14 +42,14 @@ function Painting() {
       );
     }
   });
-
   return (
     <mesh>
-      <planeGeometry
+      {/* <planeGeometry
         ref={geomertyRef}
         args={[viewport.width, viewport.height, 64, 64]}
-      />
-      <experimentalMaterial ref={shaderRef} wireframe={false} />
+      /> */}
+      <sphereGeometry args={[2, 1024, 1024]} />
+      <experimentalShapeMaterial ref={shaderRef} wireframe={false} />
     </mesh>
   );
 }
@@ -55,7 +57,18 @@ function Painting() {
 export default function Experience() {
   return (
     <>
-      {/* <OrbitControls /> */}
+      <EffectComposer multisampling={4}>
+        {/* <DepthOfField
+          focusDistance={0}
+          focalLength={0.02}
+          bokehScale={2}
+          height={480}
+        /> */}
+        {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
+        {/* <Noise opacity={0.2} /> */}
+      </EffectComposer>
+      <color args={["#aa94b5"]} attach="background" />
+      <OrbitControls />
 
       <Suspense fallback={null}>
         <Painting />

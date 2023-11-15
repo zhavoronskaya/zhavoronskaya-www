@@ -36,6 +36,9 @@ import Sea from "@/components/scenes/sea";
 import Robot from "@/components/scenes/robot";
 import HighVoltage from "@/components/scenes/highVoltage";
 import Experimental from "@/components/scenes/experimental";
+import ExperimentalShape from "@/components/scenes/experimentalShape";
+import ExperimentalShapeOne from "@/components/scenes/experimentalShapeOne";
+import ExperimentalShapeTwo from "@/components/scenes/experimentalShapeTwo";
 import Mush from "@/components/scenes/mushrooms";
 import ShellSea from "@/components/scenes/shellsea";
 // import CameoSpiral from "@/components/scenes/cameoSpiral";
@@ -139,6 +142,12 @@ const ScenePage = (props: Props) => {
         return HighVoltage;
       case "experimental":
         return Experimental;
+      case "experimental-shape":
+        return ExperimentalShape;
+      case "experimental-shape-one":
+        return ExperimentalShapeOne;
+      case "experimental-shape-two":
+        return ExperimentalShapeTwo;
       case "mush":
         return Mush;
       case "shell-sea":

@@ -5,7 +5,7 @@ import React from "react";
 import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
-import paintingFragmentShader from "./shaders/fragment";
+import paintingFragmentShader from "./shaders/fragment.js";
 
 import { useThree, useFrame, extend } from "@react-three/fiber";
 import * as THREE from "three";
@@ -13,9 +13,11 @@ import {
   DepthOfField,
   Bloom,
   EffectComposer,
+  Noise,
+  Vignette,
 } from "@react-three/postprocessing";
 
-const ExperimentalMaterial = shaderMaterial(
+const ExperimentalShapeMaterialOne = shaderMaterial(
   {
     uTime: 0,
     uIterration: 4,
@@ -24,7 +26,7 @@ const ExperimentalMaterial = shaderMaterial(
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ ExperimentalMaterial });
+extend({ ExperimentalShapeMaterialOne });
 
 function Painting() {
   const shaderRef = useRef();
@@ -40,14 +42,15 @@ function Painting() {
       );
     }
   });
-
   return (
     <mesh>
-      <planeGeometry
+      {/* <planeGeometry
         ref={geomertyRef}
         args={[viewport.width, viewport.height, 64, 64]}
-      />
-      <experimentalMaterial ref={shaderRef} wireframe={false} />
+      /> */}
+      {/* <torusGeometry args={[2, 0.5, 1024, 1024]} /> */}
+      <sphereGeometry args={[2, 1024, 1024]} />
+      <experimentalShapeMaterialOne ref={shaderRef} wireframe={false} />
     </mesh>
   );
 }
@@ -55,7 +58,18 @@ function Painting() {
 export default function Experience() {
   return (
     <>
-      {/* <OrbitControls /> */}
+      <EffectComposer multisampling={4}>
+        {/* <DepthOfField
+          focusDistance={0}
+          focalLength={0.02}
+          bokehScale={2}
+          height={480}
+        /> */}
+        {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
+        {/* <Noise opacity={0.2} /> */}
+      </EffectComposer>
+      <color args={["#9688b8"]} attach="background" />
+      <OrbitControls />
 
       <Suspense fallback={null}>
         <Painting />

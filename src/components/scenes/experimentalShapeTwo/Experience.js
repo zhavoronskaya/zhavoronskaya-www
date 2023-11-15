@@ -5,7 +5,7 @@ import React from "react";
 import { shaderMaterial, OrbitControls } from "@react-three/drei";
 
 import paintingVertexShader from "./shaders/vertex.js";
-import paintingFragmentShader from "./shaders/fragment";
+import paintingFragmentShader from "./shaders/fragment.js";
 
 import { useThree, useFrame, extend } from "@react-three/fiber";
 import * as THREE from "three";
@@ -13,9 +13,11 @@ import {
   DepthOfField,
   Bloom,
   EffectComposer,
+  Noise,
+  Vignette,
 } from "@react-three/postprocessing";
 
-const ExperimentalMaterial = shaderMaterial(
+const ExperimentalShapeMaterialTwo = shaderMaterial(
   {
     uTime: 0,
     uIterration: 4,
@@ -24,7 +26,7 @@ const ExperimentalMaterial = shaderMaterial(
   paintingVertexShader,
   paintingFragmentShader
 );
-extend({ ExperimentalMaterial });
+extend({ ExperimentalShapeMaterialTwo });
 
 function Painting() {
   const shaderRef = useRef();
@@ -33,21 +35,25 @@ function Painting() {
 
   useFrame((state, delta) => {
     if (shaderRef.current) {
-      shaderRef.current.uTime += delta * 0.1;
+      shaderRef.current.uTime += delta * 1.1;
       shaderRef.current.uResolution = new THREE.Vector2(
         1,
         viewport.height / viewport.width
       );
     }
+    state.camera.fov = Math.sin(state.clock.getElapsedTime()) * 5 + 45;
+    state.camera.updateProjectionMatrix();
+    // geomertyRef.current.rotation.z += delta * 0.2;
   });
-
   return (
-    <mesh>
-      <planeGeometry
+    <mesh rotation={[Math.PI / 6, 0, 0]} ref={geomertyRef}>
+      {/* <planeGeometry
         ref={geomertyRef}
         args={[viewport.width, viewport.height, 64, 64]}
-      />
-      <experimentalMaterial ref={shaderRef} wireframe={false} />
+      /> */}
+      {/* <torusGeometry args={[4, 0.8, 128, 256]} /> */}
+      <sphereGeometry args={[2, 512, 512]} />
+      <experimentalShapeMaterialTwo ref={shaderRef} wireframe={false} />
     </mesh>
   );
 }
@@ -55,7 +61,18 @@ function Painting() {
 export default function Experience() {
   return (
     <>
-      {/* <OrbitControls /> */}
+      <EffectComposer multisampling={4}>
+        {/* <DepthOfField
+          focusDistance={0.8}
+          focalLength={0.02}
+          bokehScale={1}
+          height={480}
+        /> */}
+        {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
+        {/* <Noise opacity={0.2} /> */}
+      </EffectComposer>
+      <color args={["#a7a4b0"]} attach="background" />
+      <OrbitControls />
 
       <Suspense fallback={null}>
         <Painting />
