@@ -39,12 +39,20 @@ import Experimental from "@/components/scenes/experimental";
 import ExperimentalShape from "@/components/scenes/experimentalShape";
 import ExperimentalShapeOne from "@/components/scenes/experimentalShapeOne";
 import ExperimentalShapeTwo from "@/components/scenes/experimentalShapeTwo";
+import ExperimentalShapeThree from "@/components/scenes/experimentalShapeThree";
+import ExperimentalFour from "@/components/scenes/experimentalFour";
+import ExperimentalFive from "@/components/scenes/experimentalFive";
+import ExperimentalSix from "@/components/scenes/experimentalSix";
+import ExperimentalSeven from "@/components/scenes/experimentalSeven";
+import ExperimentalEight from "@/components/scenes/experimentalEight";
+import ExperimentalNine from "@/components/scenes/experimentalNine";
 import Mush from "@/components/scenes/mushrooms";
 import ShellSea from "@/components/scenes/shellsea";
 // import CameoSpiral from "@/components/scenes/cameoSpiral";
 // import NormalMap from "@/components/scenes/normalMap";
 // import LogoPage from "@/components/scenes/logoPage";
-// import MirrorSphere from "@/components/scenes/mirrorSphere";
+import MirrorSphere from "@/components/scenes/mirrorSphere";
+import Harlem from "@/components/scenes/harlem";
 // import Park from "@/components/scenes/park";
 
 export async function getStaticPaths() {
@@ -148,18 +156,36 @@ const ScenePage = (props: Props) => {
         return ExperimentalShapeOne;
       case "experimental-shape-two":
         return ExperimentalShapeTwo;
+      case "experimental-shape-three":
+        return ExperimentalShapeThree;
+      case "experimental-four":
+        return ExperimentalFour;
+      case "experimental-five":
+        return ExperimentalFive;
+      case "experimental-six":
+        return ExperimentalSix;
+      case "experimental-seven":
+        return ExperimentalSeven;
+      case "experimental-eight":
+        return ExperimentalEight;
+      case "experimental-nine":
+        return ExperimentalNine;
+
       case "mush":
         return Mush;
       case "shell-sea":
         return ShellSea;
+      case "mirror-sphere":
+        return MirrorSphere;
+      case "harlem":
+        return Harlem;
       // case "cameo-spiral":
       //   return CameoSpiral;
       // case "normal-map":
       //   return NormalMap;
       // case "logo-page":
       //   return LogoPage;
-      // case "mirror-sphere":
-      //   return MirrorSphere;
+
       // case "park":
       // return Park;
       default:

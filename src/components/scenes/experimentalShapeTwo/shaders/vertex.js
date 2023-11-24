@@ -3,7 +3,7 @@ export default /*glsl */ `
 varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 vPosition;
-varying vec3 vColour;
+varying vec3 vColor;
 varying float vDistance;
 uniform float uTime;
 
@@ -160,7 +160,7 @@ void main() {
   vNormal = (modelMatrix * vec4(normal, 0.0)).xyz;
   vPosition = (modelMatrix * vec4(localSpacePosition, 1.0)).xyz;
   vUv= uv;
-  vColour = mix(
+  vColor = mix(
       vec3(0.2788, 0.534, 0.87867),
       vec3(0.88623, 0.586, 0.638),
       smoothstep(0.0, 0.9,noise*sin(uTime) ));

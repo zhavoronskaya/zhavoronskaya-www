@@ -51,7 +51,7 @@ function Painting() {
         ref={geomertyRef}
         args={[viewport.width, viewport.height, 64, 64]}
       /> */}
-      {/* <torusGeometry args={[4, 0.8, 128, 256]} /> */}
+
       <sphereGeometry args={[2, 512, 512]} />
       <experimentalShapeMaterialTwo ref={shaderRef} wireframe={false} />
     </mesh>
@@ -69,7 +69,7 @@ export default function Experience() {
           height={480}
         /> */}
         {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
-        {/* <Noise opacity={0.2} /> */}
+        <Noise opacity={0.01} />
       </EffectComposer>
       <color args={["#a7a4b0"]} attach="background" />
       <OrbitControls />

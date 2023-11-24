@@ -174,7 +174,7 @@ noiseSample = ridgedFBM(coords, 4, 0.5, 2.0);
   // noiseSample = remap(
   //     domainWarpingFBM(coords1), -1.0, 1.0, 0.0, 1.0);
 
-  vec3 colour = vec3(noiseSample);
+  vec3 color = vec3(noiseSample);
 
   vec3 pixel = vec3(0.5 / uResolution, 0.0);
 
@@ -185,17 +185,17 @@ noiseSample = ridgedFBM(coords, 4, 0.5, 2.0);
   vec3 normal = normalize(vec3(s1 - s2, s3 - s4, 0.1));
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.4);
-  vec3 groundColour = vec3(0.2, 0.3, 0.87);
+  vec3 skyColor = vec3(0.0, 0.3, 0.4);
+  vec3 groundColor = vec3(0.2, 0.3, 0.87);
 
-  vec3 hemi = mix(groundColour, skyColour, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
+  vec3 hemi = mix(groundColor, skyColor, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.9);
+  vec3 lightColor = vec3(1.0, 1.0, 0.9);
   float dp = max(0.0, dot(lightDir, normal));
 
-  vec3 diffuse = dp * lightColour;
+  vec3 diffuse = dp * lightColor;
   vec3 specular = vec3(0.0);
 
   // Specular
@@ -206,16 +206,16 @@ noiseSample = ridgedFBM(coords, 4, 0.5, 2.0);
   specular += phongValue;
 
 
-  vec3 baseColour = mix(
+  vec3 baseColor = mix(
     vec3(0.547, 0.2, 0.325),
     vec3(0.147, 0.2, 0.25), smoothstep(0.0, 0.1, noiseSample1));
-    baseColour = mix(vec3(0.347, 0.2, 0.725),
-    baseColour, smoothstep(0.0, 0.9,  noiseSample));
+    baseColor = mix(vec3(0.347, 0.2, 0.725),
+    baseColor, smoothstep(0.0, 0.9,  noiseSample));
   vec3 lighting = hemi * 0.0125 + diffuse;
 
-  colour = baseColour * lighting + specular;
-  // colour = baseColour;
-  colour = pow(colour, vec3(1.0 / 1.9));
+  color = baseColor * lighting + specular;
+  // color = baseColor;
+  color = pow(color, vec3(1.0 / 1.9));
 
-  gl_FragColor = vec4(colour, 1.0);
+  gl_FragColor = vec4(color, 1.0);
 }`;

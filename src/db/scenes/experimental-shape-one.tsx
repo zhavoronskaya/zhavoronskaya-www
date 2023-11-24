@@ -1,10 +1,10 @@
 import { IScene } from "../../interfaces";
 
 export const scene: IScene = {
-  name: "Experimental Shape Other",
+  name: "Form",
   slug: "experimental-shape-one",
   description: "Experimental",
-  cover: "/art/4.png",
+  cover: "/art/Form.jpg",
   coverAlt: "Something",
 };
 

@@ -80,10 +80,10 @@ float domainWarpingFBM(vec3 coords) {
 
 
 void main() {
-  vec3 modelColour =  vColor;
+  vec3 modelColor =  vColor;
   vec3 coords = vec3(vPosition*1.0);
   float noiseSample = domainWarpingFBM(coords*abs(sin(uTime)));
-  modelColour = mix(vec3(0.858,0.56,0.63), modelColour, noiseSample);
+  modelColor = mix(vec3(0.858,0.56,0.63), modelColor, noiseSample);
   vec3 lighting = vec3(0.0);
 
   // vec3 normal = normalize(vNormal);
@@ -97,17 +97,17 @@ void main() {
   vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.6);
-  vec3 groundColour = vec3(0.6, 0.3, 0.1);
+  vec3 skyColor = vec3(0.0, 0.3, 0.6);
+  vec3 groundColor = vec3(0.6, 0.3, 0.1);
 
-  vec3 hemi = mix(groundColour, skyColour, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
+  vec3 hemi = mix(groundColor, skyColor, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.9);
+  vec3 lightColor = vec3(1.0, 1.0, 0.9);
   float dp = max(0.0, dot(lightDir, normal));
 
-  vec3 diffuse = dp * lightColour;
+  vec3 diffuse = dp * lightColor;
   vec3 specular = vec3(0.0);
 
   // Specular
@@ -127,9 +127,9 @@ void main() {
   // Combine lighting
   lighting = hemi * 0.1 + diffuse;
 
-  vec3 colour = modelColour * lighting + specular;
+  vec3 color = modelColor * lighting + specular;
 
-  gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
+  gl_FragColor = vec4(pow(color, vec3(1.0 / 2.2)), 1.0);
 //   float noiseDir =clamp(1.0 - 2.0*(abs(vUv.y)), 0.0,1.0) ;
 //  gl_FragColor = vec4(vec3(noiseDir),1.0);
 

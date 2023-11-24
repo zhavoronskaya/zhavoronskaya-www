@@ -182,9 +182,9 @@ vec3 calcNormal(vec3 pos, vec3 n) {
   );
 }
 
-vec3 Ground(vec2 pixelCoords, vec3 colour) {
+vec3 Ground(vec2 pixelCoords, vec3 color) {
 
-  vec3 groundColour = vec3(1.0);
+  vec3 groundColor = vec3(1.0);
 
   vec3 normal = normalize(
       cross(
@@ -197,28 +197,28 @@ vec3 Ground(vec2 pixelCoords, vec3 colour) {
     float moistureMap = fbm(
         noiseCoord * 0.5 + vec3(20.0), 2, 0.5, 2.0, 1.0);
 
-    // Colouring
-    vec3 stoneColour = mix(
+    // Coloring
+    vec3 stoneColor = mix(
         vec3(0.87, 0.59, 0.05),
         vec3(0.678, 0.786, 0.07),
         smoothstep(0.02, 0.06, noiseSample));
-    vec3 landColour = mix(
+    vec3 landColor = mix(
         vec3(0.5, 1.0, 0.3),
         vec3(0.0, 0.7, 0.0),
         smoothstep(0.05, 0.1, noiseSample));
-    landColour = mix(
+    landColor = mix(
         vec3(1.0, 1.0, 0.2),
-        landColour,
+        landColor,
         smoothstep(0.4, 0.5, moistureMap));
-    landColour = mix(
-        landColour, vec3(0.5), smoothstep(0.1, 0.2, noiseSample));
-    landColour = mix(
-        landColour, vec3(1.0), smoothstep(0.2, 0.3, noiseSample));
-    landColour = mix(
-        landColour, vec3(0.9), smoothstep(0.6, 0.9, abs(normal.y)));
+    landColor = mix(
+        landColor, vec3(0.5), smoothstep(0.1, 0.2, noiseSample));
+    landColor = mix(
+        landColor, vec3(1.0), smoothstep(0.2, 0.3, noiseSample));
+    landColor = mix(
+        landColor, vec3(0.9), smoothstep(0.6, 0.9, abs(normal.y)));
 
-    groundColour = mix(
-        stoneColour, landColour, smoothstep(0.05, 0.06, noiseSample));
+    groundColor = mix(
+        stoneColor, landColor, smoothstep(0.05, 0.06, noiseSample));
 
     // Lighting
     vec2 specParams = mix(
@@ -232,12 +232,12 @@ vec3 Ground(vec2 pixelCoords, vec3 colour) {
     float dp = max(
         0.0, (dot(wsLightDir, wsSurfaceNormal) + wrap) / (1.0 + wrap));
 
-    vec3 lightColour = mix(
+    vec3 lightColor = mix(
         vec3(0.25, 0.0, 0.0),
         vec3(0.75),
         smoothstep(0.05, 0.5, dp));
     vec3 ambient = vec3(0.002);
-    vec3 diffuse = lightColour * dp;
+    vec3 diffuse = lightColor * dp;
 
     vec3 r = normalize(reflect(-wsLightDir, wsSurfaceNormal));
     float phongValue = max(0.0, dot(viewDir, r));
@@ -245,27 +245,27 @@ vec3 Ground(vec2 pixelCoords, vec3 colour) {
 
     vec3 specular = vec3(phongValue) * specParams.x * diffuse;
 
-    vec3 groundShading = groundColour * (diffuse + ambient) + specular;
-    groundColour = groundShading;
+    vec3 groundShading = groundColor * (diffuse + ambient) + specular;
+    groundColor = groundShading;
 
     // Fresnel
     float fresnel = smoothstep(1.0, 0.1, normal.z);
     fresnel = pow(fresnel, 8.0) * dp;
-    groundColour = mix(groundColour, vec3(0.0, 0.5, 1.0), fresnel);
+    groundColor = mix(groundColor, vec3(0.0, 0.5, 1.0), fresnel);
 
 
-  colour = groundColour;
+  color = groundColor;
 
 
-  return colour;
+  return color;
 }
 
 
 void main() {
   vec2 pixelCoords = (vUv - 0.5) * uResolution;
 
-  vec3 colour = vec3(0.0);
-  colour = Ground(pixelCoords, colour);
+  vec3 color = vec3(0.0);
+  color = Ground(pixelCoords, color);
 
-  gl_FragColor = vec4(pow(colour, vec3(1.0 / 5.2)), 1.0);
+  gl_FragColor = vec4(pow(color, vec3(1.0 / 5.2)), 1.0);
 }`;

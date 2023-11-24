@@ -128,11 +128,11 @@ vec3 hash( vec3 p )
 
 
 vec3 CreateSand() {
-  vec3 colour1 = vec3(0.86, 0.56, 0.63);
-  vec3 colour2 = vec3(0.54, 0.35, 0.39);
-  vec3 colour3 = vec3(0.31,0.24,0.25);
+  vec3 color1 = vec3(0.86, 0.56, 0.63);
+  vec3 color2 = vec3(0.54, 0.35, 0.39);
+  vec3 color3 = vec3(0.31,0.24,0.25);
   return mix(mix(
-      colour1, colour2, smoothstep(0.8, 1.0, vUv.y)), colour3, smoothstep(0.0, 1.0, vUv.y));
+      color1, color2, smoothstep(0.8, 1.0, vUv.y)), color3, smoothstep(0.0, 1.0, vUv.y));
 }
 
 
@@ -195,7 +195,7 @@ float domainWarpingFBM(vec3 coords) {
 
 
 vec3 DrawWaves(
-    vec3 background, vec3 waveColour, vec2 pixelCoords, float depth) {
+    vec3 background, vec3 waveColor, vec2 pixelCoords, float depth) {
   float y = fbm(
     vec3(pixelCoords.x *0.004, 0.9, uTime*0.1), 3, 0.5, 2.0) * 300.0;
 
@@ -205,32 +205,32 @@ vec3 DrawWaves(
   // float noiseSample = domainWarpingFBM( vec3(depth + pixelCoords.y / (256.0), 2.432, uTime*0.1))*2.58;
   //   vec3 light = normalize(vec3(1.0));
 
-  // waveColour = mix( vec3(0.858,0.96,0.93),waveColour,smoothstep(noiseSample,0.0,1.0));
+  // waveColor = mix( vec3(0.858,0.96,0.93),waveColor,smoothstep(noiseSample,0.0,1.0));
 
-  vec3 foamColour = vec3(0.99, 0.93, 0.97);
+  vec3 foamColor = vec3(0.99, 0.93, 0.97);
   // float foamFactor = smoothstep(0.0, 100.0, depth) * 0.5;
 
   // float heightFactor = smoothstep(-900.0, -320.00, pixelCoords.y);
   // heightFactor *= heightFactor;
   // foamFactor = mix(heightFactor, foamFactor, heightFactor);
 
-  // waveColour = mix(foamColour, waveColour,heightFactor);
+  // waveColor = mix(foamColor, waveColor,heightFactor);
   float sdfWave = pixelCoords.y - y;
-  waveColour = mix(foamColour, waveColour, smoothstep(0.9,0.0,(pixelCoords.y-y)*0.4));
+  waveColor = mix(foamColor, waveColor, smoothstep(0.9,0.0,(pixelCoords.y-y)*0.4));
 
   // sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed)
   float wSmpl = domainWarpingFBM(vec3(pixelCoords*0.01,uTime*0.05))*1.2;
-  waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
+  waveColor = mix( vec3(0.98,0.94,0.95),waveColor, smoothstep(0.0,1.0,wSmpl));
  wSmpl = domainWarpingFBM(vec3(pixelCoords*0.05,uTime*0.05))*1.6;
-  waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
+  waveColor = mix( vec3(0.98,0.94,0.95),waveColor, smoothstep(0.0,1.0,wSmpl));
 
   float blur = 1.0 + smoothstep(50.0, 2000.0, depth) * 64.0 + smoothstep(50.0, -500.0, depth) * 64.0;
-  vec3 colour = mix(
-      waveColour,
+  vec3 color = mix(
+      waveColor,
       background,
       smoothstep(0.0, blur, sdfWave));
 
-  return colour;
+  return color;
 }
 
 mat2 rotate2D(float angle) {
@@ -253,50 +253,50 @@ void main() {
 
 
   //Sand
-  vec3 modelColour = vec3(0.0);
-  modelColour += CreateSand();
+  vec3 modelColor = vec3(0.0);
+  modelColor += CreateSand();
 
   vec2 pixelCoords = vUv*uResolution ;
-  modelColour += CreateSandGlare(pixelCoords*30.0);
+  modelColor += CreateSandGlare(pixelCoords*30.0);
   float noiseSample = domainWarpingFBM(vec3(pixelCoords*0.2,uTime*0.0))*1.8;
-  modelColour = mix( vec3(0.31,0.24,0.25),modelColour, noiseSample);
+  modelColor = mix( vec3(0.31,0.24,0.25),modelColor, noiseSample);
 
 
   //Stone
 //   vec3 stonePos = vec3(pixelCoords - vec2(1050.0,100.0), 0.0);
 // float stone = sdEllipsoid(stonePos, vec3(0.50));
-// modelColour += mix( modelColour, vec3(0.2), stone);
+// modelColor += mix( modelColor, vec3(0.2), stone);
 
   //Waves
   vec2 timeOffset = vec2(0.0 * 50.0, remap(sin(uTime),-1.0,1.0, -0.5,0.0)*10.0);
 
   vec2  waveCoords = (pixelCoords - vec2(0.0, 0.9)) * 80.1+timeOffset;
 
-  vec3 waveColour = vec3(0.024,0.19,0.27);
+  vec3 waveColor = vec3(0.024,0.19,0.27);
   waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // waveColour = mix(vec3(0.97), waveColour, smoothstep(0.9,0.89,waveCoords.y*0.1));
+  // waveColor = mix(vec3(0.97), waveColor, smoothstep(0.9,0.89,waveCoords.y*0.1));
   // float wSmpl = domainWarpingFBM(vec3(waveCoords*0.01,uTime*0.05))*0.8;
-  // waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
-  modelColour = DrawWaves(modelColour, waveColour, waveCoords, 500.0);
+  // waveColor = mix( vec3(0.98,0.94,0.95),waveColor, smoothstep(0.0,1.0,wSmpl));
+  modelColor = DrawWaves(modelColor, waveColor, waveCoords, 500.0);
 
    waveCoords = (pixelCoords - vec2(0.0, -0.2)) * 200.1+timeOffset;
 
-// waveColour = vec3(0.024,0.19,0.27);
+// waveColor = vec3(0.024,0.19,0.27);
 // waveCoords = rotate2D(PI * 0.05) * waveCoords;
-// // waveColour = mix(vec3(0.97), waveColour, smoothstep(0.9,0.89,waveCoords.y*0.1));
+// // waveColor = mix(vec3(0.97), waveColor, smoothstep(0.9,0.89,waveCoords.y*0.1));
 //  wSmpl = domainWarpingFBM(vec3(waveCoords*0.01,uTime*0.1))*2.8;
-// waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
-// modelColour = DrawWaves(modelColour, waveColour, waveCoords, 400.0);
+// waveColor = mix( vec3(0.98,0.94,0.95),waveColor, smoothstep(0.0,1.0,wSmpl));
+// modelColor = DrawWaves(modelColor, waveColor, waveCoords, 400.0);
 
 
 
 
   // waveCoords = (pixelCoords - vec2(0.0, -150.0)) * 0.35+timeOffset*0.8;
   // waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // modelColour = DrawWaves(modelColour, waveColour, waveCoords, 800.0);
+  // modelColor = DrawWaves(modelColor, waveColor, waveCoords, 800.0);
   // waveCoords = (pixelCoords - vec2(0.0, -100.0)) * 0.85+timeOffset*0.6;
   // waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // modelColour = DrawWaves(modelColour, waveColour, waveCoords, 1200.0);
+  // modelColor = DrawWaves(modelColor, waveColor, waveCoords, 1200.0);
 
 
 
@@ -314,17 +314,17 @@ void main() {
   vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.76);
-  vec3 groundColour = vec3(0.54, 0.33, 0.1);
+  vec3 skyColor = vec3(0.0, 0.3, 0.76);
+  vec3 groundColor = vec3(0.54, 0.33, 0.1);
 
 
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.98);
+  vec3 lightColor = vec3(1.0, 1.0, 0.98);
   float dp = max(0.0, dot(lightDir, normal));
 
-  vec3 diffuse = dp * lightColour;
+  vec3 diffuse = dp * lightColor;
   vec3 specular = vec3(0.0);
 
   // Specular
@@ -337,9 +337,9 @@ void main() {
   // Combine lighting
   lighting = diffuse;
 
-  vec3 colour = modelColour * lighting +specular;
+  vec3 color = modelColor * lighting +specular;
 
-gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.0)), 1.0);
+gl_FragColor = vec4(pow(color, vec3(1.0 / 2.0)), 1.0);
 
 
 }`;

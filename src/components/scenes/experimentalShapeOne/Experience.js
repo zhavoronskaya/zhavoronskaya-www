@@ -66,7 +66,7 @@ export default function Experience() {
           height={480}
         /> */}
         {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
-        {/* <Noise opacity={0.2} /> */}
+        <Noise opacity={0.01} />
       </EffectComposer>
       <color args={["#9688b8"]} attach="background" />
       <OrbitControls />

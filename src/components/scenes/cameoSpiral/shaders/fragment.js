@@ -96,12 +96,12 @@ vec3 nor(in vec2 p)
 
 
 void main() {
-  vec3 modelColour =  vColor;
+  vec3 modelColor =  vColor;
 
   vec3 light = normalize(vec3(3., 2., -1.));
   float str = max(dot(nor(vUv), light),0.25);
  
-  modelColour = mix(vec3(0.858,0.16,.963), modelColour, 1.0 - str);
+  modelColor = mix(vec3(0.858,0.16,.963), modelColor, 1.0 - str);
   vec3 lighting = vec3(0.0);
 
   // vec3 normal = normalize(vNormal);
@@ -115,17 +115,17 @@ void main() {
   vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.6);
-  vec3 groundColour = vec3(0.6, 0.3, 0.1);
+  vec3 skyColor = vec3(0.0, 0.3, 0.6);
+  vec3 groundColor = vec3(0.6, 0.3, 0.1);
 
-  vec3 hemi = mix(groundColour, skyColour, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
+  vec3 hemi = mix(groundColor, skyColor, remap(normal.y, -1.0, 1.0, 0.0, 1.0));
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.9);
+  vec3 lightColor = vec3(1.0, 1.0, 0.9);
   float dp = max(0.0, dot(lightDir, normal));
 
-  vec3 diffuse = dp * lightColour;
+  vec3 diffuse = dp * lightColor;
   vec3 specular = vec3(0.0);
 
   // Specular
@@ -145,9 +145,9 @@ void main() {
   // Combine lighting
   lighting = hemi * 0.1 + diffuse;
 
-  vec3 colour = modelColour * lighting + specular;
+  vec3 color = modelColor * lighting + specular;
  
- gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.2)), 1.0);
+ gl_FragColor = vec4(pow(color, vec3(1.0 / 2.2)), 1.0);
 
 // float shellDir =clamp(((vUv.y-0.5)*5.0), 0.0,1.0) ;
 // gl_FragColor = vec4(vec3(shellDir),1.0);

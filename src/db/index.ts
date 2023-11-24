@@ -29,9 +29,19 @@ import paintedFlower from "./scenes/painted-flower";
 import experimental from "./scenes/experimental";
 import mush from "./scenes/mush";
 import shellsea from "./scenes/shell-sea";
+import mirrorsphere from "./scenes/mirror-sphere";
+import harlem from "./scenes/harlem";
 import experimentalshape from "./scenes/experimental-shape";
 import experimentalshapeone from "./scenes/experimental-shape-one";
 import experimentalshapetwo from "./scenes/experimental-shape-two";
+import experimentalshapethree from "./scenes/experimental-shape-three";
+
+import experimentalfour from "./scenes/experimental-four";
+import experimentalfive from "./scenes/experimental-five";
+import experimentalsix from "./scenes/experimental-six";
+import experimentalseven from "./scenes/experimental-seven";
+import experimentaleight from "./scenes/experimental-eight";
+import experimentalnine from "./scenes/experimental-nine";
 
 import robot from "./scenes/robot";
 import highVoltage from "./scenes/high-voltage";
@@ -95,20 +105,30 @@ export async function getScenes() {
     shell,
     paintedFlower,
     cameo,
+    mirrorsphere,
     mold,
     robot,
     mush,
     shellsea,
-    // experimental,
-    // experimentalshape,
-    // experimentalshapeone,
-    // experimentalshapetwo,
+
+    experimental,
+    experimentalshape,
+    experimentalshapeone,
+    experimentalshapetwo,
+    experimentalshapethree,
+    experimentalfour,
+    experimentalfive,
+    experimentalsix,
+    experimentalseven,
+    experimentaleight,
+    experimentalnine,
+    harlem,
     // cameoSpiral,
     // logoPage,
     // highVoltage,
     // normalMap,
     // logoPage,
-    // mirrorSphere,
+
     // park,
     // sea,
   ];

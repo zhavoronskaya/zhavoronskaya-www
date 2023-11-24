@@ -23,6 +23,7 @@ const SnakeMaterial = shaderMaterial(
   snakeVertexShader,
   snakeFragmentShader
 );
+
 extend({ SnakeMaterial });
 
 function Snake() {

@@ -127,7 +127,7 @@ void main() {
     float circle = smoothstep(0.0,0.5, sdfCircle(vUv-0.5, 0.25));
     vDisplacement = fbm(vec3(vUv, uTime) , 4, 15.0, 2.0);
     // vColor = mix(
-    // colour,
+    // color,
     // vec3(0.1, 0.1, 0.8),
     // smoothstep(0.0, 0.5, vDisplacement));
     vColor = mix(vec3(0.2,0.6,0.78), vec3(0.99,0.978,0.856), smoothstep(vDisplacement, 0.0,0.3));

@@ -27,8 +27,8 @@ float sdfCircle(vec2 p, float r) {
 }
 
 void main() {
-vec3 modelColour = sinColorPalette(vDisplacement, vColor, vec3(0.67,0.18,0.89), vec3(0.044,0.008,0.785), vec3(0.78,0.12,0.81));
-   //vec3 modelColour = vColor;
+vec3 modelColor = sinColorPalette(vDisplacement, vColor, vec3(0.67,0.18,0.89), vec3(0.044,0.008,0.785), vec3(0.78,0.12,0.81));
+   //vec3 modelColor = vColor;
   vec3 lighting = vec3(0.0);
 
   vec3 normal = normalize(vNormal);
@@ -39,17 +39,17 @@ vec3 modelColour = sinColorPalette(vDisplacement, vColor, vec3(0.67,0.18,0.89), 
   vec3 ambient = vec3(1.0);
 
   // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.76);
-  vec3 groundColour = vec3(0.54, 0.33, 0.1);
+  vec3 skyColor = vec3(0.0, 0.3, 0.76);
+  vec3 groundColor = vec3(0.54, 0.33, 0.1);
 
-  vec3 hemi = mix(groundColour, skyColour, remap(normal.z, -1.0, 1.0, 0.0, 1.0));
+  vec3 hemi = mix(groundColor, skyColor, remap(normal.z, -1.0, 1.0, 0.0, 1.0));
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.98);
+  vec3 lightColor = vec3(1.0, 1.0, 0.98);
   float dp = max(0.0, dot(lightDir, normal));
 
-  vec3 diffuse = dp * lightColour;
+  vec3 diffuse = dp * lightColor;
   vec3 specular = vec3(0.0);
 
   // Specular
@@ -62,9 +62,9 @@ vec3 modelColour = sinColorPalette(vDisplacement, vColor, vec3(0.67,0.18,0.89), 
   // Combine lighting
   lighting = hemi * 0.1 + diffuse;
 
-  vec3 colour = modelColour * lighting + specular;
+  vec3 color = modelColor * lighting + specular;
 
-gl_FragColor = vec4(pow(colour, vec3(1.0 / 2.0)), 1.0);
+gl_FragColor = vec4(pow(color, vec3(1.0 / 2.0)), 1.0);
 
 
 }`;
