@@ -26,6 +26,47 @@ import {
 } from "@react-three/postprocessing";
 import { GlitchMode, BlendFunction } from "postprocessing";
 
+async function createAudio(url) {
+  // Fetch audio data and create a buffer source
+
+  const res = await fetch(url);
+  const buffer = await res.arrayBuffer();
+  const context = new (window.AudioContext || window.webkitAudioContext)();
+  const source = context.createBufferSource();
+  source.buffer = await new Promise((res) =>
+    context.decodeAudioData(buffer, res)
+  );
+  source.loop = true;
+  // This is why it doesn't run in Safari 🍏🐛. Start has to be called in an onClick event
+  // which makes it too awkward for a little demo since you need to load the async data first
+  source.start(0);
+  // Create gain node and an analyser
+  const gain = context.createGain();
+  const analyser = context.createAnalyser();
+  analyser.fftSize = 64;
+  source.connect(analyser);
+  analyser.connect(gain);
+
+  // The data array receive the audio frequencies
+  const data = new Uint8Array(analyser.frequencyBinCount);
+
+  return {
+    context,
+    source,
+    gain,
+    data,
+    // This function gets called every frame per audio source
+    update: () => {
+      analyser.getByteFrequencyData(data);
+      // Calculate a frequency average
+      return (data.avg = data.reduce(
+        (prev, cur) => prev + cur / data.length,
+        0
+      ));
+    },
+  };
+}
+
 function Object() {
   const shaderRef = useRef();
   const geomertyRef = useRef();
@@ -168,9 +209,9 @@ function Object() {
   }, []);
 
   return (
-    <mesh ref={ref} scale={[1, 1, 1]}>
+    <mesh ref={ref} scale={[1, 1, 1]} rotation={[0, 0, 0]}>
       {/* <sphereGeometry ref={geomertyRef} args={[2, 512, 512]} /> */}
-      <torusKnotGeometry args={[3, 0.8, 128, 256]} />
+      <torusKnotGeometry args={[3, 0.8, 64, 128]} />
       {/* <shaderMaterial
         ref={shaderRef}
         key="stable"
@@ -199,58 +240,69 @@ function Object() {
   );
 }
 
-function Logo() {
+function Logo({ url, ...props }) {
   const texture = useTexture("/image/harlem.png");
   texture.encoding = THREE.sRGBEncoding;
   texture.flipY = true;
-  console.log(texture);
-  // texture.minFilter = THREE.NearestFilter;
-  // texture.magFilter = THREE.NearestFilter;
-  // texture.generateMipmaps = false;
-  const shaderRef = useRef();
+  // console.log(texture);
 
-  // useEffect(() => {
-  //   shaderRef.current.uTex = texture;
-  // }, []);
-
-  // useFrame((state, delta) => {
-  //   if (shaderRef.current) {
-  //     //console.log("upd", Math.round(shaderRef.current.uniforms.uTime.value));
-  //     shaderRef.current.uniforms.uTime.value += delta * 0.5;
-  //   }
-  // });
+  const materialRef = useRef();
   const geomertyRef = useRef();
   const logo = useRef();
-  // useEffect(() => {
-  //   shaderRef.current.uTex = texture;
-  // }, []);
+  const materialInitialUnfiformsRef = useRef({
+    uTime: { value: 0 },
+    uTex: { value: texture },
+    uFreq: { value: Math.PI / 2 },
+  });
+
+  const [audio, setAudio] = React.useState(null);
+
+  useEffect(() => {
+    const load = async () => {
+      const audio = await createAudio(url);
+      // setAudio(audio);
+    };
+
+    load();
+  }, []);
+
+  useEffect(() => {
+    if (!audio) return;
+
+    // Connect the gain node, which plays the audio
+    audio.gain.connect(audio.context.destination);
+
+    // Disconnect it on unmount
+    return () => audio.gain.disconnect();
+  }, [audio]);
 
   useFrame((state, delta) => {
-    if (shaderRef.current) {
-      //console.log("upd", Math.round(shaderRef.current.uniforms.uTime.value));
-      shaderRef.current.uniforms.uTime.value += delta * 0.1;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value += delta * 0.1;
+
+      if (audio) {
+        let avg = audio.update();
+        // materialRef.current.uniforms.uFreq.value =
+        //   (Math.PI * audio.data.avg) / 8;
+        // Set the hue according to the frequency average
+
+        // state.camera.fov = 45 - audio.data.avg / 8;
+        // state.camera.updateProjectionMatrix();
+      }
     }
-    // state.camera.fov = Math.sin(state.clock.getElapsedTime() * 3.0) * 2 + 45;
-    // state.camera.updateProjectionMatrix();
-    // logo.current.rotation.y += delta;
   });
+
   return (
-    <mesh ref={logo} key="stable">
+    <mesh ref={logo} rotation={[0, 0, 0]}>
       <planeGeometry ref={geomertyRef} args={[15, 10, 64, 32]} />
       <shaderMaterial
-        ref={shaderRef}
-        key="stable"
+        ref={materialRef}
+        // key="stable"
         side={THREE.DoubleSide}
         vertexShader={harlemVertexShader}
         fragmentShader={harlemFragmentShader}
         transparent
-        uniforms={{
-          uTime: { value: 0 },
-          uTex: { value: texture },
-          // uResolution: {
-          //   value: new THREE.Vector2(viewport.width, viewport.height),
-          // },
-        }}
+        uniforms={materialInitialUnfiformsRef.current}
       />
     </mesh>
   );
@@ -270,13 +322,7 @@ export default function Experience() {
           bokehScale={0.5}
         />
         <Bloom mipmapBlur intensity={0.2} luminanceThreshold={0.0} />
-        <Noise opacity={0.2} />
-        {/* <Glitch
-          delay={[0.7, 1]}
-          duration={[0.1, 0.2]}
-          strength={[0.1, 0.2]}
-          mode={GlitchMode.SPORADIC}
-        /> */}
+        <Noise opacity={0.2} blendFunction={BlendFunction.SOFT_LIGHT} />
       </EffectComposer>
 
       {/* <Environment preset="night" /> */}
@@ -296,7 +342,7 @@ export default function Experience() {
       </Text> */}
       <Suspense fallback={null}>
         <Object />
-        <Logo />
+        <Logo url="/music/track1.mp3/" />
       </Suspense>
     </>
   );

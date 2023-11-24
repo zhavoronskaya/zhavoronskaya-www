@@ -8,6 +8,7 @@ varying float vDisplacement;
 
 uniform float uTime;
 uniform sampler2D uTex;
+uniform float uFreq;
 
 
 float inverseLerp(float v, float minValue, float maxValue) {
@@ -266,7 +267,7 @@ void main() {
   vec3 localSpacePosition = position;
 
 
-  float noiseOne = domainWarpingFBM(vec3(uv,uTime*3.0))*0.05+cnoise(vec4(localSpacePosition*10.0, uTime))*0.01 ;
+  float noiseOne = domainWarpingFBM(vec3(uv,uTime*3.0))*0.05+cnoise(vec4(localSpacePosition*10.0, uTime))*0.009;
 
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
