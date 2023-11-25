@@ -18,4 +18,12 @@ export interface IScene {
   // component: string | React.ReactNode;
 }
 
+export interface IShot {
+  name: string;
+  slug: string;
+  cover: string;
+  coverAlt?: string;
+  description?: string;
+}
+
 export type IScenesGallery = { scene: IScene; size: number }[][];

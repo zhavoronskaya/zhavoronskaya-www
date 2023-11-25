@@ -1,50 +1,29 @@
-import React from "react";
-import Link from "next/link";
-
 import { IAlbum } from "@/interfaces";
-import { LayoutWithSidebar } from "../layout/Layout";
-import styles from "./AlbumPageLayout.module.css";
-import { LeftArrowIcon, RightArrowIcon } from "../theme/Icon/Arrows";
+import LogoSideBarScene from "@/theme/components/LogoSideBar";
+import BaseLayout from "@/theme/components/BaseLayout";
+import AlbumsHeader from "./AlbumHeader";
 
 type Props = {
   album: IAlbum;
   nextAlbumSlug?: string;
   prevAlbumSlug?: string;
+  children: React.ReactNode;
 };
 
 export default function AlbumPageLayout(props: Props) {
   return (
-    <LayoutWithSidebar contentHeader={<AlbumsNav {...props} />}>
-      <div>
-        {/* <h2 className="py20">{props.album.name}</h2> */}
+    <BaseLayout
+      sidebar={<LogoSideBarScene />}
+      contentMaxWidth="700px"
+      contentHeader={<AlbumsHeader albumName={props.album.name} />}
+    >
+      <img src={props.album.cover} alt="Album" />
 
-        <img src={props.album.cover} alt="Album" />
+      <div dangerouslySetInnerHTML={{ __html: props.album.bandcamp }} />
 
-        <div dangerouslySetInnerHTML={{ __html: props.album.bandcamp }} />
+      <div className="mt-lg">{props.children}</div>
 
-        <p dangerouslySetInnerHTML={{ __html: props.album.description }}></p>
-        <p className="mt-sm mb-sm op-04 fz-sm">{props.album.genre}</p>
-      </div>
-    </LayoutWithSidebar>
+      <p className="mt-sm pb-lg op-04 fz-sm">{props.album.genre}</p>
+    </BaseLayout>
   );
 }
-
-const AlbumsNav = (props: Props) => {
-  return (
-    <div className={styles.nav}>
-      {props.prevAlbumSlug && (
-        <Link href={`/albums/${props.prevAlbumSlug}`}>
-          <LeftArrowIcon />
-        </Link>
-      )}
-
-      <h2 className="text-ellipsis">{props.album.name}</h2>
-
-      {props.nextAlbumSlug && (
-        <Link href={`/albums/${props.nextAlbumSlug}`}>
-          <RightArrowIcon />
-        </Link>
-      )}
-    </div>
-  );
-};
