@@ -12,7 +12,7 @@ varying vec3 vPosition;
 void main() {
 
 
-  vec4 color = texture2D(uTex, vUv + vDisplacement).rgba;
+  vec4 color = texture2D(uTex, vUv + vDisplacement).bgba*1.1;
     gl_FragColor = vec4(color);
 
   // gl_FragColor = vec4(pow(color, vec3(1.0 / 2.2)), 1.0);

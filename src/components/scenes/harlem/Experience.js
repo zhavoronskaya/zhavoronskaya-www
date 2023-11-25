@@ -191,7 +191,7 @@ function Object() {
         #include <beginnormal_vertex>
 
         float vDisplacement =10.0*turbulenceFBM(objectNormal*10.0, 8, 0.5,2.0)+10.0*sin(objectNormal.x *2.0 + uTime*3.0)*cos(objectNormal.y *3.0 + uTime*3.0) ;
-        vDisplacement = remap(vDisplacement, -10.0, 10.0, 0.0, 4.0);
+        vDisplacement = remap(vDisplacement, -10.0, 10.0, 0.0, 3.0);
 
         `
       );
@@ -339,7 +339,7 @@ export default function Experience() {
         <Noise opacity={0.2} blendFunction={BlendFunction.SOFT_LIGHT} />
       </EffectComposer>
 
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
       <color args={["#dee0e3"]} attach="background" />
       {/* <color args={["#9e8295"]} attach="background" /> */}
       {/* <Text3D font={fontUrl} smooth={1}>
