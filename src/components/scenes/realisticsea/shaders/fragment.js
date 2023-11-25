@@ -241,64 +241,19 @@ mat2 rotate2D(float angle) {
 
 
 
-float sdEllipsoid( vec3 p, vec3 r )
-{
-  float k0 = length(p/r);
-  float k1 = length(p/(r*r));
-  return k0*(k0-1.0)/k1;
-}
 
 
 void main() {
 
 
   //Sand
-  vec3 modelColour = vec3(0.0);
-  modelColour += CreateSand();
+  vec3 modelColour = vColor;
+
 
   vec2 pixelCoords = vUv*uResolution ;
-  modelColour += CreateSandGlare(pixelCoords*30.0);
+
   float noiseSample = domainWarpingFBM(vec3(pixelCoords*0.2,uTime*0.0))*1.8;
   modelColour = mix( vec3(0.31,0.24,0.25),modelColour, noiseSample);
-
-
-  //Stone
-//   vec3 stonePos = vec3(pixelCoords - vec2(1050.0,100.0), 0.0);
-// float stone = sdEllipsoid(stonePos, vec3(0.50));
-// modelColour += mix( modelColour, vec3(0.2), stone);
-
-  //Waves
-  vec2 timeOffset = vec2(0.0 * 50.0, remap(sin(uTime),-1.0,1.0, -0.5,0.0)*10.0);
-
-  vec2  waveCoords = (pixelCoords - vec2(0.0, 0.9)) * 80.1+timeOffset;
-
-  vec3 waveColour = vec3(0.024,0.19,0.27);
-  waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // waveColour = mix(vec3(0.97), waveColour, smoothstep(0.9,0.89,waveCoords.y*0.1));
-  // float wSmpl = domainWarpingFBM(vec3(waveCoords*0.01,uTime*0.05))*0.8;
-  // waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
-  modelColour = DrawWaves(modelColour, waveColour, waveCoords, 500.0);
-
-   waveCoords = (pixelCoords - vec2(0.0, -0.2)) * 200.1+timeOffset;
-
-// waveColour = vec3(0.024,0.19,0.27);
-// waveCoords = rotate2D(PI * 0.05) * waveCoords;
-// // waveColour = mix(vec3(0.97), waveColour, smoothstep(0.9,0.89,waveCoords.y*0.1));
-//  wSmpl = domainWarpingFBM(vec3(waveCoords*0.01,uTime*0.1))*2.8;
-// waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
-// modelColour = DrawWaves(modelColour, waveColour, waveCoords, 400.0);
-
-
-
-
-  // waveCoords = (pixelCoords - vec2(0.0, -150.0)) * 0.35+timeOffset*0.8;
-  // waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // modelColour = DrawWaves(modelColour, waveColour, waveCoords, 800.0);
-  // waveCoords = (pixelCoords - vec2(0.0, -100.0)) * 0.85+timeOffset*0.6;
-  // waveCoords = rotate2D(PI * -0.2) * waveCoords;
-  // modelColour = DrawWaves(modelColour, waveColour, waveCoords, 1200.0);
-
-
 
 
 
@@ -306,7 +261,10 @@ void main() {
 
   vec3 lighting = vec3(0.0);
 
-  vec3 normal = normalize(vNormal);
+  vec3 normal = normalize(
+      cross(
+          dFdx(vPosition.xyz),
+          dFdy(vPosition.xyz)));
 
   vec3 viewDir = normalize(cameraPosition - vPosition);
 
@@ -320,7 +278,7 @@ void main() {
 
 
   // Diffuse lighting
-  vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
+  vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
   vec3 lightColour = vec3(1.0, 1.0, 0.98);
   float dp = max(0.0, dot(lightDir, normal));
 
@@ -330,9 +288,9 @@ void main() {
   // Specular
   vec3 r = normalize(reflect(-lightDir, normal));
   float phongValue = max(0.0, dot(viewDir, r));
-  phongValue = pow(phongValue, 8.0);
+  phongValue = pow(phongValue, 32.0);
 
-  specular += phongValue * 1.15;
+  specular += phongValue ;
 
   // Combine lighting
   lighting = diffuse;

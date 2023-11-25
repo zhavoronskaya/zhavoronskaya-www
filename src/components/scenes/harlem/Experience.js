@@ -9,6 +9,7 @@ import {
   Text3D,
   MeshTransmissionMaterial,
   useTexture,
+  Stage,
 } from "@react-three/drei";
 
 import harlemVertexShader from "./shaders/vertex.js";
@@ -190,7 +191,7 @@ function Object() {
         #include <beginnormal_vertex>
 
         float vDisplacement =10.0*turbulenceFBM(objectNormal*10.0, 8, 0.5,2.0)+10.0*sin(objectNormal.x *2.0 + uTime*3.0)*cos(objectNormal.y *3.0 + uTime*3.0) ;
-        vDisplacement = remap(vDisplacement, -10.0, 10.0, 0.0, 2.0);
+        vDisplacement = remap(vDisplacement, -10.0, 10.0, 0.0, 4.0);
 
         `
       );
@@ -223,7 +224,7 @@ function Object() {
           specMap: { value: null },
         }}
       /> */}
-
+      {/* 
       <MeshTransmissionMaterial
         ref={transmissionRef}
         distortion={2.5}
@@ -235,6 +236,19 @@ function Object() {
         // background={env}
         chromaticAberration={5.0}
         anisotropicBlur={0.0}
+      /> */}
+
+      <MeshTransmissionMaterial
+        ref={transmissionRef}
+        distortion={2.5}
+        distortionScale={0.39}
+        thickness={1.4}
+        ior={1.02}
+        roughness={0.0}
+        transmission={1.0}
+        // background={env}
+        chromaticAberration={5.0}
+        anisotropicBlur={2.0}
       />
     </mesh>
   );
@@ -325,9 +339,9 @@ export default function Experience() {
         <Noise opacity={0.2} blendFunction={BlendFunction.SOFT_LIGHT} />
       </EffectComposer>
 
-      {/* <Environment preset="night" /> */}
-
-      <color args={["#9e8295"]} attach="background" />
+      <Environment preset="night" />
+      <color args={["#dee0e3"]} attach="background" />
+      {/* <color args={["#9e8295"]} attach="background" /> */}
       {/* <Text3D font={fontUrl} smooth={1}>
         harlem
         <meshBasicMaterial color={"black"} />
@@ -341,8 +355,10 @@ export default function Experience() {
         harlem
       </Text> */}
       <Suspense fallback={null}>
+        {/* <Stage> */}
         <Object />
         <Logo url="/music/track1.mp3/" />
+        {/* </Stage> */}
       </Suspense>
     </>
   );

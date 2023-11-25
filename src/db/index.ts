@@ -42,6 +42,8 @@ import experimentalsix from "./scenes/experimental-six";
 import experimentalseven from "./scenes/experimental-seven";
 import experimentaleight from "./scenes/experimental-eight";
 import experimentalnine from "./scenes/experimental-nine";
+import sea from "./scenes/sea";
+import realisticsea from "./scenes/realistic-sea";
 
 import robot from "./scenes/robot";
 import highVoltage from "./scenes/high-voltage";
@@ -123,6 +125,7 @@ export async function getScenes() {
     experimentaleight,
     experimentalnine,
     harlem,
+    // realisticsea,
     // cameoSpiral,
     // logoPage,
     // highVoltage,

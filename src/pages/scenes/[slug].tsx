@@ -53,6 +53,7 @@ import ShellSea from "@/components/scenes/shellsea";
 // import LogoPage from "@/components/scenes/logoPage";
 import MirrorSphere from "@/components/scenes/mirrorSphere";
 import Harlem from "@/components/scenes/harlem";
+import RealisticSea from "@/components/scenes/realisticsea";
 // import Park from "@/components/scenes/park";
 
 export async function getStaticPaths() {
@@ -170,6 +171,8 @@ const ScenePage = (props: Props) => {
         return ExperimentalEight;
       case "experimental-nine":
         return ExperimentalNine;
+      case "realistic-sea":
+        return RealisticSea;
 
       case "mush":
         return Mush;
