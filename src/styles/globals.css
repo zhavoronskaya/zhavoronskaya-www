@@ -41,7 +41,8 @@ body {
   font-family: "Satoshi", sans-serif;
 }
 body {
-  background: var(--clr-bg);
+  /* background: var(--clr-bg); */
+  background: #fff;
   color: var(--clr-text);
   font-size: var(--fz-md);
   line-height: calc(var(--fz-md) * 1.5);

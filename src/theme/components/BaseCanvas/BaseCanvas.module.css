@@ -4,7 +4,37 @@
   height: 100%;
 }
 
+.canvasFullscreen {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.actions {
+  /* display: none; */
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 16px;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.actions svg {
+  cursor: pointer;
+}
+
 .canvas canvas {
   width: 100% !important;
   height: 100% !important;
+  border-radius: 6px;
+}
+
+.canvasFullscreen canvas {
+  border-radius: 0;
 }

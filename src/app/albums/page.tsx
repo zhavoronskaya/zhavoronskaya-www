@@ -2,27 +2,23 @@ import Link from "next/link";
 
 import { SocialLinks } from "@/constants";
 import { getAlbums } from "@/db";
-import LogoSideBarScene from "@/theme/components/LogoSideBar";
-import BaseLayout from "@/theme/components/BaseLayout";
+import LogoSideBarScene from "@/components/scenes/ZhavoronskayaPlaneVertical";
+import BaseLayout from "@/theme/components/LayoutBaseV0";
 import AlbumThumbnail from "@/components/albums/AlbumThumbnail";
-import {
-  BandcampIcon,
-  SoundcloudIcon,
-} from "@/components/theme/Icon/SocialIcons";
+import { BandcampIcon, SoundcloudIcon } from "@/theme/icons/social";
 
 import styles from "./page.module.css";
+
+const Header = () => {
+  return <h2 className="text-ellipsis">Selected works (2017-2021)</h2>;
+};
 
 export default async function AlbumsPage() {
   const albums = await getAlbums();
 
   return (
-    <BaseLayout
-      contentMaxWidth="700px"
-      sidebar={<LogoSideBarScene />}
-      contentHeader={
-        <h2 className="text-ellipsis">Selected works (2017-2021)</h2>
-      }
-    >
+    <>
+      <h2 className="fixed top-4 fz-lg">Selected works (2017-2021)</h2>
       <div className="mb-lg">
         <p>
           Here is the small list of my music releases. To see more feel free to
@@ -39,12 +35,11 @@ export default async function AlbumsPage() {
           </Link>
         </div>
       </div>
-
       <div className={styles.albumscontainer}>
         {albums.map((album) => {
           return <AlbumThumbnail key={album.name} album={album} />;
         })}
       </div>
-    </BaseLayout>
+    </>
   );
 }

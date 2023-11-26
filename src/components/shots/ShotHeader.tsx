@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { IShot } from "../../interfaces";
-import { LeftArrowIcon, RightArrowIcon } from "../theme/Icon/Arrows";
+import { IShot } from "@/interfaces";
+import { LeftArrowIcon, RightArrowIcon } from "@/theme/icons";
 
 type Props = {
   shot: IShot;
@@ -19,8 +19,8 @@ const ShotHeader = (props: Props) => {
         </Link>
       )}
 
-      <h2 id="scenename" className="text-ellipsis">
-        {props.shot.name}
+      <h2 className="fz-lg text-ellipsis">
+        <Link href="/shots">Shots</Link> / {props.shot.name}
       </h2>
 
       {props.nextShotSlug && (

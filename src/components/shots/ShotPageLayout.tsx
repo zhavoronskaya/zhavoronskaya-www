@@ -1,7 +1,8 @@
 import { IShot } from "@/interfaces";
-import LogoSideBarScene from "@/theme/components/LogoSideBar";
-import BaseLayout from "@/theme/components/BaseLayout";
+import LogoSideBarScene from "@/components/scenes/ZhavoronskayaPlaneVertical";
+import BaseLayout from "@/theme/components/LayoutBaseV0";
 import ShotHeader from "./ShotHeader";
+import Container from "@/theme/components/Container";
 
 type Props = {
   shot: IShot;
@@ -12,18 +13,16 @@ type Props = {
 
 export default function ShotPageLayout(props: Props) {
   return (
-    <BaseLayout
-      sidebar={<LogoSideBarScene />}
-      contentMaxWidth="100%"
-      contentHeader={
+    <Container className="h-full">
+      <div className="fixed top-4 fz-lg">
         <ShotHeader
           shot={props.shot}
           nextShotSlug={props.nextShotSlug}
           prevShotSlug={props.prevShotSlug}
         />
-      }
-    >
+      </div>
+
       {props.children}
-    </BaseLayout>
+    </Container>
   );
 }

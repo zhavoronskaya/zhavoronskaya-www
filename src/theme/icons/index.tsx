@@ -1,3 +1,10 @@
+type IconProps = {
+  size?: string;
+  color?: string;
+  className?: string;
+  onClick?: () => void;
+};
+
 export function LogoIcon() {
   return (
     <svg width="32px" viewBox="0 0 12 12" fill="none">
@@ -19,3 +26,112 @@ export function LogoIcon() {
     </svg>
   );
 }
+
+export const LeftArrowIcon = ({
+  color = "var(--clr-text)",
+  size = "24px",
+}: IconProps) => {
+  return (
+    <svg
+      width={size}
+      fill={color}
+      viewBox="0 0 30 25"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M8 10.5H30V14.5H8L15.5 22L12.5 25L0 12.5L12.5 0L15.5 3L8 10.5Z" />
+    </svg>
+  );
+};
+
+export const RightArrowIcon = ({
+  color = "var(--clr-text)",
+  size = "24px",
+}: IconProps) => {
+  return (
+    <svg
+      width={size}
+      fill={color}
+      viewBox="0 0 30 25"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M22 14.5H0V10.5H22L14.5 3L17.5 0L30 12.5L17.5 25L14.5 22L22 14.5Z" />
+    </svg>
+  );
+};
+
+export const ExpandIcon = ({
+  size = "24px",
+  color = "black",
+  className,
+  onClick,
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      onClick={onClick}
+      className={className}
+    >
+      <path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8" />
+      <path d="M3 16.2V21m0 0h4.8M3 21l6-6" />
+      <path d="M21 7.8V3m0 0h-4.8M21 3l-6 6" />
+      <path d="M3 7.8V3m0 0h4.8M3 3l6 6" />
+    </svg>
+  );
+};
+
+export const ShrinkIcon = ({
+  size = "24px",
+  color = "black",
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m15 15 6 6m-6-6v4.8m0-4.8h4.8" />
+      <path d="M9 19.8V15m0 0H4.2M9 15l-6 6" />
+      <path d="M15 4.2V9m0 0h4.8M15 9l6-6" />
+      <path d="M9 4.2V9m0 0H4.2M9 9 3 3" />
+    </svg>
+  );
+};
+
+export const RefreshIcon = ({
+  size = "24px",
+  color = "black",
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+      <path d="M3 3v5h5" />
+      <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+      <path d="M16 16h5v5" />
+    </svg>
+  );
+};

@@ -1,6 +1,6 @@
 import { IAlbum } from "@/interfaces";
-import LogoSideBarScene from "@/theme/components/LogoSideBar";
-import BaseLayout from "@/theme/components/BaseLayout";
+import LogoSideBarScene from "@/components/scenes/ZhavoronskayaPlaneVertical";
+import BaseLayout from "@/theme/components/LayoutBaseV0";
 import AlbumsHeader from "./AlbumHeader";
 
 type Props = {
@@ -12,11 +12,11 @@ type Props = {
 
 export default function AlbumPageLayout(props: Props) {
   return (
-    <BaseLayout
-      sidebar={<LogoSideBarScene />}
-      contentMaxWidth="700px"
-      contentHeader={<AlbumsHeader albumName={props.album.name} />}
-    >
+    <>
+      <div className="fixed top-4 fz-lg">
+        <AlbumsHeader albumName={props.album.name} />
+      </div>
+
       <img src={props.album.cover} alt="Album" />
 
       <div dangerouslySetInnerHTML={{ __html: props.album.bandcamp }} />
@@ -24,6 +24,6 @@ export default function AlbumPageLayout(props: Props) {
       <div className="mt-lg">{props.children}</div>
 
       <p className="mt-sm pb-lg op-04 fz-sm">{props.album.genre}</p>
-    </BaseLayout>
+    </>
   );
 }

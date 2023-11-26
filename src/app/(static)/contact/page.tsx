@@ -1,10 +1,10 @@
-import IconHome from "@/components/theme/Icon/iconHome/IconHome";
+import BirdCute from "@/theme/illustrations/BirdCute";
 import {
   BandcampIcon,
   EmailIcon,
   InstagramIcon,
   TelegramIcon,
-} from "@/components/theme/Icon/SocialIcons";
+} from "@/theme/icons/social";
 import { SocialLinks } from "@/constants";
 
 export default function Contact() {
@@ -35,7 +35,7 @@ export default function Contact() {
         <BandcampIcon /> merch and support
       </a>
 
-      <IconHome />
+      <BirdCute />
     </div>
   );
 }

@@ -1,15 +1,15 @@
+import ZhavoronskayaPlaneVertical from "@/components/scenes/ZhavoronskayaPlaneVertical";
 import Container from "@/theme/components/Container";
 import LayoutSidebar from "@/theme/components/LayoutSidebar";
-import ZhavoronskayaPlaneVertical from "@/components/scenes/ZhavoronskayaPlaneVertical";
 
-export default function ProjectsPage({
-  children,
-}: {
+type Props = {
   children: React.ReactNode;
-}) {
+};
+
+export default function StaticLayout({ children }: Props) {
   return (
     <LayoutSidebar sidebar={<ZhavoronskayaPlaneVertical />}>
-      <Container maxWidth="700px">This page is in development</Container>
+      {children}
     </LayoutSidebar>
   );
 }

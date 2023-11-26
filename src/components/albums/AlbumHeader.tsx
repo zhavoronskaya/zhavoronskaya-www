@@ -1,9 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
-import { IAlbum } from "@/interfaces";
-import styles from "./AlbumPageLayout.module.css";
-import { LeftArrowIcon, RightArrowIcon } from "../theme/Icon/Arrows";
+import { LeftArrowIcon, RightArrowIcon } from "@/theme/icons";
 
 type Props = {
   albumName: string;
@@ -20,7 +17,9 @@ const AlbumHeader = (props: Props) => {
         </Link>
       )}
 
-      <h2 className="text-ellipsis">{props.albumName}</h2>
+      <h2 className="fz-lg text-ellipsis">
+        <Link href="/albums">Albums</Link> / {props.albumName}
+      </h2>
 
       {props.nextAlbumSlug && (
         <Link href={`/albums/${props.nextAlbumSlug}`}>

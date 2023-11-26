@@ -3,12 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 import { SocialLinks } from "@/constants";
-import {
-  EmailIcon,
-  InstagramIcon,
-  TelegramIcon,
-} from "@/components/theme/Icon/SocialIcons";
-import Badge from "@/components/theme/Badge";
+import { EmailIcon, InstagramIcon, TelegramIcon } from "@/theme/icons/social";
+import Badge from "@/theme/components/Badge";
 
 export default function Cv() {
   return (
