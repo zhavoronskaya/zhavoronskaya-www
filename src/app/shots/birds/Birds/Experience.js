@@ -1,14 +1,8 @@
-import { Suspense } from "react";
-import { useFrame } from "@react-three/fiber";
 import React from "react";
-
-import { OrbitControls } from "@react-three/drei";
-
-import Bird from "./Bird.js";
-
-import * as THREE from "three";
-
+import { useFrame } from "@react-three/fiber";
 import { Cloud, Sparkles } from "@react-three/drei";
+import * as THREE from "three";
+import Bird from "./components/Bird";
 
 const BIRDS_COUNT = 100;
 
@@ -64,14 +58,14 @@ export default function Experience() {
 
       <color args={["#F3CBFE"]} attach="background" /> */}
 
-      <Suspense fallback={null}>
+      <React.Suspense fallback={null}>
         <Sparkles size={5} scale={[40, 40, 40]} speed={0.2} count={1000} />
         <Cloud position={[-4, -2, 9]} speed={0.2} opacity={0.1} />
         <Cloud position={[4, 2, -15]} speed={0.2} opacity={1} />
         <Cloud position={[-4, 2, -10]} speed={0.2} opacity={0.1} />
         <Cloud position={[4, -2, -5]} speed={0.2} opacity={0.1} />
         <Birds ref={birdsRef} />
-      </Suspense>
+      </React.Suspense>
     </>
   );
 }
