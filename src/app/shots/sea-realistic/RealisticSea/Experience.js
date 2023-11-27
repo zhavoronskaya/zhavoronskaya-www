@@ -1,10 +1,10 @@
 import { Suspense, useRef } from "react";
 import React from "react";
 
-import { shaderMaterial, OrbitControls } from "@react-three/drei";
+import { shaderMaterial, OrbitControls, Sky } from "@react-three/drei";
 
-import sandVertexShader from "./shaders/vertex.js";
-import sandFragmentShader from "./shaders/fragment.js";
+import watherVertexShader from "./shaders/vertex.js";
+import watherFragmentShader from "./shaders/fragment.js";
 
 import * as THREE from "three";
 import { useFrame, extend, useThree } from "@react-three/fiber";
@@ -15,16 +15,16 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
-const SandMaterial = shaderMaterial(
+const SeaWaterMaterial = shaderMaterial(
   {
     uTime: 0,
     uResolution: new THREE.Vector2(0, 0),
   },
 
-  sandVertexShader,
-  sandFragmentShader
+  watherVertexShader,
+  watherFragmentShader
 );
-extend({ SandMaterial });
+extend({ SeaWaterMaterial });
 
 function Sea() {
   const { viewport } = useThree();
@@ -58,12 +58,9 @@ function Sea() {
 
   return (
     <group>
-      <mesh rotation={[0, 0, 0]} ref={ref}>
-        <planeGeometry
-          ref={geomertyRef}
-          args={[viewport.width, viewport.height, 128, 64]}
-        />
-        <sandMaterial ref={shaderRef} />
+      <mesh rotation={[-Math.PI / 2, 0, -Math.PI / 2]} ref={ref}>
+        <planeGeometry ref={geomertyRef} args={[20, 20, 512, 512]} />
+        <seaWaterMaterial ref={shaderRef} />
       </mesh>
     </group>
   );
@@ -72,9 +69,7 @@ function Sea() {
 export default function Experience() {
   return (
     <>
-      <OrbitControls
-        onEnd={(e) => console.log(e.target.object.position.toArray())}
-      />
+      <OrbitControls />
       {/* <EffectComposer>
         <DepthOfField
           focusDistance={0.025}
@@ -85,7 +80,7 @@ export default function Experience() {
       </EffectComposer> */}
 
       <color args={["#a7b6db"]} attach="background" />
-
+      <Sky />
       <Suspense fallback={null}>
         <Sea />
       </Suspense>

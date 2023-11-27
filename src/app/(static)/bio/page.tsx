@@ -8,53 +8,65 @@ export default function Bio() {
       />
       <h2 className="mt-md mb-xs">PAST</h2>
       <p>
-        Was born in Moscow in a family of physicists and engineers in the early
-        90s. Studied at the department of computer music of a modern music
-        school in the 2000s and exactly in this place I got my first
-        communication experience with a synthesizer and electronic music. My
-        favorite schoolwork was musical modeling, where we studied how to turn
-        graphic and natural objects into musical works. Miracles in encoding and
-        decoding sound reality happened there, such as the transformation of a
-        bee or storm, for example, into a musical form like a piano trio.
+        Born in Moscow in the early 90s to a family of physicists and engineers,
+        I delved into the world of computer music during the 2000s while
+        studying at a contemporary music school. It was here that I first
+        encountered synthesizers and electronic music, marking the beginning of
+        my exploration in this fascinating realm. My time at the school's
+        computer music department was transformative, especially in the study of
+        musical modeling. This coursework involved the intriguing process of
+        transforming graphic and natural objects into musical compositions. It
+        was like decoding the wonders of sound reality, where the buzzing of a
+        bee or the fury of a storm could be transmuted into musical forms, such
+        as a delicate piano trio. These experiences marked the inception of my
+        journey into the magical world where the realms of technology and music
+        intertwine.
       </p>
       <h2 className="mt-md mb-xs">SEARCH</h2>
       <p>
-        When I was 18 I received my first independent musical experience as an
-        artist in an avant-garde project connected with rock/metal music and the
-        local underground. At this point, the main instrument for me was a
-        saxophone, and I also started to learn how to use field recordings. The
-        name of the project{" "}
+        At the age of 18, I embarked on my inaugural venture into independent
+        music, immersing myself in an avant-garde project intricately woven with
+        rock/metal influences within the local underground scene. Armed with a
+        saxophone as my primary instrument, I concurrently delved into the art
+        of utilizing field recordings. The project, aptly named{" "}
         <a href="https://thecrawlingchaos.bandcamp.com/">
           “The Crawling Chaos”
         </a>{" "}
-        was inspired by the Lovecraftian Universe. At that time my brother
-        rented rehearsal space, where we mixed noise parts with non-stop
-        jam-sessions. Then my first album-collaboration (released only in 2017,
-        when I finally started my own project){" "}
+        drew inspiration from the vast Lovecraftian Universe.
+        <br />
+        In those early days, my brother secured a rehearsal room, providing a
+        space for the fusion of noise segments with relentless jam sessions. The
+        culmination of this period resulted in my first album-collaboration,{" "}
         <a href="https://zhavoronskaya.bandcamp.com/album/sputnik-lell-22">
           Sputnik LELL-22
         </a>{" "}
-        appeared, named after the Soviet synthesizer.
+        which only saw the light of day in 2017, coinciding with the inception
+        of my solo project. The title paid homage to the Soviet synthesizer.
         <br />
-        During this period I began to clearly articulate my interests in music.
-        I realized that cross-genre and eclecticism are the most interesting for
-        me. I like to mix synthetic sound with analog, inserting elements of
-        field recordings into sound and trying to find rare and strange
-        combinations.
+        This phase marked a pivotal point in crystallizing my musical interests.
+        It dawned on me that the allure of cross-genre exploration and
+        eclecticism resonated most profoundly with my artistic sensibilities. I
+        found joy in seamlessly blending synthetic and analog sounds, infusing
+        compositions with elements of field recordings, and avidly seeking out
+        rare and unconventional sonic combinations.
       </p>
       <h2 className="mt-md mb-xs">SOLO</h2>
       <p>
-        My first solo-project started in Kyiv in 2017. The first time, its
-        slogan was 'Noise against war'. It was conceptual noise with an active
-        anti-war agenda. Through this project, I critically rethought conquest
-        policy. I worked a lot with video at that time. And my interest in
-        thematic samples and experimental electronics had already started to
-        emerge. Noise began to move into the background. Piece by piece I
-        started to expand my thematic repertoire. Not only war, but various
-        internal states of a person also began to interest me, especially how I
-        can convert them to music. I often work with text, recording my
-        observations about this world on an audio-recorder. The birth of several
-        albums is the result of these observations:{" "}
+        My first solo-project started in Kyiv in 2017. Initially centered around
+        the slogan 'Noise against war,' it was a conceptual exploration of noise
+        with a pronounced anti-war agenda. During this phase, I engaged
+        extensively with video production and witnessed the emergence of my
+        interest in thematic samples and experimental electronics. Gradually,
+        the prominence of noise in my work receded. As my solo project evolved,
+        I found myself broadening my thematic scope piece by piece. While the
+        anti-war stance persisted, my focus expanded beyond the realm of
+        conflict to encompass various internal states of the human experience. I
+        became particularly intrigued by how these states could be translated
+        into musical expressions. Concurrently, I delved into textual work,
+        documenting my observations about the world through an audio recorder.
+        This introspective journey yielded the birth of several albums, each a
+        manifestation of my observations and evolving artistic exploration.
+        Albums such as{" "}
         <a href="https://zhavoronskaya.bandcamp.com/album/zhavoronskaya-r">
           'R'
         </a>
@@ -69,7 +81,8 @@ export default function Bio() {
         ,{" "}
         <a href="https://zhavoronskaya.bandcamp.com/album/i-dream-in-dreams">
           'i dream in dreams'.
-        </a>
+        </a>{" "}
+        emerged as tangible results of this transformative process.
       </p>
       <h2 className="mt-md mb-xs">NOWADAYS</h2>
       <p>

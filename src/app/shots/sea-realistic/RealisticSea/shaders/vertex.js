@@ -165,34 +165,79 @@ float turbulenceFBM(vec3 p, int octaves, float persistence, float lacunarity) {
   return total;
 }
 
+float ridgedFBM(vec3 p, int octaves, float persistence, float lacunarity) {
+  float amplitude = 0.5;
+  float frequency = 1.0;
+  float total = 0.0;
+  float normalization = 0.0;
 
+  for (int i = 0; i < octaves; ++i) {
+    float noiseValue = noise(p * frequency);
+    noiseValue = abs(noiseValue);
+    noiseValue = 1.0 - noiseValue;
+
+    total += noiseValue * amplitude;
+    normalization += amplitude;
+    amplitude *= persistence;
+    frequency *= lacunarity;
+  }
+
+  total /= normalization;
+  total *= total;
+
+  return total;
+}
 
 
 void main() {
 
 
-  
+    vec3 localSpacePosition = position;
+
+  float t = cnoise(vec3(localSpacePosition.xy*1.0, uTime*0.2))*0.5+ sin(localSpacePosition.x+uTime*0.4)*0.3;
+ 
+  float noiseOne = turbulenceFBM(vec3(localSpacePosition.xy*1.0, uTime*0.2), 12, 0.5,2.0);
+t +=noiseOne;
+t = remap(t, -1.5, 1.5, 0.0, 1.0);
+  localSpacePosition += normal * (t);
+  // localSpacePosition += normal * t;
+
+
+//   noise =  remap(noise, -1.0, 1.0, 0.0, 1.0);
+  // localSpacePosition += normal * noise;
+
+
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(localSpacePosition, 1.0);
+  vNormal = (modelMatrix * vec4(normal, 0.0)).xyz;
+  vPosition = (modelMatrix * vec4(localSpacePosition, 1.0)).xyz;
+  vUv= uv;
+
+  vDisplacement= t;
+  vColor = mix(
+    vec3(0.2,0.3,0.78), vec3(0.2,0.6,0.78),
+      smoothstep(0.1, 0.9,t));
 
    
 
-    vDisplacement = turbulenceFBM(vec3(uv, uTime*0.2) , 4, 15.0, 2.0);
-    // vColor = mix(
-    // color,
-    // vec3(0.1, 0.1, 0.8),
-    // smoothstep(0.0, 0.5, vDisplacement));
-    vColor = mix(vec3(0.2,0.6,0.78), vec3(0.99,0.978,0.856), smoothstep(vDisplacement, 0.0,0.3));
-    // vec3 newPosition = position;
-    // newPosition.x = position.x + vDisplacement* circle;
-    // newPosition.y = position.y + vDisplacement* circle;
-    // vPosition = position;
+    // vDisplacement = turbulenceFBM(vec3(position.xy, uTime*0.2) , 4, 15.0, 2.0)*0.3 + cnoise(vec3(position.xy, uTime*0.2))*0.2;
+    // // vColor = mix(
+    // // color,
+    // // vec3(0.1, 0.1, 0.8),
+    // // smoothstep(0.0, 0.5, vDisplacement));
+    // vColor = mix(vec3(0.2,0.6,0.78), vec3(0.99,0.978,0.856), smoothstep(0.0,0.9, vDisplacement));
+    // // vec3 newPosition = position;
+    // // newPosition.x = position.x + vDisplacement* circle;
+    // // newPosition.y = position.y + vDisplacement* circle;
+    // // vPosition = position;
   
-    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-    modelPosition.z +=normal.z*vDisplacement;
-    vec4 viewPosition = viewMatrix * modelPosition;
-    vec4 projectedPosition = projectionMatrix * viewPosition;
-    gl_Position = projectedPosition;
-    vUv=uv;
-    vNormal = normal;
-    vPosition = position;
+    // vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+    // modelPosition.xyz +=normal*vDisplacement;
+    // vec4 viewPosition = viewMatrix * modelPosition;
+    // vec4 projectedPosition = projectionMatrix * viewPosition;
+    // gl_Position = projectedPosition;
+    // vUv=uv;
+    // vNormal = normal;
+    // vPosition = modelPosition.xyz;
+;
 
 } `;

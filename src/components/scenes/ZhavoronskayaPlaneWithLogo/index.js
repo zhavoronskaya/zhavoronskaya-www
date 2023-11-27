@@ -23,7 +23,7 @@ export default function HeroScene() {
         <Post />
       </EffectComposer>
 
-      <color args={["#FAEBFF"]} attach="background" />
+      <color args={["#efd4f7"]} attach="background" />
 
       <ambientLight />
 

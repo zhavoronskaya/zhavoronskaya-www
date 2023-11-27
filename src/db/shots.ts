@@ -46,6 +46,7 @@ import experimentaleight from "@/app/shots/experimental-eight/data";
 import experimentalnine from "@/app/shots/experimental-nine/data";
 import sea from "@/app/shots/sea/data";
 import realisticsea from "@/app/shots/sea-realistic/data";
+import wait from "@/app/shots/wait-forever/data";
 
 import robot from "@/app/shots/robot/data";
 import highVoltage from "@/app/shots/high-voltage/data";
@@ -98,6 +99,7 @@ export const shots: IShot[] = [
   experimentaleight,
   experimentalnine,
   harlem,
+  wait,
   // realisticsea,
   // cameoSpiral,
   // logoPage,
@@ -115,15 +117,23 @@ export const galleryShots: Array<Array<{ size: number; shot: IShot }>> = [
   //   { size: 1, scene: colorField },
   // ],
   [
-    { size: 1, shot: shell },
-    { size: 2, shot: snake },
+    { size: 1, shot: experimentalseven },
+    { size: 3, shot: experimentaleight },
+    { size: 2, shot: experimental },
+  ],
+  [
+    { size: 2, shot: experimentalshapetwo },
+    { size: 1, shot: experimentalfour },
   ],
   [{ size: 1, shot: paintedFlower }],
+  // [
+  //   { size: 3, shot: wait },
+  //   { size: 2, shot: harlem },
+  // ],
   [
     { size: 1, shot: mold },
     { size: 1, shot: cameo },
   ],
-  [{ size: 1, shot: spaceShip }],
 
   // [
   //   { size: 4, scene: spaceShip },

@@ -127,54 +127,6 @@ vec3 hash( vec3 p )
 
 
 
-vec3 CreateSand() {
-  vec3 colour1 = vec3(0.86, 0.56, 0.63);
-  vec3 colour2 = vec3(0.54, 0.35, 0.39);
-  vec3 colour3 = vec3(0.31,0.24,0.25);
-  return mix(mix(
-      colour1, colour2, smoothstep(0.8, 1.0, vUv.y)), colour3, smoothstep(0.0, 1.0, vUv.y));
-}
-
-
-
-vec3 CreateGridSandGlare(
-    vec2 pixelCoords, float glareRadius, float cellWidth,
-    float seed, bool twinkle) {
-  vec2 cellCoords = (fract(pixelCoords / cellWidth) - 0.5) * cellWidth;
-  vec2 cellID = floor(pixelCoords / cellWidth) + seed / 100.0;
-  vec3 cellHashValue = hash(vec3(cellID, 0.0));
-
-  float glareBrightness = saturate(cellHashValue.z*0.5);
-  vec2 glarePosition = vec2(0.0);
-  glarePosition += cellHashValue.xy * (cellWidth * 0.5 - glareRadius * 4.0);
-  float distToGlare = length(cellCoords - glarePosition);
-  // float glow = smoothstep(starRadius + 1.0, starRadius, distToStar);
-  float glow = exp(-2.0 * distToGlare / glareRadius);
-
-  return vec3(glow * glareBrightness);
-}
-
-vec3 CreateSandGlare(vec2 pixelCoords) {
-  vec3 glares = vec3(0.0);
-
-  float size = 10.0;
-  float cellWidth = 500.0;
-  for (float i = 0.0; i <= 2.0; i++) {
-    glares += CreateGridSandGlare(pixelCoords, size, cellWidth, i, true);
-    size *= 0.5;
-    cellWidth *= 0.35;
-  }
-
-  for (float i = 3.0; i < 5.0; i++) {
-    glares += CreateGridSandGlare(pixelCoords, size, cellWidth, i, false);
-    size *= 0.5;
-    cellWidth *= 0.35;
-  }
-
-  return glares;
-}
-
-
 
 
 
@@ -194,51 +146,6 @@ float domainWarpingFBM(vec3 coords) {
 
 
 
-vec3 DrawWaves(
-    vec3 background, vec3 waveColour, vec2 pixelCoords, float depth) {
-  float y = fbm(
-    vec3(pixelCoords.x *0.004, 0.9, uTime*0.1), 3, 0.5, 2.0) * 300.0;
-
-
-
-
-  // float noiseSample = domainWarpingFBM( vec3(depth + pixelCoords.y / (256.0), 2.432, uTime*0.1))*2.58;
-  //   vec3 light = normalize(vec3(1.0));
-
-  // waveColour = mix( vec3(0.858,0.96,0.93),waveColour,smoothstep(noiseSample,0.0,1.0));
-
-  vec3 foamColour = vec3(0.99, 0.93, 0.97);
-  // float foamFactor = smoothstep(0.0, 100.0, depth) * 0.5;
-
-  // float heightFactor = smoothstep(-900.0, -320.00, pixelCoords.y);
-  // heightFactor *= heightFactor;
-  // foamFactor = mix(heightFactor, foamFactor, heightFactor);
-
-  // waveColour = mix(foamColour, waveColour,heightFactor);
-  float sdfWave = pixelCoords.y - y;
-  waveColour = mix(foamColour, waveColour, smoothstep(0.9,0.0,(pixelCoords.y-y)*0.4));
-
-  // sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed)
-  float wSmpl = domainWarpingFBM(vec3(pixelCoords*0.01,uTime*0.05))*1.2;
-  waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
- wSmpl = domainWarpingFBM(vec3(pixelCoords*0.05,uTime*0.05))*1.6;
-  waveColour = mix( vec3(0.98,0.94,0.95),waveColour, smoothstep(0.0,1.0,wSmpl));
-
-  float blur = 1.0 + smoothstep(50.0, 2000.0, depth) * 64.0 + smoothstep(50.0, -500.0, depth) * 64.0;
-  vec3 colour = mix(
-      waveColour,
-      background,
-      smoothstep(0.0, blur, sdfWave));
-
-  return colour;
-}
-
-mat2 rotate2D(float angle) {
-  float s = sin(angle);
-  float c = cos(angle);
-  return mat2(c, -s, s, c);
-}
-
 
 
 
@@ -252,8 +159,8 @@ void main() {
 
   vec2 pixelCoords = vUv*uResolution ;
 
-  float noiseSample = domainWarpingFBM(vec3(pixelCoords*0.2,uTime*0.0))*1.8;
-  modelColour = mix( vec3(0.31,0.24,0.25),modelColour, noiseSample);
+  // float noiseSample = domainWarpingFBM(vec3(pixelCoords*0.2,uTime*0.0))*1.8;
+  // modelColour = mix( vec3(0.31,0.24,0.25),modelColour, noiseSample);
 
 
 
@@ -288,9 +195,9 @@ void main() {
   // Specular
   vec3 r = normalize(reflect(-lightDir, normal));
   float phongValue = max(0.0, dot(viewDir, r));
-  phongValue = pow(phongValue, 32.0);
+  phongValue = pow(phongValue, 8.0);
 
-  specular += phongValue ;
+  specular += phongValue*0.7 ;
 
   // Combine lighting
   lighting = diffuse;
