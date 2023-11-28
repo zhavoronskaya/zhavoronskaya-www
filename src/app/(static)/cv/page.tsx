@@ -10,12 +10,13 @@ export default function Cv() {
   return (
     <div>
       <div className="items-center fxw-w g-md mb-lg">
-        <Image
-          width={100}
-          height={100}
+        <img
+          // width={100}
+          // height={100}
           src="/image/profphoto.png"
           alt="Avatar"
           className="w-a bdrs-round"
+          style={{ width: "100px", height: "100px" }}
         />
         <div className="fx-1">
           <h2 className="fz-xl lh-1">Elena Zhavoronskaya</h2>
