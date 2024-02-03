@@ -1,7 +1,7 @@
 export default /*glsl */ `
 #define PI 3.1415926535897932384626433832795
 uniform float uTime;
-uniform vec2 uResolution;
+
 
 varying vec2 vUv;
 varying vec3 vPosition;
@@ -192,52 +192,39 @@ float ridgedFBM(vec3 p, int octaves, float persistence, float lacunarity) {
 void main() {
 
 
-    vec3 localSpacePosition = position;
+    
 
-  float t = cnoise(vec3(localSpacePosition.xy*1.0, uTime*0.2))*0.5+ sin(localSpacePosition.x+uTime*0.4)*0.3;
+// t = remap(t, -1.0, 1.0, 0.0, 1.0);
  
-  float noiseOne = turbulenceFBM(vec3(localSpacePosition.xy*1.0, uTime*0.2), 12, 0.5,2.0);
-t +=noiseOne;
-t = remap(t, -1.5, 1.5, 0.0, 1.0);
-  localSpacePosition += normal * (t);
   // localSpacePosition += normal * t;
+vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-
+float t =(sin(modelPosition.x*0.2+uTime*0.4)*sin(modelPosition.z*0.1+uTime*0.8))*cnoise(vec3(modelPosition.xz*0.5, uTime*0.3));
+//  t = remap(t, -10.0, 10.0, 0.0, 2.0);
+ float noiseOne = turbulenceFBM(vec3(modelPosition.xz*0.5, uTime*0.2), 8, 0.5,2.0);
+t -=noiseOne;
+modelPosition.y +=t;
+  vec4 viewPosition = viewMatrix * modelPosition;
+    vec4 projectedPosition = projectionMatrix * viewPosition;
+    gl_Position = projectedPosition;
 //   noise =  remap(noise, -1.0, 1.0, 0.0, 1.0);
   // localSpacePosition += normal * noise;
 
 
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(localSpacePosition, 1.0);
-  vNormal = (modelMatrix * vec4(normal, 0.0)).xyz;
-  vPosition = (modelMatrix * vec4(localSpacePosition, 1.0)).xyz;
+  // gl_Position = projectionMatrix * modelViewMatrix * vec4(localSpacePosition, 1.0);
+  vNormal =normal;
+  vPosition = modelPosition.xyz;
   vUv= uv;
 
   vDisplacement= t;
   vColor = mix(
-    vec3(0.2,0.3,0.78), vec3(0.2,0.6,0.78),
-      smoothstep(0.1, 0.9,t));
+    vec3(0.2,0.3,0.78), vec3(	0.3,	0.59,	0.86),
+    smoothstep(-1.0,1.0,t));
 
-   
+   vColor = mix(
+   vColor, vec3(0.98,0.99,0.98),
+      smoothstep(0.2, 0.5,t));
 
-    // vDisplacement = turbulenceFBM(vec3(position.xy, uTime*0.2) , 4, 15.0, 2.0)*0.3 + cnoise(vec3(position.xy, uTime*0.2))*0.2;
-    // // vColor = mix(
-    // // color,
-    // // vec3(0.1, 0.1, 0.8),
-    // // smoothstep(0.0, 0.5, vDisplacement));
-    // vColor = mix(vec3(0.2,0.6,0.78), vec3(0.99,0.978,0.856), smoothstep(0.0,0.9, vDisplacement));
-    // // vec3 newPosition = position;
-    // // newPosition.x = position.x + vDisplacement* circle;
-    // // newPosition.y = position.y + vDisplacement* circle;
-    // // vPosition = position;
-  
-    // vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-    // modelPosition.xyz +=normal*vDisplacement;
-    // vec4 viewPosition = viewMatrix * modelPosition;
-    // vec4 projectedPosition = projectionMatrix * viewPosition;
-    // gl_Position = projectedPosition;
-    // vUv=uv;
-    // vNormal = normal;
-    // vPosition = modelPosition.xyz;
-;
+
 
 } `;

@@ -8,7 +8,7 @@ export default function SceneThumbnail(props: { shot: IShot }) {
         <img
           src={props.shot.cover}
           alt={props.shot.coverAlt ?? "Shot Cover"}
-          className="rounded-md h-64"
+          className="rounded-md h-64 object-cover"
         />
         {/* <p className="mt-sm">{props.shot.name}</p> */}
       </Link>

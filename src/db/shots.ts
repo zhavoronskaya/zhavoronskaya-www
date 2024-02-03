@@ -28,22 +28,40 @@ import coral from "@/app/shots/coral/data";
 import cameo from "@/app/shots/cameo/data";
 import mold from "@/app/shots/mold/data";
 import paintedFlower from "@/app/shots/painted-flower/data";
-import experimental from "@/app/shots/experimental/data";
+
 import mush from "@/app/shots/mush/data";
 import shellsea from "@/app/shots/shell-sea/data";
 import mirrorsphere from "@/app/shots/mirror-sphere/data";
 import harlem from "@/app/shots/harlem/data";
-import experimentalshape from "@/app/shots/experimental-shape/data";
-import experimentalshapeone from "@/app/shots/experimental-shape-one/data";
-import experimentalshapetwo from "@/app/shots/experimental-shape-two/data";
-import experimentalshapethree from "@/app/shots/experimental-shape-three/data";
 
-import experimentalfour from "@/app/shots/experimental-four/data";
-import experimentalfive from "@/app/shots/experimental-five/data";
-import experimentalsix from "@/app/shots/experimental-six/data";
-import experimentalseven from "@/app/shots/experimental-seven/data";
-import experimentaleight from "@/app/shots/experimental-eight/data";
-import experimentalnine from "@/app/shots/experimental-nine/data";
+import experimental1 from "@/app/shots/1/data";
+import experimental2 from "@/app/shots/2/data";
+import experimental3 from "@/app/shots/3/data";
+import experimental4 from "@/app/shots/4/data";
+import experimental5 from "@/app/shots/5/data";
+import experimental6 from "@/app/shots/6/data";
+import experimental7 from "@/app/shots/7/data";
+
+import experimental8 from "@/app/shots/8/data";
+import experimental9 from "@/app/shots/9/data";
+import experimental10 from "@/app/shots/10/data";
+import experimental11 from "@/app/shots/11/data";
+import experimental12 from "@/app/shots/12/data";
+import experimental13 from "@/app/shots/13/data";
+import experimental14 from "@/app/shots/14/data";
+import experimental15 from "@/app/shots/15/data";
+import experimental16 from "@/app/shots/16/data";
+import experimental17 from "@/app/shots/17/data";
+import experimental18 from "@/app/shots/18/data";
+import experimental19 from "@/app/shots/19/data";
+import experimental20 from "@/app/shots/20/data";
+import experimental21 from "@/app/shots/21/data";
+import experimental22 from "@/app/shots/22/data";
+import experimental23 from "@/app/shots/23/data";
+import experimental24 from "@/app/shots/24/data";
+import experimental25 from "@/app/shots/25/data";
+import experimental27 from "@/app/shots/27/data";
+import experimental26 from "@/app/shots/26/data";
 import sea from "@/app/shots/sea/data";
 import realisticsea from "@/app/shots/sea-realistic/data";
 import wait from "@/app/shots/wait-forever/data";
@@ -87,20 +105,37 @@ export const shots: IShot[] = [
   mush,
   shellsea,
 
-  experimental,
-  experimentalshape,
-  experimentalshapeone,
-  experimentalshapetwo,
-  experimentalshapethree,
-  experimentalfour,
-  experimentalfive,
-  experimentalsix,
-  experimentalseven,
-  experimentaleight,
-  experimentalnine,
+  experimental1,
+  experimental2,
+  experimental3,
+  experimental4,
+  experimental5,
+  experimental6,
+  experimental7,
+  experimental8,
+  experimental9,
+  experimental10,
+  experimental11,
   harlem,
   wait,
-  // realisticsea,
+  realisticsea,
+  experimental12,
+  experimental13,
+  experimental14,
+  experimental15,
+  experimental16,
+  experimental17,
+  experimental18,
+  experimental19,
+  experimental20,
+  experimental21,
+  experimental22,
+  // experimental23,
+  experimental24,
+  experimental25,
+  experimental26,
+  experimental27,
+
   // cameoSpiral,
   // logoPage,
   // highVoltage,
@@ -117,13 +152,13 @@ export const galleryShots: Array<Array<{ size: number; shot: IShot }>> = [
   //   { size: 1, scene: colorField },
   // ],
   [
-    { size: 1, shot: experimentalseven },
-    { size: 3, shot: experimentaleight },
-    { size: 2, shot: experimental },
+    { size: 1, shot: experimental9 },
+    { size: 3, shot: experimental10 },
+    { size: 2, shot: experimental1 },
   ],
   [
-    { size: 2, shot: experimentalshapetwo },
-    { size: 1, shot: experimentalfour },
+    { size: 2, shot: experimental4 },
+    { size: 1, shot: experimental6 },
   ],
   [{ size: 1, shot: paintedFlower }],
   // [

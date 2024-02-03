@@ -2,7 +2,6 @@ export default /*glsl */ `
 
 #define PI 3.1415926535897932384626433832795
 uniform float uTime;
-uniform vec2 uResolution;
 varying vec2 vUv;
 varying float vDisplacement;
 varying vec3 vNormal;
@@ -153,14 +152,9 @@ float domainWarpingFBM(vec3 coords) {
 void main() {
 
 
-  //Sand
+
   vec3 modelColour = vColor;
 
-
-  vec2 pixelCoords = vUv*uResolution ;
-
-  // float noiseSample = domainWarpingFBM(vec3(pixelCoords*0.2,uTime*0.0))*1.8;
-  // modelColour = mix( vec3(0.31,0.24,0.25),modelColour, noiseSample);
 
 
 
@@ -172,21 +166,17 @@ void main() {
       cross(
           dFdx(vPosition.xyz),
           dFdy(vPosition.xyz)));
-
+// normal = vNormal;
   vec3 viewDir = normalize(cameraPosition - vPosition);
 
   // Ambient
   vec3 ambient = vec3(1.0);
 
-  // Hemi
-  vec3 skyColour = vec3(0.0, 0.3, 0.76);
-  vec3 groundColour = vec3(0.54, 0.33, 0.1);
-
 
 
   // Diffuse lighting
   vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 lightColour = vec3(1.0, 1.0, 0.98);
+  vec3 lightColour = vec3(0.94, 0.84, 0.8);
   float dp = max(0.0, dot(lightDir, normal));
 
   vec3 diffuse = dp * lightColour;
@@ -194,10 +184,10 @@ void main() {
 
   // Specular
   vec3 r = normalize(reflect(-lightDir, normal));
-  float phongValue = max(0.0, dot(viewDir, r));
-  phongValue = pow(phongValue, 8.0);
+  float phongValue =max(0.0, dot(viewDir, r));
+  phongValue = pow(phongValue, 16.0);
 
-  specular += phongValue*0.7 ;
+  specular += phongValue ;
 
   // Combine lighting
   lighting = diffuse;

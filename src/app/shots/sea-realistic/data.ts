@@ -4,7 +4,7 @@ const shot: IShot = {
   name: "Realistic Sea",
   slug: "sea-realistic",
   description: "Realistic Sea",
-  cover: "/art/4.png",
+  cover: "/art/SeaReal.jpg",
   coverAlt: "Something",
 };
 
