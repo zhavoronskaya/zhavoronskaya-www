@@ -18,7 +18,7 @@ import {
 } from "@react-three/postprocessing";
 
 import FBOParticlesBush from "./Bush.js";
-import FBOParticlesFLower from "./FLower.js";
+import FBOParticlesFLower from "./Flower.js";
 
 export default function Experience() {
   return (
