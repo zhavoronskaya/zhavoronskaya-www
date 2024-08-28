@@ -1,113 +1,123 @@
-import Image from "next/image";
+import BaseLayout from "@/components/BaseLayout/BaseLayout";
+import { TechnologyLinks } from "@/constants";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <BaseLayout>
+      <div className="mx-4">
+        <div className="grid grid-cols-3 sm:grid-cols-12 gap-4 mt-16 sm:mt-32">
+          <div className="col-start-1 col-span-3 sm:col-start-1 sm:col-span-10 lg:col-start-1 lg:col-span-12">
+            <h1 className="uppercase text-hxlm sm:text-hxlt lg:text-hxl font-bold">
+              Digital Art <span className="text-dissolve-color">&</span>{" "}
+              Creative Coding
+            </h1>
+          </div>
+
+          <div className="mt-64 sm:mt-72 col-start-2 col-span-2 sm:col-start-8 sm:col-span-5 lg:col-start-9 lg:col-span-4 ">
+            <h4 className="text-hsm sm:text-hst lg:text-hs font-medium">
+              exploring the world of{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://en.wikipedia.org/wiki/Shader"
+                className="inline text-accent-color hover:text-accent-color-active"
+              >
+                shaders
+              </a>{" "}
+              and <br />{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://en.wikipedia.org/wiki/3D_modeling"
+                className="inline text-accent-color hover:text-accent-color-active"
+              >
+                3D modeling
+              </a>{" "}
+              on the web
+            </h4>
+          </div>
+          <div className="mt-64 sm:mt-72 col-start-1 col-span-1 sm:col-start-1 sm:col-span-4  ">
+            <p className="text-hxsm sm:text-hxst lg:text-hs font-medium">
+              Hello, <br />
+              I&#39;m Lena
+            </p>
+          </div>
+          <div className="mt-64 sm:mt-72 col-start-2 col-span-3 sm:col-start-5 sm:col-span-8">
+            <p className="text-bodysm sm:text-bodyst lg:text-bodys">
+              As a creative developer specializing in visual design and
+              generative art, I merge creativity with code to create lovely
+              digital art and design projects. My passion for the generative art
+              drives each work.
+            </p>
+          </div>
+        </div>
+
+        <div className="sm:grid sm:grid-cols-12 gap-4 mt-16 sm:mt-32">
+          <div className="sm:col-start-2 sm:col-span-6 gap-4">
+            <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+              main technologies & libraries
+            </span>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={TechnologyLinks.THREEJS}
+              className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+            >
+              Three.js
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={TechnologyLinks.WEBGL}
+              className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+            >
+              webgl
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={TechnologyLinks.GLSL}
+              className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+            >
+              glsl
+            </a>
+          </div>
+
+          <div className="mt-12 sm:mt-36 lg:mt-44 col-start-1 col-span-3 sm:col-start-5 sm:col-span-7 lg:col-start-6 lg:col-span-7">
+            <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+              works
+            </span>
+            <Link
+              className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+              href="/shots"
+            >
+              short gallery
+            </Link>
+          </div>
+        </div>
+
+        <div className="sm:grid sm:grid-cols-12 gap-4 mt-72 sm:mt-96">
+          <div className="sm:col-start-2 sm:col-span-11 lg:col-start-5 lg:col-span-8 gap-4">
+            <p className="text-hxsm sm:text-hxst lg:text-hxs font-medium">
+              Let&#39;s Collaborate & Create something amazing together
+            </p>
+          </div>
+        </div>
+        <div className="sm:grid sm:grid-cols-12 gap-4 mt-44 sm:mt-16">
+          <div className="sm:col-start-2 sm:col-span-11 lg:col-start-5 lg:col-span-8 gap-4">
+            <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+              feel free to
+            </span>
+            <Link
+              className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+              href="/contact"
+            >
+              reach me out
+            </Link>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </BaseLayout>
   );
 }

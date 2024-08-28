@@ -1,33 +1,73 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: rgba(248, 244, 244, 1);
+  --main-container-color: rgba(255, 255, 252, 1);
+  --primary-color: rgba(11, 0, 20, 1);
+  --border-color: rgba(11, 0, 20, 0.5);
+  --dissolve-color: rgba(117, 119, 128, 0.3);
+  --border-image-color: rgba(159, 135, 175, 0.5);
+  --accent-color: rgba(240, 140, 174, 0.75);
+  --border-tag-color: rgba(240, 140, 174, 0.25);
+  --accent-color-transparent: rgba(240, 140, 174, 0.25);
+  --accent-color-active: rgba(240, 140, 174, 1);
+  --accent-purple: rgba(159, 135, 175, 0.5);
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* overflow: auto; */
+
+  color:var(--primary-color);
+  background-color: var(--background-color);
+  font-family: 'Satoshi', sans-serif;
+  cursor: url("/icons/cursor.svg") 18 18, auto;
+  -moz-osx-font-smoothing: grayscale; /*(For Firefox)*/
+  -webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
 }
+
+
+a, li, .pointer{
+  cursor: url("/icons/cursorpointer.svg") 18 18, auto;
+}
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.blur1 {
+  -webkit-backdrop-filter: blur(4px);
+  -moz-backdrop-filter: blur(4px);
+/* -webkit-transform: translate3d(0, 0, 0);
+-moz-transform: translate3d(0, 0, 0); */
+}
+
+.abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
