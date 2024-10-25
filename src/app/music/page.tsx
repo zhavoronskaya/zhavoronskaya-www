@@ -1,4 +1,3 @@
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
 import { SocialLinks } from "@/constants";
 import ImageLink from "@/components/ImageLink/ImageLink";
 import Image from "next/image";
@@ -8,7 +7,7 @@ type Props = {};
 
 const MusicPage = ({}: Props) => {
   return (
-    <BaseLayout>
+    <>
       <div className="px-8">
         <div className="mt-16 sm:mt-32 sm:grid sm:grid-cols-12 sm:gap-4">
           <div className="sm:col-start-1 sm:col-span-7">
@@ -120,7 +119,7 @@ const MusicPage = ({}: Props) => {
           </div>
         </div>
       </div>
-    </BaseLayout>
+    </>
   );
 };
 

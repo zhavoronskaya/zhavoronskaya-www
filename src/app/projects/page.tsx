@@ -1,4 +1,3 @@
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
 import { TechnologyLinks } from "@/constants";
 import virtudes from "./parque-das-virtudes/data";
 import mono from "./mono/data";
@@ -8,53 +7,52 @@ type Props = {};
 
 const ProjectsPage = ({}: Props) => {
   return (
-    <BaseLayout>
-      <div className="px-8">
-        <div className="mt-16 sm:mt-32">
-          <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
-            Projects
-          </h1>
-          <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-4 sm:mt-8 lg:mt-12">
-            Welcome to the showcase of creative web works
-          </span>
-        </div>
-        <div className="mt-8 sm:mt-28 text-bodym sm:text-bodyt lg:text-body">
-          <p>
-            Explore creative web projects created using
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={TechnologyLinks.THREEJS}
-              className="text-accent-color hover:text-accent-color-active"
-            >
-              {" "}
-              Three.js
-            </a>
-            ,{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={TechnologyLinks.WEBGL}
-              className="text-accent-color hover:text-accent-color-active"
-            >
-              WebGL
-            </a>
-            ,{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={TechnologyLinks.BLENDER}
-              className="text-accent-color hover:text-accent-color-active"
-            >
-              Blender{" "}
-            </a>
-            & other technologies for interactive web product and digital art.
-          </p>
-        </div>
+    <div className="px-8">
+      <div className="mt-16 sm:mt-32">
+        <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
+          Projects
+        </h1>
+        <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-4 sm:mt-8 lg:mt-12">
+          Welcome to the showcase of creative web works
+        </span>
+      </div>
+      <div className="mt-8 sm:mt-28 text-bodym sm:text-bodyt lg:text-body">
+        <p>
+          Explore creative web projects created using
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={TechnologyLinks.THREEJS}
+            className="text-accent-color hover:text-accent-color-active"
+          >
+            {" "}
+            Three.js
+          </a>
+          ,{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={TechnologyLinks.WEBGL}
+            className="text-accent-color hover:text-accent-color-active"
+          >
+            WebGL
+          </a>
+          ,{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={TechnologyLinks.BLENDER}
+            className="text-accent-color hover:text-accent-color-active"
+          >
+            Blender{" "}
+          </a>
+          & other technologies for interactive web product and digital art.
+        </p>
+      </div>
 
-        <ProjectThumbnail project={virtudes} />
-        <ProjectThumbnail project={mono} />
-        {/* <div className="w-full mt-12 sm:mt-20 lg:mt-24 ">
+      <ProjectThumbnail project={virtudes} />
+      <ProjectThumbnail project={mono} />
+      {/* <div className="w-full mt-12 sm:mt-20 lg:mt-24 ">
           <Image
             width="3012"
             height="1616"
@@ -84,8 +82,7 @@ const ProjectsPage = ({}: Props) => {
             </Link>
           </div>
         </div> */}
-      </div>
-    </BaseLayout>
+    </div>
   );
 };
 

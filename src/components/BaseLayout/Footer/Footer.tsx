@@ -39,7 +39,7 @@ const Footer = ({ bgRight }: Props) => {
               telegram
             </a>
           </div>
-          <SoundToggle key="123" sound={true} />
+          <SoundToggle sound={true} />
           <div className="">
             <a
               target="_blank"

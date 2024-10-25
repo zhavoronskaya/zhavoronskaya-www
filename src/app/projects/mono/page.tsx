@@ -1,7 +1,3 @@
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
-
-import Image from "next/image";
-
 import ProjectPageLayout from "@/modules/projects/components/ProjectPageLayout";
 import mono from "./data";
 
@@ -9,7 +5,7 @@ type Props = {};
 
 const VirtudesProject = ({}: Props) => {
   return (
-    <BaseLayout>
+    <>
       <ProjectPageLayout project={mono}>
         <div className="mt-8 sm:mt-12 lg:mt-20 sm:grid sm:grid-cols-12 sm:gap-4">
           {/* <div className="mb-4 sm:mb-0 :sm:col-start-1 sm:col-span-12 h-[224px] lg:h-[640px] sm:h-[512px]">
@@ -209,7 +205,7 @@ const VirtudesProject = ({}: Props) => {
           </div>
         </div>
       </div> */}
-    </BaseLayout>
+    </>
   );
 };
 

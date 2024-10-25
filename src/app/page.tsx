@@ -1,13 +1,13 @@
 import BirdsScene from "@/components/BaseCanvas/BirdsScene";
 import ShotsGallery from "@/components/BaseCanvas/ShotsGallery";
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
+
 import { FlowerHome, Shell } from "@/components/UI/decor";
 import { TechnologyLinks } from "@/constants";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <BaseLayout>
+    <>
       <div className="canvas-wrapper fixed h-screen w-screen ">
         <BirdsScene />
       </div>
@@ -145,6 +145,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </BaseLayout>
+    </>
   );
 }

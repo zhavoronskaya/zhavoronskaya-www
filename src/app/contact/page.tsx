@@ -1,22 +1,12 @@
 import Image from "next/image";
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
+
 import { SocialLinks } from "@/constants";
 
 type Props = {};
 
 const ContactPage = ({}: Props) => {
   return (
-    <BaseLayout
-      decoration={
-        <Image
-          width="1648"
-          height="2198"
-          alt="contact"
-          className="object-cover w-full h-full"
-          src="/image/contact.png"
-        />
-      }
-    >
+    <>
       <div className="px-8">
         <div className="mt-16 sm:mt-32 grid grid-cols-3 gap-4">
           <div className="col-start-1 col-span-3">
@@ -75,7 +65,7 @@ const ContactPage = ({}: Props) => {
           </div>
         </div>
       </div>
-    </BaseLayout>
+    </>
   );
 };
 

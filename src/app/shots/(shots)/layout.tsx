@@ -1,10 +1,10 @@
-import BaseLayout from "@/components/BaseLayout/BaseLayout";
+import { Fragment } from "react";
 
 type Props = {
   children: React.ReactNode;
 };
 const ShotLayout = ({ children }: Props) => {
-  return <BaseLayout>{children}</BaseLayout>;
+  return <Fragment>{children}</Fragment>;
 };
 
 export default ShotLayout;
