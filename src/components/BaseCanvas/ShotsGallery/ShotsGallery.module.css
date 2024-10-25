@@ -1,0 +1,6 @@
+.annotation {
+  color: rgba(248, 244, 244, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

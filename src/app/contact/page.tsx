@@ -18,7 +18,7 @@ const ContactPage = ({}: Props) => {
       }
     >
       <div className="px-8">
-        <div className="mt-16 sm:mt-20 grid grid-cols-3 gap-4">
+        <div className="mt-16 sm:mt-32 grid grid-cols-3 gap-4">
           <div className="col-start-1 col-span-3">
             {/* <h1 className="sm:mt-12 uppercase text-labelm sm:text-labelt lg:text-label font-bold ">
               Team Up
@@ -33,7 +33,7 @@ const ContactPage = ({}: Props) => {
                 Have a project in mind?
               </p>
 
-              <div className="mt-4 sm:mt-8 mb-24">
+              <div className="mt-8 sm:mt-8 mb-40 sm:mb-24">
                 <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
                   feel free to contact me via
                 </span>
@@ -41,7 +41,7 @@ const ContactPage = ({}: Props) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={SocialLinks.TELEGRAM}
-                  className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+                  className="block text-accent-color uppercase text-[24px]/[24px] sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
                 >
                   telegram
                 </a>
@@ -49,7 +49,7 @@ const ContactPage = ({}: Props) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={SocialLinks.INSTAGRAM}
-                  className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+                  className="block text-accent-color uppercase text-[24px]/[24px] sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
                 >
                   instagram
                 </a>
@@ -57,7 +57,7 @@ const ContactPage = ({}: Props) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={SocialLinks.TWITTER}
-                  className="block text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+                  className="block text-accent-color uppercase text-[24px]/[24px] sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
                 >
                   twitter
                 </a>
@@ -66,7 +66,7 @@ const ContactPage = ({}: Props) => {
                   rel="noopener noreferrer"
                   type="email"
                   href="mailto:zhavoronskaya.public@gmail.com"
-                  className="text-accent-color uppercase text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
+                  className="text-accent-color uppercase text-[24px]/[24px] sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
                 >
                   email
                 </a>

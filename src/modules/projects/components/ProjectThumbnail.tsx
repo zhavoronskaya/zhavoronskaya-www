@@ -27,15 +27,17 @@ const ProjectThumbnail = ({ project }: Props) => {
       <div className="sm:grid sm:grid-cols-12">
         <div className="sm:col-start-1 sm:col-span-8">
           <h4 className="mt-4 sm:mt-8 text-hsm sm:text-hst lg:text-hs font-medium ">
-            {project.name}
+            {project.name[0]}
+            <span className="text-dissolve-color">{project.separator}</span>
+            {project.name[1]}
           </h4>
-          <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color">
+          <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-2">
             {project.thumbnailDIscription}
           </span>
         </div>
       </div>
       <div className="sm:grid sm:grid-cols-12">
-        <div className="sm:col-start-9 sm:col-span-4 mt-4  mb-10 sm:mb-16">
+        <div className="sm:col-start-9 sm:col-span-4 mt-8  mb-24 sm:mb-20">
           <Link
             href={project.routing}
             className=" block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"

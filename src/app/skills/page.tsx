@@ -8,7 +8,7 @@ const SkillsPage = ({}: Props) => {
   return (
     <BaseLayout>
       <div className="px-8">
-        <div className="mt-12 sm:mt-24 sm:grid sm:grid-cols-12 sm:gap-4">
+        <div className="mt-16 sm:mt-32 sm:grid sm:grid-cols-12 sm:gap-4">
           <div className=" sm:col-start-6 sm:col-span-7 lg:col-start-5 lg:col-span-8">
             <div>
               <h3 className="text-hlm sm:text-hmt lg:text-hl font-medium">
@@ -21,7 +21,7 @@ const SkillsPage = ({}: Props) => {
           </div>
 
           <div className=" sm:col-start-1 sm:row-start-1 sm:col-span-5 lg:col-start-1 lg:col-span-4">
-            <div className="mt-4 ">
+            <div className="mt-4 sm:mt-0">
               <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
                 contact
               </span>

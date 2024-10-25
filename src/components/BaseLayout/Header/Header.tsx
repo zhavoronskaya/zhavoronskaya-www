@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./Header.module.css";
 import { Logo, Burger, Cross } from "@/components/UI/icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
   bgRight?: string;
@@ -36,8 +37,17 @@ const Header = ({ bgRight }: Props) => {
             <Burger />
           </div>
         </div>
-
+        {/* <AnimatePresence>
+          <motion.div
+            key={Date.now()}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ease: "easeInOut", duration: 0.75 }}
+          > */}
         {isMenuOpen && <Menu onClose={menuClose} />}
+        {/* </motion.div>
+        </AnimatePresence> */}
       </header>
 
       <HeaderBackground right={bgRight} />
@@ -92,10 +102,27 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
     setIsActive(true);
   }, []);
 
-  let className = `${styles.menu} blur1 fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 backdrop-blur-sm bg-accent-color-transparent`;
+  let className = `blur1 fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 backdrop-blur-sm bg-accent-color-transparent`;
+  // let className = `${styles.menu} blur1 fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 backdrop-blur-sm bg-accent-color-transparent`;
 
   return (
-    <div className={className} onClick={onClose}>
+    // <motion.div
+    //   key={Date.now()}
+    //   initial={{ opacity: 0 }}
+    //   exit={{ opacity: 0, filter: "blur(0px)" }}
+    //   animate={{ opacity: 1, filter: "blur(5px)" }}
+    //   transition={{ ease: "easeInOut", duration: 0.75 }}
+    // >
+    // <AnimatePresence>
+    <motion.div
+      key={Date.now()}
+      initial={{ filter: "blur(4px)", opacity: 0 }}
+      exit={{ filter: "blur(4px)", opacity: 0 }}
+      animate={{ filter: "blur(0px)", opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+      onClick={onClose}
+      className={className}
+    >
       <div
         className="pointer absolute top-4 sm:right-6 right-4"
         onClick={onClose}
@@ -104,7 +131,8 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
       </div>
       <div className="relative h-full w-full">
         <div
-          className={styles.menublock + " absolute h-full w-full"}
+          // className={styles.menublock + " absolute h-full w-full"}
+          className={"absolute h-full w-full"}
           onClick={(e) => e.stopPropagation()}
         >
           <nav className="bg-accent-purple h-full rounded-lg border border-border-color ">
@@ -167,7 +195,8 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
           </nav>
         </div>
       </div>
-    </div>
+    </motion.div>
+    // </AnimatePresence>
   );
 };
 

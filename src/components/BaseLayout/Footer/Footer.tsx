@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { SocialLinks } from "@/constants";
-import { div } from "three/examples/jsm/nodes/Nodes.js";
+
+import { SoundOnIcon } from "@/components/UI/icons";
+import SoundToggle from "@/components/SoundToggle";
 
 type Props = {
   bgRight?: string;
@@ -37,7 +39,7 @@ const Footer = ({ bgRight }: Props) => {
               telegram
             </a>
           </div>
-
+          <SoundToggle key="123" sound={true} />
           <div className="">
             <a
               target="_blank"

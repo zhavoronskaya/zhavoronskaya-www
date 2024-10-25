@@ -13,11 +13,11 @@ const AlbumPageLayout = ({ album, children }: Props) => {
     <div className="px-8">
       <AlbumHeader />
 
-      <div className="mt-36 lg:mt-24">
+      <div className="mt-36 lg:mt-32">
         <h4 className=" text-hsm sm:text-hst lg:text-hs font-medium">
           {album.name}
         </h4>
-        <span className="pt-2 block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color ">
+        <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-2 sm:mt-4">
           {album.label}
         </span>
       </div>

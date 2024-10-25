@@ -30,7 +30,7 @@ html, body {
 
 body {
   /* overflow: auto; */
-
+  /* pointer-events: all; */
   color:var(--primary-color);
   background-color: var(--background-color);
   font-family: 'Satoshi', sans-serif;
@@ -70,4 +70,21 @@ a, li, .pointer{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.noscrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.noscrollbar-child > * {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.noscrollbar-child > *::-webkit-scrollbar {
+  display: none;
 }

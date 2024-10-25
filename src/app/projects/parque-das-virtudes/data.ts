@@ -5,7 +5,7 @@ const virtudes: IProject = {
   name: ["Parque das ", "Virtudes"],
   label: "Enjoy online experience of virtual visiting",
   thumbnailDIscription: "3D Web Project: A Park in Porto, Portugal",
-  thumbnailVideoUrl: "video/virtudes.mp4",
+  thumbnailVideoUrl: "/video/virtudes.mp4",
   routing: "/projects/parque-das-virtudes",
   link: `${TechnologyLinks.VIRTUDES}`,
   description:

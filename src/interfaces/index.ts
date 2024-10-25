@@ -24,6 +24,7 @@ export interface IIcon {
 
 export interface IProject {
   name: string[];
+  separator?: string;
   thumbnailDIscription?: string;
   thumbnailVideoUrl: string;
   // thumbnailSize: ImageSizes;

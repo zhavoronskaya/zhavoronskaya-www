@@ -14,7 +14,7 @@ const ShotPageLayout = ({ shot, children }: Props) => {
   return (
     <div className="px-8">
       <ShotHeader />
-      <div className="mt-36 sm:mt-20 lg:mt-24">
+      <div className="mt-36 sm:mt-32">
         <h2 className=" text-hlm sm:text-hlt lg:text-hl font-medium uppercase">
           {shot.name}
         </h2>
@@ -38,15 +38,15 @@ export const ShotPageLayoutDetailed = ({
   return (
     <ShotPageLayout shot={shot}>
       <div className="sm:grid sm:grid-cols-12 gap-4 z-[41]">
-        <div className="mt-16 sm:mt-10 lg:mt-20 sm:col-start-1 sm:col-span-6">
+        <div className="mt-16 sm:mt-20 lg:mt-24 sm:col-start-1 sm:col-span-6">
           <p className="text-bodysm sm:text-bodyst lg:text-bodys">{children}</p>
         </div>
 
-        <div className="mt-16 sm:mt-10 lg:mt-20 sm:col-start-8 sm:col-span-5">
+        <div className="mt-16 sm:mt-20 lg:mt-24  sm:col-start-8 sm:col-span-5">
           <ShotImageSlider images={shot.images} />
         </div>
 
-        <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-1 sm:col-span-6">
+        <div className="mt-12 sm:mt-16 lg:mt-24 sm:col-start-1 sm:col-span-6">
           <div className="h-full flex flex-col gap-4 justify-between">
             <div>
               <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color">

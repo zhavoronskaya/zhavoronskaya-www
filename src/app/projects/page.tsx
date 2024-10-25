@@ -10,12 +10,11 @@ const ProjectsPage = ({}: Props) => {
   return (
     <BaseLayout>
       <div className="px-8">
-        <div className="mt-20">
-          <h1 className="sm:mt-12 text-hxlm sm:text-hxlt lg:text-hxl font-bold ">
+        <div className="mt-16 sm:mt-32">
+          <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
             Projects
           </h1>
-          <br />
-          <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color ">
+          <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-4 sm:mt-8 lg:mt-12">
             Welcome to the showcase of creative web works
           </span>
         </div>

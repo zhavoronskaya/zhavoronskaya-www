@@ -10,9 +10,9 @@ const MusicPage = ({}: Props) => {
   return (
     <BaseLayout>
       <div className="px-8">
-        <div className="mt-16 sm:mt-20 sm:grid sm:grid-cols-12 sm:gap-4">
+        <div className="mt-16 sm:mt-32 sm:grid sm:grid-cols-12 sm:gap-4">
           <div className="sm:col-start-1 sm:col-span-7">
-            <h1 className="sm:mt-12 text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
+            <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
               Music
             </h1>
 
@@ -46,7 +46,7 @@ const MusicPage = ({}: Props) => {
               </a>
             </div>
 
-            <div className="sm:hidden relative mt-8">
+            <div className="sm:hidden relative mt-8 sm:mt-0">
               <div className="absolute h-36 inset-x-[-16px] ">
                 <Image
                   width="865"
@@ -74,7 +74,7 @@ const MusicPage = ({}: Props) => {
               </p>
             </div>
           </div>
-          <div className="hidden sm:block sm:relative sm:col-start-8 sm:col-span-5 ">
+          <div className="hidden sm:block sm:relative sm:col-start-9 sm:col-span-4 ">
             <div className="sm:absolute h-full sm:pb-12 sm:mr-[-32px] sm:rounded-lg sm:overflow-hidden">
               <Image
                 width="865"

@@ -1,6 +1,7 @@
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import styles from "./BaseLayout.module.css";
+import Transition from "./Transition";
 
 type Props = {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ const BaseLayout = ({ children, decoration }: Props) => {
   return (
     <>
       <Header bgRight={headerBgRight} />
-
+      {/* <Transition> */}
       <main
         id="base-layout-main"
         className={`${styles.main} ${mainDecorative} relative min-h-full bg-main-container-color sm:mx-6 mx-4 rounded-lg`}
@@ -30,6 +31,7 @@ const BaseLayout = ({ children, decoration }: Props) => {
           {decoration}
         </div>
       )}
+      {/* </Transition> */}
       <Footer bgRight={headerBgRight} />
     </>
   );

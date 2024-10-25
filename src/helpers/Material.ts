@@ -1,4 +1,4 @@
-import { Material, ShaderMaterial } from "three";
+import { Material, MeshBasicMaterial, ShaderMaterial } from "three";
 
 export function isMaterial(
   material: Material | Material[]
@@ -12,6 +12,11 @@ export function isShaderMaterial(
   return material instanceof ShaderMaterial;
 }
 
+export function isBasicMaterial(
+  material: Material | Material[]
+): material is MeshBasicMaterial {
+  return material instanceof MeshBasicMaterial;
+}
 // export function shaderMaterial(material: Material) {
 //   return material as ShaderMaterial;
 // }

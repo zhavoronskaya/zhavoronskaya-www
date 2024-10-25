@@ -12,7 +12,7 @@ const VirtudesProject = ({}: Props) => {
     <BaseLayout>
       <ProjectPageLayout project={mono}>
         <div className="mt-8 sm:mt-12 lg:mt-20 sm:grid sm:grid-cols-12 sm:gap-4">
-          <div className="mb-4 sm:mb-0 :sm:col-start-1 sm:col-span-12 h-[224px] lg:h-[640px] sm:h-[512px]">
+          {/* <div className="mb-4 sm:mb-0 :sm:col-start-1 sm:col-span-12 h-[224px] lg:h-[640px] sm:h-[512px]">
             <Image
               width="3012"
               height="1616"
@@ -38,7 +38,7 @@ const VirtudesProject = ({}: Props) => {
               className="object-cover w-full h-full rounded-lg border-border-image-color"
               src="/projects/virtudes3.webp"
             />
-          </div>
+          </div> */}
         </div>
       </ProjectPageLayout>
       {/* <div className="px-8">
