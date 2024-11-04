@@ -39,7 +39,7 @@ const CanvasImageSlider = ({ textures, activeImageIdx, sizes }: Props) => {
   const group = useRef<Group>(null);
   const queueGroup = useRef<Group>(null);
   const active = useRef<Mesh | null>(null);
-  console.log("textures", textures);
+
   const { pointer } = useThree();
 
   const meshFadeOut = useCallback((mesh: Mesh | null) => {
@@ -50,7 +50,6 @@ const CanvasImageSlider = ({ textures, activeImageIdx, sizes }: Props) => {
     const data = { z: mesh.position.z, progress: 0 };
     const to = { z: 500, progress: 1 };
     uniforms.uMouse.value = new Vector2(pointer.x, pointer.y);
-    console.log("PP", pointer);
 
     new TWEEN.Tween(data)
       .to(to, 2000)

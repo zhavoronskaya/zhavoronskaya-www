@@ -1,10 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useGSAP } from "@gsap/react";
 import * as THREE from "three";
+import isMobile from "@/helpers/DeviceDefenition";
+import {
+  CAMERA_POSITIONINGS_MAP,
+  CAMERA_POSITIONINGS_MAP_TOUCH_SCREEN,
+} from "./CameraSettings";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
@@ -13,30 +18,41 @@ const cameraTarget = new THREE.Vector3(0, 10, 0);
 const tl = gsap.timeline();
 
 export default function Animations() {
-  const camera = useThree((state) => state.camera);
+  // const camera = useThree((state) => state.camera);
+  const { size, camera } = useThree();
+  const touchScreen =
+    isMobile().phone ||
+    isMobile().tablet ||
+    (size.width <= 1024 && size.height >= 1024);
 
+  // console.log(touchScreen);
+
+  const trigger1 = touchScreen ? ".section-3" : ".section-2";
+  const trigger2 = touchScreen ? ".section-5" : ".section-4";
+
+  const cameraData = touchScreen
+    ? CAMERA_POSITIONINGS_MAP_TOUCH_SCREEN
+    : CAMERA_POSITIONINGS_MAP;
   useFrame((state, delta) => {
     camera.lookAt(cameraTarget);
   });
 
   useGSAP(
     () => {
-      // tl.fromTo(
-      //   ".canvas-wrapper",
-      //   { opacity: 0 },
-      //   { opacity: 1.0, duration: 0.5, ease: "power2.inOut" }
-      // );
-
       tl.fromTo(
         camera.position,
-        { x: -4.73, y: 10.49, z: 5.31 },
         {
-          x: -4.73,
-          y: 2.49,
-          z: 5.31,
+          x: cameraData["default"].position.x,
+          y: cameraData["default"].position.y,
+          z: cameraData["default"].position.z,
+        },
+        {
+          x: cameraData["firsTurn"].position.x,
+          y: cameraData["firsTurn"].position.y,
+          z: cameraData["firsTurn"].position.z,
           ease: "power1.inOut",
           scrollTrigger: {
-            trigger: ".section-2",
+            trigger: trigger1,
             start: "clamp(top bottom)",
             end: "clamp(bottom bottom)",
             scrub: true,
@@ -45,29 +61,15 @@ export default function Animations() {
       )
         .fromTo(
           camera.position,
-          { x: -4.73, y: 2.49, z: 5.31 },
           {
-            x: -1.5,
-            y: 4,
-            z: 6.31,
-            ease: "power1.inOut",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: ".section-3",
-              start: "clamp(top bottom)",
-              end: "clamp(bottom bottom)",
-              scrub: true,
-            },
+            x: cameraData["firsTurn"].position.x,
+            y: cameraData["firsTurn"].position.y,
+            z: cameraData["firsTurn"].position.z,
           },
-          ">"
-        )
-        .fromTo(
-          camera.position,
-          { x: -1.5, y: 4, z: 6.31 },
           {
-            x: -12.5,
-            y: -8,
-            z: 8.31,
+            x: cameraData["secondTurn"].position.x,
+            y: cameraData["secondTurn"].position.y,
+            z: cameraData["secondTurn"].position.z,
             ease: "power1.inOut",
             immediateRender: false,
             scrollTrigger: {
@@ -78,17 +80,43 @@ export default function Animations() {
             },
           },
           ">"
+        )
+        .fromTo(
+          camera.position,
+          {
+            x: cameraData["secondTurn"].position.x,
+            y: cameraData["secondTurn"].position.y,
+            z: cameraData["secondTurn"].position.z,
+          },
+          {
+            x: cameraData["lastTurn"].position.x,
+            y: cameraData["lastTurn"].position.y,
+            z: cameraData["lastTurn"].position.z,
+            ease: "power1.inOut",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: ".section-5",
+              start: "clamp(center bottom)",
+              end: "clamp(bottom bottom)",
+              scrub: true,
+            },
+          },
+          ">"
         );
       tl.fromTo(
         cameraTarget,
-        { x: 0, y: 10, z: 0 },
         {
-          x: 0,
-          y: 0.1,
-          z: 0,
+          x: cameraData["default"].target.x,
+          y: cameraData["default"].target.y,
+          z: cameraData["default"].target.z,
+        },
+        {
+          x: cameraData["firsTurn"].target.x,
+          y: cameraData["firsTurn"].target.y,
+          z: cameraData["firsTurn"].target.z,
           ease: "power1.inOut",
           scrollTrigger: {
-            trigger: ".section-2",
+            trigger: trigger1,
             start: "clamp(top bottom)",
             end: "clamp(bottom bottom)",
             scrub: true,
@@ -110,15 +138,19 @@ export default function Animations() {
         )
         .fromTo(
           cameraTarget,
-          { x: 0, y: 0.1, z: 0 },
           {
-            x: -4,
-            y: -0.5,
-            z: 0,
+            x: cameraData["firsTurn"].target.x,
+            y: cameraData["firsTurn"].target.y,
+            z: cameraData["firsTurn"].target.z,
+          },
+          {
+            x: cameraData["secondTurn"].target.x,
+            y: cameraData["secondTurn"].target.y,
+            z: cameraData["secondTurn"].target.z,
             ease: "power1.inOut",
             immediateRender: false,
             scrollTrigger: {
-              trigger: ".section-3",
+              trigger: ".section-4",
               start: "clamp(top bottom)",
               end: "clamp(bottom bottom)",
               scrub: true,
@@ -126,22 +158,35 @@ export default function Animations() {
           },
           ">"
         )
+        .to(
+          ".section-3",
+          {
+            opacity: 0,
+            scrollTrigger: {
+              trigger: trigger2,
+              start: "top bottom",
+              end: "top 70%",
+              scrub: 0.5,
+            },
+          },
+          "<"
+        )
         .fromTo(
           cameraTarget,
           {
-            x: -4,
-            y: -0.5,
-            z: 0,
+            x: cameraData["secondTurn"].target.x,
+            y: cameraData["secondTurn"].target.y,
+            z: cameraData["secondTurn"].target.z,
           },
           {
-            x: -12,
-            y: -8,
-            z: 0,
+            x: cameraData["lastTurn"].target.x,
+            y: cameraData["lastTurn"].target.y,
+            z: cameraData["lastTurn"].target.z,
             ease: "power1.inOut",
             immediateRender: false,
             scrollTrigger: {
-              trigger: ".section-4",
-              start: "clamp(top bottom)",
+              trigger: ".section-5",
+              start: "clamp(center bottom)",
               end: "clamp(bottom bottom)",
               scrub: true,
             },

@@ -11,7 +11,7 @@ type Props = {
 const Footer = ({ bgRight }: Props) => {
   return (
     <>
-      <footer className="fixed h-[64px] left-0  bottom-0 w-full z-[21]">
+      <footer className="fixed h-[64px] left-0  bottom-0 w-full z-[50]">
         <div className="flex justify-between items-center w-full h-16 px-4 sm:px-6 py-4">
           <div className="flex gap-4">
             <a
@@ -70,7 +70,7 @@ const Footer = ({ bgRight }: Props) => {
 const FooterBackground = ({ right = "0" }: { right?: string }) => {
   return (
     <div
-      className="fixed h-[64px] left-0 bottom-0 bg-background-color z-[19]"
+      className="fixed h-[64px] left-0 bottom-0 bg-background-color z-[49]"
       style={{ right }}
     >
       <div className="absolute sm:right-6 right-4 bottom-16">

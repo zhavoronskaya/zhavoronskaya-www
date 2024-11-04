@@ -12,6 +12,7 @@ import {
 } from "@/components/UI/icons";
 import { PADDING_Y } from "@/components/BaseLayout/BaseLayout";
 import styles from "./ViewShotPageLayout.module.css";
+import TransitionLink from "@/components/TransitionLink";
 
 type Props = CanvasProps & {
   className?: string;
@@ -91,7 +92,7 @@ export default function ViewShotPageLayout({
 
   const opacity = canvasRect ? 100 : 0;
   const transform = `scale(${canvasScale.x}, ${canvasScale.y})`;
-  const zIndex = isFullscreen ? 100 : 20;
+  const zIndex = isFullscreen ? 100 : 50;
   const canvasWrapperClassname = cn(styles.canvas, className, {
     [styles.canvasFullscreen]: isFullscreen,
   });
@@ -111,10 +112,10 @@ export default function ViewShotPageLayout({
         />
       )}
 
-      <div className="absolute left-0 top-0 flex justify-start z-40 p-4">
-        <Link href={hrefBackArrow}>
+      <div className="absolute left-0 top-0 flex justify-start z-[51] p-4">
+        <TransitionLink href={hrefBackArrow}>
           <BackArrow className="w-[20px] sm:w-[32px] lg:w-[32px]" />
-        </Link>
+        </TransitionLink>
       </div>
 
       <div

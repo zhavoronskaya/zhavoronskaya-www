@@ -2,6 +2,7 @@ import { cn } from "@/helpers/ClassName";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { EyesIcon } from "../UI/icons";
+import TransitionLink from "../TransitionLink";
 
 type Props = {};
 
@@ -28,7 +29,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-6 lg:col-span-5 row-start-7 row-span-2 sm:row-start-8 sm:row-span-4 lg:row-start-[13] lg:row-span-5"
+          className="col-start-1 col-span-3 sm:col-span-6 lg:col-span-5 row-start-7 row-span-3 sm:row-start-8 sm:row-span-4 lg:row-start-[13] lg:row-span-5"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             Showcases using{" "}
@@ -89,7 +90,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-6 sm:col-start-7 row-start-[10] row-span-2 sm:row-start-[13] sm:row-span-3 lg:row-start-[19] lg:row-span-3"
+          className="col-start-1 col-span-3 sm:col-span-6 sm:col-start-7 row-start-[10] row-span-3 sm:row-start-[13] sm:row-span-3 lg:row-start-[19] lg:row-span-3"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             Collection of some experimentation with{" "}
@@ -142,7 +143,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-5 row-start-6 row-span-2 sm:row-start-8 sm:row-span-4 lg:row-start-[10] lg:row-span-4"
+          className="col-start-1 col-span-3 sm:col-span-5 row-start-6 row-span-3 sm:row-start-8 sm:row-span-4 lg:row-start-[10] lg:row-span-4"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             Small collection with{" "}
@@ -203,7 +204,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-6 sm:col-start-7 row-start-[13] row-span-2 sm:row-start-[15] sm:row-span-4 lg:row-start-[20] lg:row-span-4"
+          className="col-start-1 col-span-3 sm:col-span-6 sm:col-start-7 row-start-[13] row-span-3 sm:row-start-[15] sm:row-span-4 lg:row-start-[20] lg:row-span-4"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             This showcases a series of experimental digital artworks that
@@ -256,7 +257,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-5 sm:col-start-1 row-start-[10] row-span-2 sm:row-start-[7] sm:row-span-4 lg:row-start-[13] lg:row-span-4"
+          className="col-start-1 col-span-3 sm:col-span-5 sm:col-start-1 row-start-[10] row-span-3 sm:row-start-[7] sm:row-span-4 lg:row-start-[13] lg:row-span-5"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             Digital art works that explore the unique properties awesome{" "}
@@ -283,7 +284,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
       </Grid>
 
-      <Grid title="Perlin Noise">
+      <Grid title="Perlin Noise" className="my-16">
         <Cell
           href="/shots/21/view"
           className="col-start-1 col-span-3 sm:col-start-6 sm:col-span-7 row-start-1 row-span-3 sm:row-span-6 lg:row-span-9"
@@ -303,7 +304,7 @@ const GridGallery = ({}: Props) => {
         </Cell>
         <Cell
           border={false}
-          className="col-start-1 col-span-3 sm:col-span-5 lg:col-span-4 row-start-7 row-span-2 sm:row-start-7 sm:row-span-4 lg:row-start-[10] lg:row-span-5"
+          className="col-start-1 col-span-3 sm:col-span-5 lg:col-span-4 row-start-7 row-span-3 sm:row-start-7 sm:row-span-6 lg:row-start-[10] lg:row-span-7"
         >
           <p className="text-gallerybodym sm:text-gallerybodyt lg:text-gallerybody">
             Collection features two distinct pieces of abstract digital art,
@@ -342,7 +343,7 @@ const Grid = ({
   return (
     <div
       className={cn(
-        "relative grid grid-cols-3 sm:grid-cols-12 my-16 sm:my-36 lg:my-64 gap-4",
+        "relative grid grid-cols-3 sm:grid-cols-12 my-24 sm:my-36 lg:my-64 gap-4",
         className
       )}
       style={{ gridAutoRows: "64px" }}
@@ -364,7 +365,7 @@ const Cell = ({
 }: {
   children: React.ReactNode;
   className: string;
-  href?: Url;
+  href?: string;
   border?: boolean;
 }) => {
   const resultClassName = cn(
@@ -375,7 +376,7 @@ const Cell = ({
 
   if (href) {
     return (
-      <Link href={href} className={resultClassName}>
+      <TransitionLink href={href} className={resultClassName}>
         <div className="absolute flex flex-col inset-0 items-center justify-center opacity-0 bg-border-color group-hover:opacity-100 transition-opacity duration-300 z-10 ease-in">
           <EyesIcon
             fillColor="#F08CAE"
@@ -389,7 +390,7 @@ const Cell = ({
         <div className="h-full w-full transition-transform duration-300 scale-100 group-hover:scale-110">
           {children}
         </div>
-      </Link>
+      </TransitionLink>
     );
   }
 
@@ -408,7 +409,7 @@ const Title = ({
   return (
     <h4
       className={cn(
-        "absolute w-full z-10 top-[-20px] sm:top-[-44px] lg:top-[-64px] uppercase flex text-labelm sm:text-labelt lg:text-label text-gray-200 font-bold items-center mix-blend-difference",
+        "absolute w-full z-10 top-[-20px] sm:top-[-44px] lg:top-[-64px] uppercase flex text-labelm sm:text-labelt lg:text-label mix-blend-difference text-gray-200 animation-fade-in font-bold items-center ",
         { "justify-end": textEnd },
         className
       )}

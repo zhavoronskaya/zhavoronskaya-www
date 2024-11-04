@@ -2,6 +2,8 @@ import { IAlbum } from "@/interfaces";
 import AlbumHeader from "./AlbumHeader";
 import TagsList from "@/components/TagsList";
 import ImageSlider from "@/components/ImageSlider";
+import { NotesMusic } from "@/components/UI/decor";
+import { AlbumSvgAnimation } from "@/components/SvgAnimation";
 
 type Props = {
   album: IAlbum;
@@ -38,7 +40,11 @@ export const AlbumPageLayoutDetailed = ({
 }: AlbumPageLayoutDetailedProps) => {
   return (
     <AlbumPageLayout album={album}>
-      <div className="sm:grid sm:grid-cols-12">
+      <AlbumSvgAnimation />
+      <div className="sm:grid sm:grid-cols-12 relative">
+        <div className="album-notes absolute left-[72%] top-[-36%] sm:left-[86%] sm:top-[-24%] lg:left-[80%] lg:top-[-20%] pointer-events-none z-20">
+          <NotesMusic className="w-[96px] sm:w-[120px] lg:w-[160px] xl:w-[180px]" />
+        </div>
         <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-1 sm:col-span-6">
           <div className="h-full flex flex-col gap-4 justify-between">
             <p className="text-bodysm sm:text-bodyst lg:text-bodys">
@@ -50,7 +56,7 @@ export const AlbumPageLayoutDetailed = ({
           </div>
         </div>
 
-        <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-8 sm:col-span-5">
+        <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-8 sm:col-span-5 ">
           <ImageSlider images={album.images} />
         </div>
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import BaseLayout from "./BaseLayout";
+import Image from "next/image";
 
 type Props = {
   children: React.ReactNode;
@@ -10,7 +10,6 @@ type Props = {
 
 const BaseLayoutWithDecoration = ({ children }: Props) => {
   const pathname = usePathname();
-
   let decoration: React.ReactNode = null;
 
   if (pathname === "/contact") {
@@ -21,6 +20,7 @@ const BaseLayoutWithDecoration = ({ children }: Props) => {
         alt="contact"
         className="object-cover w-full h-full"
         src="/image/contact.png"
+        priority={true}
       />
     );
   }

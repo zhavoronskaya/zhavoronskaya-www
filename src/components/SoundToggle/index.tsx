@@ -5,11 +5,11 @@ import { SoundOffIcon, SoundOnIcon } from "../UI/icons";
 import useAudio from "@/hooks/useAudio";
 
 export default function SoundToggle({ sound }: { sound: boolean }) {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const { toggle } = useAudio("/sound/sound.mp3", {
     startTime: 0,
     autoplay: false,
-    canPlay: sound,
+    canPlay: false,
   });
   const handleSoundClick = () => {
     setIsActive((v) => !v);

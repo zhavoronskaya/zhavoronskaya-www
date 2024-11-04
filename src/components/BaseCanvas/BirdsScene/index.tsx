@@ -1,15 +1,14 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import {
   useGLTF,
   useAnimations,
   Lightformer,
-  OrbitControls,
   Environment,
   Float,
 } from "@react-three/drei";
-import { Group, PerspectiveCamera, Vector3 } from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { Group, PerspectiveCamera } from "three";
+import { useThree } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
 import BaseCanvas from "..";
 import {
@@ -20,13 +19,14 @@ import {
 import Particles from "./Particles";
 import Animations from "./Animations";
 import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
+import { CAMERA_POSITIONINGS_MAP } from "./CameraSettings";
 
 type Props = {};
 
 function getInitialCamera() {
   if (typeof window !== "undefined") {
-    const cameraPos = new Vector3(-4.73, 10.49, 5.31);
-    const cameraTarget = new Vector3(0, 10, 0);
+    const cameraPos = CAMERA_POSITIONINGS_MAP["default"].position;
+    const cameraTarget = CAMERA_POSITIONINGS_MAP["default"].target;
     const camera = new PerspectiveCamera();
     camera.fov = 75;
     camera.near = 0.1;
@@ -45,18 +45,19 @@ const BirdsScene = () => {
     <>
       <Loader
         containerStyles={{
-          backgroundColor: "rgba(248, 244, 244, 1)",
+          backgroundColor: "rgba(255, 255, 252, 1)",
+          zIndex: 100,
         }}
         innerStyles={{ backgroundColor: "rgba(255, 255, 252, 1)" }}
-        barStyles={{ backgroundColor: "rgba(240, 140, 174, 1)" }}
+        barStyles={{
+          backgroundColor: "rgba(240, 140, 174, 0.75)",
+        }}
         // dataStyles={{ color: "rgba(11, 0, 20, 1)", fontFamily: "Satoshi" }}
         // dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`}
       />
 
       <BaseCanvas gl={{ antialias: true }} camera={camera} dpr={[1, 1.5]}>
         <ambientLight />
-
-        {/* <OrbitControls /> */}
         <Particles />
 
         <Suspense>

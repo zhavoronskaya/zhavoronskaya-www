@@ -12,11 +12,15 @@ export default function Transition({
       id="motion-div"
       // initial={{ y: 20, opacity: 0 }}
       // animate={{ y: 0.1, opacity: 1 }}
-      initial={{ x: 20 }}
-      animate={{ x: 0.1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 1 }}
       // className="relative z-[20]"
-      style={{ height: "100%", willChange: "transform, opacity" }}
+      style={{
+        height: "100%",
+        willChange: "transform, opacity",
+        overflow: "auto",
+      }}
     >
       {children}
     </motion.div>

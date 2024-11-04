@@ -5,6 +5,9 @@ import { ROUTES } from "@/constants/routes";
 import TagsList from "@/components/TagsList";
 import { Heart } from "@/components/UI/icons";
 import ShotImageSlider from "@/components/ShotImageSlider";
+import { FlowerShot, HeartsShot } from "@/components/UI/decor";
+import { ShotLayoutSvgAnimation } from "@/components/SvgAnimation";
+import TransitionLink from "@/components/TransitionLink";
 
 type Props = {
   shot: IShotData;
@@ -37,7 +40,12 @@ export const ShotPageLayoutDetailed = ({
 }: ShotPageLayoutDetailedProps) => {
   return (
     <ShotPageLayout shot={shot}>
-      <div className="sm:grid sm:grid-cols-12 gap-4 z-[41]">
+      <ShotLayoutSvgAnimation />
+      <div className="sm:grid sm:grid-cols-12 gap-4 z-20 relative">
+        <div className="short-heart-layout absolute right-[14%] top-[-30%] sm:right-[2%] sm:top-[-4%] lg:right-[4%] lg:top-[0%] z-20 pointer-events-none">
+          <HeartsShot className="w-[124px] sm:w-[180px] lg:w-[200px]" />
+        </div>
+
         <div className="mt-16 sm:mt-20 lg:mt-24 sm:col-start-1 sm:col-span-6">
           <p className="text-bodysm sm:text-bodyst lg:text-bodys">{children}</p>
         </div>
@@ -64,7 +72,7 @@ export const ShotPageLayoutDetailed = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       href={ref.src}
-                      className="block text-accent-color text-hintm sm:text-hintt lg:text-hint hover:text-accent-color-active font-medium"
+                      className="block text-accent-color  hover:text-accent-color-active font-medium"
                     >
                       {ref.name}
                     </a>
@@ -75,17 +83,21 @@ export const ShotPageLayoutDetailed = ({
           </div>
         </div>
 
-        <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-7 sm:col-span-6"></div>
+        <div className="mt-8 sm:mt-16 lg:mt-24 sm:col-start-7 sm:col-span-6 relative">
+          <div className="shot-flower-layout absolute right-0 bottom-[100%] sm:right-10 sm:bottom-[100%] md:right-2 md:top-[-10%] lg:right-16 lg:top-0 z-20 pointer-events-none">
+            <FlowerShot className="w-[124px] sm:w-[340px] lg:w-[340px]" />
+          </div>
+        </div>
 
         <div className="sm:pb-4 sm:col-start-8 sm:col-span-5">
           <div className="flex justify-end">
             {" "}
-            <Link
+            <TransitionLink
               href={ROUTES.SHOT_VIEW_PAGE(id)}
               className="block text-accent-color text-pillm sm:text-pillt lg:text-pill hover:text-accent-color-active font-medium"
             >
               view shot
-            </Link>
+            </TransitionLink>
           </div>
         </div>
 

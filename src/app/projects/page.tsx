@@ -2,21 +2,34 @@ import { TechnologyLinks } from "@/constants";
 import virtudes from "./parque-das-virtudes/data";
 import mono from "./mono/data";
 import ProjectThumbnail from "@/modules/projects/components/ProjectThumbnail";
+import { FlowerProject } from "@/components/UI/decor";
+import h1 from "@/components/JumpingText";
+import { ProjectsSvgAnimation } from "@/components/SvgAnimation";
+import JumpingText from "@/components/JumpingText";
 
 type Props = {};
 
 const ProjectsPage = ({}: Props) => {
   return (
-    <div className="px-8">
-      <div className="mt-16 sm:mt-32">
-        <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
+    <div className="px-8 relative">
+      <ProjectsSvgAnimation />
+      <div className="projects-flower absolute right-2 top-[0%]  sm:right-2 sm:top-[0%] lg:right-4 lg:top-[0%] z-20 pointer-events-none">
+        <FlowerProject className="w-[200px] sm:w-[380px] lg:w-[480px]" />
+      </div>
+
+      <div className="projects-title title mt-16 sm:mt-32">
+        <JumpingText className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase block">
           Projects
-        </h1>
+        </JumpingText>
+
+        {/* <h1 className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase">
+          Projects
+        </h1> */}
         <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-4 sm:mt-8 lg:mt-12">
           Welcome to the showcase of creative web works
         </span>
       </div>
-      <div className="mt-8 sm:mt-28 text-bodym sm:text-bodyt lg:text-body">
+      <div className="mt-8 sm:mt-28 text-bodym sm:text-bodyt lg:text-body relative">
         <p>
           Explore creative web projects created using
           <a
@@ -52,36 +65,6 @@ const ProjectsPage = ({}: Props) => {
 
       <ProjectThumbnail project={virtudes} />
       <ProjectThumbnail project={mono} />
-      {/* <div className="w-full mt-12 sm:mt-20 lg:mt-24 ">
-          <Image
-            width="3012"
-            height="1616"
-            alt=""
-            className="block object-cover w-full h-full rounded-lg border-border-image-color"
-            src="/projects/virtudes.webp"
-          />
-        </div>
-
-        <div className="sm:grid sm:grid-cols-12">
-          <div className="sm:col-start-1 sm:col-span-8">
-            <h4 className="mt-4 sm:mt-8 text-hsm sm:text-hst lg:text-hs font-medium ">
-              {virtudes.name} {virtudes.subname}
-            </h4>
-            <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color">
-              3D Web Project: A Park in Porto, Portugal
-            </span>
-          </div>
-        </div>
-        <div className="sm:grid sm:grid-cols-12">
-          <div className="sm:col-start-9 sm:col-span-4 mt-8  mb-8 sm:mb-16">
-            <Link
-              href="/projects/parque-das-virtudes"
-              className=" block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
-            >
-              view project
-            </Link>
-          </div>
-        </div> */}
     </div>
   );
 };

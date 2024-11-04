@@ -41,12 +41,12 @@ const VirtudesProject = ({}: Props) => {
       </ProjectPageLayout>
       {/* <div className="px-8">
         <div className="mt-4">
-          <Link
+          <TransitionLink
             href="/projects"
             className=" block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
           >
             projects
-          </Link>
+          </TransitionLink>
         </div>
         <div className="mt-16 sm:mt-36 sm:grid sm:grid-cols-12">
           <div className="sm:col-start-1 sm:col-span-9 ">

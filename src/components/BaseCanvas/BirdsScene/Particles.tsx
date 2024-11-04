@@ -6,6 +6,7 @@ import * as THREE from "three";
 
 import pointsVertexShader from "./shaders/vertex";
 import pointsFragmentShader from "./shaders/fragment";
+import useWindowPointerFromCenter from "@/hooks/usePointerMove";
 
 function getResolutionVector() {
   if (typeof window === "undefined") return null;
@@ -78,6 +79,8 @@ function Particles() {
 
   const { raycaster, camera, scene } = useThree();
 
+  const pointer = useWindowPointerFromCenter();
+
   useFrame((state, delta) => {
     if (!planeRef.current || !displacement || !pointsRef.current) return;
     planeRef.current.quaternion.rotateTowards(
@@ -88,8 +91,9 @@ function Particles() {
       state.camera.quaternion,
       60 * delta
     );
-    displacement.screenCursor.x = state.pointer.x;
-    displacement.screenCursor.y = state.pointer.y;
+
+    displacement.screenCursor.x = pointer.current.x;
+    displacement.screenCursor.y = pointer.current.y;
     raycaster.setFromCamera(displacement.screenCursor, camera);
     const intersections = raycaster.intersectObject(planeRef.current);
 
@@ -146,15 +150,20 @@ function Particles() {
         shaderRef={shaderRef}
         texture={displacement?.texture}
         geometryArgs={[
-          2 * viewport.width,
-          (2 * viewport.height) / sizeRatio,
+          2.4 * viewport.width,
+          (2.4 * viewport.height) / sizeRatio,
           32,
-          16,
+          32,
         ]}
       />
       <mesh ref={planeRef}>
         <planeGeometry
-          args={[2 * viewport.width, (2 * viewport.height) / sizeRatio, 1, 1]}
+          args={[
+            2.4 * viewport.width,
+            (2.4 * viewport.height) / sizeRatio,
+            1,
+            1,
+          ]}
         />
         <meshBasicMaterial
           color={"pink"}

@@ -2,47 +2,55 @@ import { SocialLinks } from "@/constants";
 import ImageLink from "@/components/ImageLink/ImageLink";
 import Image from "next/image";
 import previewAlbumsData from "./data";
+import { BirdMusic, FlowerMusic } from "@/components/UI/decor";
+import { MusicSvgAnimation } from "@/components/SvgAnimation";
 
 type Props = {};
 
 const MusicPage = ({}: Props) => {
   return (
     <>
+      <MusicSvgAnimation />
       <div className="px-8">
         <div className="mt-16 sm:mt-32 sm:grid sm:grid-cols-12 sm:gap-4">
           <div className="sm:col-start-1 sm:col-span-7">
-            <h1 className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase">
+            <h1 className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase">
               Music
             </h1>
 
-            <div className="mt-44 md:mt-36 lg:mt-32">
-              <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
-                discography
-              </span>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={SocialLinks.BANDCAMP}
-                className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
-              >
-                bandcamp
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={SocialLinks.SOUNDCLOUD}
-                className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
-              >
-                soundcloud
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={SocialLinks.DISCOGS}
-                className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
-              >
-                discogs
-              </a>
+            <div className="mt-44 md:mt-36 lg:mt-32 relative">
+              <div className="music-flower absolute left-[28%] bottom-[0%] sm:left-[44%] sm:top-[-100%] lg:left-[60%] lg:top-[-100%] pointer-events-none z-20">
+                <FlowerMusic className="w-[220px] sm:w-[380px] lg:w-[420px] xl:w-[540px]" />
+              </div>
+              <div>
+                <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+                  discography
+                </span>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={SocialLinks.BANDCAMP}
+                  className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
+                >
+                  bandcamp
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={SocialLinks.SOUNDCLOUD}
+                  className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
+                >
+                  soundcloud
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={SocialLinks.DISCOGS}
+                  className="block text-accent-color uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm hover:text-accent-color-active font-medium"
+                >
+                  discogs
+                </a>
+              </div>
             </div>
 
             <div className="sm:hidden relative mt-8 sm:mt-0">
@@ -53,6 +61,7 @@ const MusicPage = ({}: Props) => {
                   alt=""
                   className="object-cover block h-full w-full sm:rounded-lg border border-border-image-color"
                   src="/image/profile.webp"
+                  priority={true}
                 />
               </div>
             </div>
@@ -81,19 +90,25 @@ const MusicPage = ({}: Props) => {
                 alt=""
                 className="object-cover block h-full w-full sm:rounded-lg border border-border-image-color"
                 src="/image/profile.webp"
+                priority={true}
               />
             </div>
           </div>
         </div>
 
         <div className="mt-12 sm:mt-16 lg:mt-36 sm:grid sm:grid-cols-12 sm:gap-4">
-          <div className="sm:mt-36 sm:col-start-1 sm:col-span-4">
-            <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
-              2017-2021
-            </span>
-            <p className="text-hxxsm sm:text-hxxst lg:text-hxxs font-medium">
-              some selected works
-            </p>
+          <div className="sm:mt-36 sm:col-start-1 sm:col-span-4 relative">
+            <div>
+              <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+                2017-2021
+              </span>
+              <p className="text-hxxsm sm:text-hxxst lg:text-hxxs font-medium">
+                some selected works
+              </p>
+            </div>
+            <div className="music-bird absolute left-[-16%] top-[16%] sm:left-[-46%] sm:top-[4%] lg:left-[-56%] lg:top-[-2%] xl:left-[-46%] xl:top-[-6%] pointer-events-none z-20">
+              <BirdMusic className="w-[220px] sm:w-[400px] lg:w-[580px] xl:w-[780px]" />
+            </div>
           </div>
           <div className="mt-24 mb-8 sm:mt-0 sm:col-start-5 sm:col-span-8">
             <div className="flex gap-2 sm:gap-4">

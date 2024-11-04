@@ -2,10 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { EyesIcon } from "../UI/icons";
 import { IImageLink } from "../../interfaces";
+import TransitionLink from "../TransitionLink";
 
 const ImageLink = (props: IImageLink) => {
   return (
-    <Link
+    <TransitionLink
       href={props.href}
       className="group relative rounded-lg overflow-hidden"
     >
@@ -26,7 +27,7 @@ const ImageLink = (props: IImageLink) => {
         className={`${props.image.className} object-cover w-full border border-border-image-color`}
         src={props.image.src}
       />
-    </Link>
+    </TransitionLink>
   );
 };
 

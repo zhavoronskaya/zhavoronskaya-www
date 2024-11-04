@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { gsap } from "gsap";
 import Link from "next/link";
 import styles from "./Header.module.css";
 import { Logo, Burger, Cross } from "@/components/UI/icons";
-import { motion, AnimatePresence } from "framer-motion";
+import TransitionLink from "@/components/TransitionLink";
 
 type Props = {
   bgRight?: string;
@@ -15,39 +15,56 @@ const Header = ({ bgRight }: Props) => {
 
   const menuOpen = () => {
     setMenuOpen(true);
-    document.body.style.backgroundColor = "#F7DAE2";
-    document.body.style.overflow = "hidden";
+
+    // // document.body.style.backgroundColor = "#F7DAE2";
+    // document.body.style.overflow = "hidden";
+    // const header = document.querySelector("header");
+    // if (header) header.style.zIndex = "201";
   };
 
   const menuClose = () => {
-    setMenuOpen(false);
-    document.body.style.backgroundColor = "rgba(248, 244, 244, 1)";
-    document.body.style.overflow = "auto";
+    const tl = gsap.timeline();
+    tl.to(".link", {
+      duration: 0.2,
+      y: -40,
+      delay: 0.2,
+      stagger: 0.2,
+      opacity: 0,
+      ease: "sine.out",
+    }).to(
+      ".menu",
+      {
+        duration: 0.5,
+        ease: "power1.inOut",
+        // y: "-100%",
+        opacity: 0,
+        onComplete: () => {
+          setMenuOpen(false);
+        },
+      },
+      ">"
+    );
+    //
+    // document.body.style.backgroundColor = "rgba(248, 244, 244, 1)";
+    // document.body.style.overflow = "auto";
+    // const header = document.querySelector("header");
+    // if (header) header.style.zIndex = "50";
   };
 
   return (
     <>
-      <header className="fixed h-[64px] left-0 top-0 w-full z-[21]">
+      <header className="fixed h-[64px] left-0 top-0 w-full z-[50]">
         <div className="flex justify-between w-full px-4 sm:px-6 py-4">
-          <Link href="/">
+          <TransitionLink href="/">
             <Logo />
-          </Link>
+          </TransitionLink>
 
           <div className="relative pointer" onClick={menuOpen}>
             <Burger />
           </div>
         </div>
-        {/* <AnimatePresence>
-          <motion.div
-            key={Date.now()}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ ease: "easeInOut", duration: 0.75 }}
-          > */}
+
         {isMenuOpen && <Menu onClose={menuClose} />}
-        {/* </motion.div>
-        </AnimatePresence> */}
       </header>
 
       <HeaderBackground right={bgRight} />
@@ -58,7 +75,7 @@ const Header = ({ bgRight }: Props) => {
 const HeaderBackground = ({ right = "0" }: { right?: string }) => {
   return (
     <div
-      className="fixed h-[64px] left-0 top-0 bg-background-color z-[19]"
+      className="fixed h-[64px] left-0 top-0 bg-background-color z-[49]"
       style={{ right }}
     >
       <div className="absolute sm:left-6 left-4 top-16">
@@ -99,30 +116,32 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setIsActive(true);
+    // setIsActive(true);
+    const tl = gsap.timeline();
+    tl.to(".menu", {
+      duration: 0.5,
+      ease: "power1.inOut",
+      // y: 0,
+      opacity: 1,
+    }).to(
+      ".link",
+      {
+        duration: 0.2,
+        y: 0,
+        delay: 0.2,
+        stagger: 0.2,
+        opacity: 1,
+        ease: "sine.out",
+      },
+      ">"
+    );
   }, []);
 
-  let className = `blur1 fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 backdrop-blur-sm bg-accent-color-transparent`;
-  // let className = `${styles.menu} blur1 fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 backdrop-blur-sm bg-accent-color-transparent`;
+  let className = `menu fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 opacity-0 bg-background-color`;
+  //let className = `menu fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 opacity-1 translate-y-[-100%] bg-background-color`;
 
   return (
-    // <motion.div
-    //   key={Date.now()}
-    //   initial={{ opacity: 0 }}
-    //   exit={{ opacity: 0, filter: "blur(0px)" }}
-    //   animate={{ opacity: 1, filter: "blur(5px)" }}
-    //   transition={{ ease: "easeInOut", duration: 0.75 }}
-    // >
-    // <AnimatePresence>
-    <motion.div
-      key={Date.now()}
-      initial={{ filter: "blur(4px)", opacity: 0 }}
-      exit={{ filter: "blur(4px)", opacity: 0 }}
-      animate={{ filter: "blur(0px)", opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
-      onClick={onClose}
-      className={className}
-    >
+    <div onClick={onClose} className={className}>
       <div
         className="pointer absolute top-4 sm:right-6 right-4"
         onClick={onClose}
@@ -132,71 +151,70 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
       <div className="relative h-full w-full">
         <div
           // className={styles.menublock + " absolute h-full w-full"}
-          className={"absolute h-full w-full"}
+          className={" absolute h-full w-full"}
           onClick={(e) => e.stopPropagation()}
         >
-          <nav className="bg-accent-purple h-full rounded-lg border border-border-color ">
+          <nav className="h-full">
             <ul className="flex flex-col items-center h-full justify-center gap-8 sm:gap-4 md:gap-0 text-menum sm:text-menut lg:text-menu font-bold">
-              <li>
-                <Link
+              <li className="link opacity-0 translate-y-[40px]">
+                <TransitionLink
                   href="/"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   home
-                </Link>
+                </TransitionLink>
               </li>
-              <li>
-                <Link
+              <li className="link opacity-0 translate-y-[40px]">
+                <TransitionLink
                   href="/shots"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   shots
-                </Link>
+                </TransitionLink>
               </li>
-              <li>
-                <Link
+              <li className="link opacity-0 translate-y-[40px]">
+                <TransitionLink
                   href="/projects"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   projects
-                </Link>
+                </TransitionLink>
               </li>
-              <li>
-                <Link
+              <li className="link opacity-0  translate-y-[40px]">
+                <TransitionLink
                   href="/skills"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   skills
-                </Link>
+                </TransitionLink>
               </li>
-              <li>
-                <Link
+              <li className="link opacity-0 translate-y-[40px]">
+                <TransitionLink
                   href="/music"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   music
-                </Link>
+                </TransitionLink>
               </li>
-              <li>
-                <Link
+              <li className="link opacity-0 translate-y-[40px]">
+                <TransitionLink
                   href="/contact"
                   className="uppercase hover:text-accent-color-active"
                   onClick={onClose}
                 >
                   contact
-                </Link>
+                </TransitionLink>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-    </motion.div>
-    // </AnimatePresence>
+    </div>
   );
 };
 
