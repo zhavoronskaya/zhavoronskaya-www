@@ -1,8 +1,9 @@
-import Image from "next/image";
-
 import { SocialLinks } from "@/constants";
 import { BirdContact } from "@/components/UI/decor";
 import { ContactSvgAnimation } from "@/components/SvgAnimation";
+
+import GradientText from "@/components/GradientText";
+import JumpingText from "@/components/JumpingText";
 
 type Props = {};
 
@@ -26,9 +27,12 @@ const ContactPage = ({}: Props) => {
                 <BirdContact className="w-[180px] sm:w-[310px] lg:w-[360px] xl:w-[380px]" />
               </div>
               <div>
-                <p className="text-hlm sm:text-hlt lg:text-hl">
+                <JumpingText
+                  y={10}
+                  className="title text-hlm sm:text-hlt lg:text-hl"
+                >
                   Have a project in mind?
-                </p>
+                </JumpingText>
 
                 <div className="mt-8 sm:mt-8 mb-40 sm:mb-24">
                   <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">

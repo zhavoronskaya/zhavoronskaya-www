@@ -4,6 +4,7 @@ import TagsList from "@/components/TagsList";
 import ImageSlider from "@/components/ImageSlider";
 import { NotesMusic } from "@/components/UI/decor";
 import { AlbumSvgAnimation } from "@/components/SvgAnimation";
+import FadingText from "@/components/FadingText";
 
 type Props = {
   album: IAlbum;
@@ -16,9 +17,9 @@ const AlbumPageLayout = ({ album, children }: Props) => {
       <AlbumHeader />
 
       <div className="mt-36 lg:mt-32">
-        <h4 className=" text-hsm sm:text-hst lg:text-hs font-medium">
+        <FadingText className="subtitle text-hsm sm:text-hst lg:text-hs font-medium">
           {album.name}
-        </h4>
+        </FadingText>
         <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-2 sm:mt-4">
           {album.label}
         </span>

@@ -1,7 +1,10 @@
 import { Canvas, CanvasProps } from "@react-three/fiber";
+import { forwardRef } from "react";
 
-const BaseCanvas = ({ camera, ...props }: CanvasProps) => {
-  return <Canvas camera={camera} {...props} />;
-};
+const BaseCanvas = forwardRef<HTMLCanvasElement, CanvasProps>(
+  function BaseCanvas({ camera, ...props }, ref) {
+    return <Canvas ref={ref} camera={camera} {...props} />;
+  }
+);
 
 export default BaseCanvas;

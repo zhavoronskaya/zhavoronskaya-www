@@ -7,6 +7,7 @@ import * as THREE from "three";
 import pointsVertexShader from "./shaders/vertex";
 import pointsFragmentShader from "./shaders/fragment";
 import useWindowPointerFromCenter from "@/hooks/usePointerMove";
+import gsap from "gsap";
 
 function getResolutionVector() {
   if (typeof window === "undefined") return null;

@@ -1,3 +1,5 @@
+import { Vector2 } from "three";
+
 export interface IImageData {
   width: number;
   height: number;
@@ -84,3 +86,18 @@ export type ImageSizes = {
 //   children: React.ReactNode;
 //   camera: Camera;
 // };
+
+export type SizeLike = {
+  width: number;
+  height: number;
+};
+
+export type Vector2Like = {
+  x: number;
+  y: number;
+};
+
+export type Scene = {
+  notesGroupPosition: Vector2Like | null;
+  notesPlayingStatus: "OFF" | "ON";
+};

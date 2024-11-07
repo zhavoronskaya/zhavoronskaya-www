@@ -11,10 +11,9 @@ type Props = {
   children: string;
   delay?: number;
   className: string;
-  y?: number;
 };
 
-const JumpingText = ({ id, children, className, y = 18 }: Props) => {
+const FadingText = ({ id, children, className }: Props) => {
   const words = children.split(" ");
 
   const tl = gsap.timeline();
@@ -25,16 +24,15 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
         ".letter",
         {
           duration: 0.2,
-          y: y,
-          rotate: Math.random() > 0.5 ? Math.random() * 5 : -Math.random() * 20,
+          opacity: 0,
           repeat: 1,
-          repeatDelay: 0.2,
-          delay: 0.2,
-          stagger: { each: 0.1, from: "random", grid: "auto" },
+          repeatDelay: 0.15,
+          delay: 0.05,
+          stagger: { each: 0.05, from: "random", grid: "auto" },
           yoyo: true,
           ease: "sine.out",
           scrollTrigger: {
-            trigger: ".title",
+            trigger: ".subtitle",
           },
         },
         "<"
@@ -58,9 +56,7 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
                   key={`${widx}-${idx}`}
                   className={`letter letter-${idx + 1} inline-block`}
                 >
-                  {/* {letter} */}
                   {isLast ? <>{letter}&nbsp;</> : letter}
-                  {/* {widx !== words.length ? "" : " "} */}
                 </span>
               );
             })}
@@ -71,4 +67,4 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
   );
 };
 
-export default JumpingText;
+export default FadingText;

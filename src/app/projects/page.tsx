@@ -18,11 +18,11 @@ const ProjectsPage = ({}: Props) => {
       </div>
 
       <div className="projects-title title mt-16 sm:mt-32">
-        <JumpingText className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase block">
+        <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase block">
           Projects
         </JumpingText>
 
-        {/* <h1 className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase">
+        {/* <h1 className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase">
           Projects
         </h1> */}
         <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color mt-4 sm:mt-8 lg:mt-12">

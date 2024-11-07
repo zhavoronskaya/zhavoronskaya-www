@@ -39,8 +39,8 @@ export const CAMERA_POSITIONINGS_MAP = {
   },
   firsTurn: {
     id: "firsTurn",
-    position: new Vector3(-4.73, 2.49, 5.31),
-    target: new Vector3(0, 0.1, 0),
+    position: new Vector3(-4.73, 2.49, 3.31),
+    target: new Vector3(2, 0.1, 0),
   },
   secondTurn: {
     id: "secondTurn",

@@ -27,8 +27,8 @@ const Header = ({ bgRight }: Props) => {
     tl.to(".link", {
       duration: 0.2,
       y: -40,
-      delay: 0.2,
-      stagger: 0.2,
+      delay: 0.1,
+      stagger: 0.1,
       opacity: 0,
       ease: "sine.out",
     }).to(
@@ -128,8 +128,8 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
       {
         duration: 0.2,
         y: 0,
-        delay: 0.2,
-        stagger: 0.2,
+        delay: 0.1,
+        stagger: 0.1,
         opacity: 1,
         ease: "sine.out",
       },

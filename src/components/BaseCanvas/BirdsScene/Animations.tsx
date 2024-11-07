@@ -20,10 +20,9 @@ const tl = gsap.timeline();
 export default function Animations() {
   // const camera = useThree((state) => state.camera);
   const { size, camera } = useThree();
+
   const touchScreen =
-    isMobile().phone ||
-    isMobile().tablet ||
-    (size.width <= 1024 && size.height >= 1024);
+    isMobile().phone || (isMobile().tablet && size.width < 1024);
 
   // console.log(touchScreen);
 
@@ -37,6 +36,9 @@ export default function Animations() {
     camera.lookAt(cameraTarget);
   });
 
+  // useEffect(() => {
+  //   setTimeout(() => {}, 0);
+  // }, [size.width, size.height]);
   useGSAP(
     () => {
       tl.fromTo(

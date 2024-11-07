@@ -72,6 +72,31 @@ a, li, .pointer{
   }
 }
 
+
+.animation-fade-out {
+  animation: fade-out 0.4s ease-in forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+       
+@keyframes ping-custom {
+          75%, 100% {
+            transform: scale(1.4);
+            opacity: 0;
+          }
+        }
+.animate-ping-custom {
+          animation: ping-custom 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 .abs-center {
   position: absolute;
   top: 50%;

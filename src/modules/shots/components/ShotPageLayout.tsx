@@ -8,6 +8,7 @@ import ShotImageSlider from "@/components/ShotImageSlider";
 import { FlowerShot, HeartsShot } from "@/components/UI/decor";
 import { ShotLayoutSvgAnimation } from "@/components/SvgAnimation";
 import TransitionLink from "@/components/TransitionLink";
+import FadingText from "@/components/FadingText";
 
 type Props = {
   shot: IShotData;
@@ -18,9 +19,9 @@ const ShotPageLayout = ({ shot, children }: Props) => {
     <div className="px-8">
       <ShotHeader />
       <div className="mt-36 sm:mt-32">
-        <h2 className=" text-hlm sm:text-hlt lg:text-hl font-medium uppercase">
+        <FadingText className="subtitle text-hlm sm:text-hlt lg:text-hl font-medium uppercase">
           {shot.name}
-        </h2>
+        </FadingText>
       </div>
 
       <div className="">{children}</div>

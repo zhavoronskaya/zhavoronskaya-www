@@ -2,7 +2,7 @@
 import useScrollingVisibilityPercentage from "@/hooks/useScrollingVisibilityPercentage";
 import styles from "./Svg.module.css";
 import { cn } from "@/helpers/ClassName";
-import { useRef } from "react";
+import { CSSProperties, useRef } from "react";
 import useScrollY from "@/hooks/useScrollY";
 
 export const DecorHome = ({
@@ -759,6 +759,34 @@ export const BirdSkills = ({
         d="M248.406 22.0708C247.071 23.0587 246.008 23.9499 246.047 25.6111C246.09 27.4103 247.209 28.9448 248.996 29.1514C250.228 29.2939 251.061 28.8419 251.945 27.9713C252.983 26.9489 253.21 25.8859 253.124 24.431C253.034 22.8879 252.847 21.2926 251.355 20.8907C250.158 20.5681 249.404 21.3331 248.406 22.0708Z"
         fill="#F08CAE"
         stroke="#F08CAE"
+        strokeWidth="2"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+};
+
+export const PingHeartHome = ({
+  size = 13,
+  className,
+  style,
+}: {
+  size?: number;
+  className: string;
+  style?: CSSProperties;
+}) => {
+  return (
+    <svg
+      className={className}
+      style={style}
+      viewBox="0 0 13 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.39597 1.73354C4.76893 1.55529 5.95034 3.49701 6.27991 3.8329C6.60949 4.1688 7.72104 1.44504 8.99906 1.06174C9.32863 0.962899 11.077 0.870916 11.7182 1.73354C12.204 2.38704 11.9654 3.1611 11.7182 3.8329C11.1581 5.35528 10.9069 5.85922 9.81662 7.04618C8.32384 8.67136 5.45591 11.3067 5.04394 10.9708C4.63197 10.6349 1.59163 8.51061 1.17122 6.10022C1.01916 5.22845 0.877444 4.66619 1.17122 3.8329C1.57158 2.69726 2.2214 1.88603 3.39597 1.73354Z"
+        fill="#6883BA"
+        stroke="#6883BA"
         strokeWidth="2"
         vectorEffect="non-scaling-stroke"
       />

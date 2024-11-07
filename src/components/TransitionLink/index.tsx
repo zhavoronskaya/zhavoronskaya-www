@@ -25,7 +25,10 @@ export default function TransitionLink({
       onClick();
     }
     if (pathname === href) return;
-    animatePageOut(href, router);
+    animatePageOut(href, router, "transition-element");
+    if (pathname === "/contact") {
+      animatePageOut(href, router, "decoration-image");
+    }
   };
 
   // return (

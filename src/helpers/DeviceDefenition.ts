@@ -191,3 +191,11 @@ export default function isMobile(param?: IsMobileParameter): isMobileResult {
 
   return result;
 }
+
+export function hasTouchSupport() {
+  if (typeof window !== "undefined") {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  }
+
+  return false;
+}

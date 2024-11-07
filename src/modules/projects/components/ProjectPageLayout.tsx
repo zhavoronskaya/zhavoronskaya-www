@@ -4,6 +4,7 @@ import { IProject } from "@/interfaces";
 import DecorativeList from "@/components/DecorativeList/DecorativeList";
 import { BirdProject, HeartProject } from "@/components/UI/decor";
 import { ProjectLayoutSvgAnimation } from "@/components/SvgAnimation";
+import FadingText from "@/components/FadingText";
 
 type Props = {
   project: IProject;
@@ -18,13 +19,12 @@ const ProjectPageLayout = ({ project, children }: Props) => {
       <div className="px-8">
         <ProjectHeader />
         <div className="mt-16 sm:mt-36 sm:grid sm:grid-cols-12 relative">
-          <div className="sm:col-start-1 sm:col-span-9 ">
+          <div className="sm:col-start-1 sm:col-span-10 ">
             <h1 className=" text-hxlm sm:text-hxlt lg:text-hxl font-bold ">
               {project.name.map((part, idx) => {
                 return (
                   <Fragment key={idx}>
-                    {part}
-                    <br />
+                    <FadingText className="subtitle">{part}</FadingText>
                   </Fragment>
                 );
               })}

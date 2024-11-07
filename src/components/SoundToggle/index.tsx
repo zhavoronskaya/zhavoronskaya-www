@@ -8,8 +8,8 @@ export default function SoundToggle({ sound }: { sound: boolean }) {
   const [isActive, setIsActive] = useState(false);
   const { toggle } = useAudio("/sound/sound.mp3", {
     startTime: 0,
-    autoplay: false,
-    canPlay: false,
+    autoplay: true,
+    loop: true,
   });
   const handleSoundClick = () => {
     setIsActive((v) => !v);
@@ -20,7 +20,7 @@ export default function SoundToggle({ sound }: { sound: boolean }) {
 
   return (
     <div
-      className="cursor-pointer opacity-75 hover:opacity-100 "
+      className="pointer opacity-75 hover:opacity-100 "
       onClick={handleSoundClick}
     >
       {isActive ? <SoundOnIcon /> : <SoundOffIcon />}

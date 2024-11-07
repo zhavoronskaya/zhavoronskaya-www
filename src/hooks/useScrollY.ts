@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
+import { usePrevious } from "./usePrevious";
 
 export default function useScrollY(selector: string) {
-  const [value, setValue] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
+  const prevScrollTop = usePrevious(scrollTop);
+  const direction =
+    scrollTop > prevScrollTop
+      ? "down"
+      : scrollTop < prevScrollTop
+      ? "up"
+      : "none";
 
   useEffect(() => {
     const elem = document.querySelector(selector);
     if (!elem) return;
 
-    const handleScroll = () => setValue(elem.scrollTop);
+    const handleScroll = () => {
+      setScrollTop(elem.scrollTop);
+    };
 
     elem.addEventListener("wheel", handleScroll);
     return () => {
@@ -15,5 +25,5 @@ export default function useScrollY(selector: string) {
     };
   }, []);
 
-  return value;
+  return { scrollTop, direction };
 }

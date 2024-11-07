@@ -1,12 +1,12 @@
 import gsap from "gsap";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-export const animatePageIn = () => {
-  const transitionElement = document.getElementById("transition-element");
+export const animatePageIn = (selector: string) => {
+  const transitionElement = document.getElementById(selector);
 
   if (transitionElement) {
     const tl = gsap.timeline();
-    console.log("INNNNN");
+
     tl.set(transitionElement, {
       opacity: 0,
     }).to(transitionElement, {
@@ -16,12 +16,16 @@ export const animatePageIn = () => {
     });
   }
 };
-export const animatePageOut = (href: string, router: AppRouterInstance) => {
-  const animationWrapper = document.getElementById("transition-element");
+export const animatePageOut = (
+  href: string,
+  router: AppRouterInstance,
+  selector: string
+) => {
+  const animationWrapper = document.getElementById(selector);
 
   if (animationWrapper) {
     const tl = gsap.timeline();
-    console.log("OUUUT");
+
     tl.set(animationWrapper, {
       opacity: 1,
     }).to(animationWrapper, {

@@ -2,7 +2,7 @@ import { MutableRefObject, useRef } from "react";
 import useVisibilityPercentage from "./useVisibilityPercentage";
 
 const useScrollingVisibilityPercentage = (
-  ref: MutableRefObject<SVGSVGElement | null>
+  ref: MutableRefObject<HTMLElement | SVGSVGElement | null>
 ) => {
   const rect = ref.current?.getBoundingClientRect();
   const percentage = useVisibilityPercentage(rect);

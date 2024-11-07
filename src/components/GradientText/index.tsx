@@ -11,10 +11,9 @@ type Props = {
   children: string;
   delay?: number;
   className: string;
-  y?: number;
 };
 
-const JumpingText = ({ id, children, className, y = 18 }: Props) => {
+const GradientText = ({ id, children, className }: Props) => {
   const words = children.split(" ");
 
   const tl = gsap.timeline();
@@ -24,17 +23,21 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
       tl.to(
         ".letter",
         {
-          duration: 0.2,
-          y: y,
-          rotate: Math.random() > 0.5 ? Math.random() * 5 : -Math.random() * 20,
+          duration: 0.1,
+          backgroundImage: `linear-gradient(${
+            (Math.random() + 1) * 45
+          }deg,  #F08CAE , #0B0014  )`,
+          // text: `linear-gradient(${
+          //   (Math.random() + 1) * 45
+          // }deg,  #F8F4F4 100%, #0B0014 200%, #F8F4F4 300% )`,
           repeat: 1,
           repeatDelay: 0.2,
-          delay: 0.2,
-          stagger: { each: 0.1, from: "random", grid: "auto" },
+          delay: 0.05,
+          stagger: { each: 0.05, from: "random", grid: "auto" },
           yoyo: true,
           ease: "sine.out",
           scrollTrigger: {
-            trigger: ".title",
+            trigger: ".subtitle",
           },
         },
         "<"
@@ -57,10 +60,14 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
                 <span
                   key={`${widx}-${idx}`}
                   className={`letter letter-${idx + 1} inline-block`}
+                  style={{
+                    backgroundImage: `linear-gradient(#0B0014 , #0B0014)`,
+                    color: "transparent",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
                 >
-                  {/* {letter} */}
                   {isLast ? <>{letter}&nbsp;</> : letter}
-                  {/* {widx !== words.length ? "" : " "} */}
                 </span>
               );
             })}
@@ -71,4 +78,4 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
   );
 };
 
-export default JumpingText;
+export default GradientText;

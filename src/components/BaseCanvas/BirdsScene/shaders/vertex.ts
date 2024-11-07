@@ -9,6 +9,9 @@ attribute float aIntensity;
 attribute float aAngle;
 
 varying vec3 vColor;
+varying float vDisplacement;
+varying float vDisplacementIntensity;
+
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 float permute(float x){return floor(mod(((x*34.0)+1.0)*x, 289.0));}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
@@ -111,7 +114,14 @@ void main()
     vec3 newPosition = position;
     float displacementIntensity = texture(uDisplacementTexture, uv).r;
     displacementIntensity = smoothstep(0.1, 0.7, displacementIntensity);
-
+    vDisplacementIntensity = displacementIntensity;
+    vec3 offset = vec3(0.4,0.1,0.2);
+  float noiseX = snoise(vec4(newPosition.xyz, uTime)); 
+  float noiseY = snoise(vec4(newPosition.xyz+offset*2.0, uTime)); 
+  float noiseZ = snoise(vec4(newPosition.xyz - offset, uTime)); 
+  newPosition.x +=noiseX*aSpeed*0.5;
+  newPosition.y +=noiseY*aSpeed*0.5;
+  newPosition.z +=noiseZ*aSpeed*0.5;
     vec3 displacement = vec3(
         cos(aAngle) * 0.2,
         sin(aAngle) * 0.2,
@@ -123,17 +133,11 @@ void main()
     displacement *= aIntensity;
     
     newPosition += displacement;
-    
+    vDisplacement = displacement.x;
 
     // Final position
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
-      vec3 offset = vec3(0.4,0.1,0.2);
-  float noiseX = snoise(vec4(modelPosition.xyz, uTime)); 
-  float noiseY = snoise(vec4(modelPosition.xyz+offset*2.0, uTime)); 
-  float noiseZ = snoise(vec4(modelPosition.xyz - offset, uTime)); 
-  modelPosition.x +=noiseX*aSpeed*0.5;
-  modelPosition.y +=noiseY*aSpeed*0.5;
-  modelPosition.z +=noiseZ*aSpeed*0.5;
+
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;

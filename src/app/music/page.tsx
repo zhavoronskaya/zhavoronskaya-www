@@ -4,6 +4,7 @@ import Image from "next/image";
 import previewAlbumsData from "./data";
 import { BirdMusic, FlowerMusic } from "@/components/UI/decor";
 import { MusicSvgAnimation } from "@/components/SvgAnimation";
+import JumpingText from "@/components/JumpingText";
 
 type Props = {};
 
@@ -13,10 +14,10 @@ const MusicPage = ({}: Props) => {
       <MusicSvgAnimation />
       <div className="px-8">
         <div className="mt-16 sm:mt-32 sm:grid sm:grid-cols-12 sm:gap-4">
-          <div className="sm:col-start-1 sm:col-span-7">
-            <h1 className="text-hxlm sm:text-hxlt lg:text-[180px]/[162px] xl:text-hxl font-bold uppercase">
+          <div className="title sm:col-start-1 sm:col-span-7">
+            <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase">
               Music
-            </h1>
+            </JumpingText>
 
             <div className="mt-44 md:mt-36 lg:mt-32 relative">
               <div className="music-flower absolute left-[28%] bottom-[0%] sm:left-[44%] sm:top-[-100%] lg:left-[60%] lg:top-[-100%] pointer-events-none z-20">

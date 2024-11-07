@@ -1,6 +1,7 @@
 import BirdsScene from "@/components/BaseCanvas/BirdsScene";
 import ShotsGallery from "@/components/BaseCanvas/ShotsGallery";
 import JumpingText from "@/components/JumpingText";
+import StateButtom from "@/components/StateButton";
 import { HomeSvgAnimation } from "@/components/SvgAnimation";
 import TransitionLink from "@/components/TransitionLink";
 
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <HomeSvgAnimation />
+      <StateButtom />
       <div className="canvas-wrapper fixed h-screen w-screen left-0 top-0">
         <BirdsScene />
       </div>
@@ -22,15 +24,20 @@ export default function Home() {
             className="section-1 col-start-1 col-span-3 sm:col-start-1 sm:col-span-11 lg:col-start-1 lg:col-span-12 mb-64 sm:mb-72"
             // style={{ marginBottom: "500px" }}
           >
-            <JumpingText className="title uppercase text-hxlm sm:text-hxlt lg:lg:text-[180px]/[162px] xl:text-hxl font-bold ">
-              Digital Art
-            </JumpingText>
-            <span className="text-dissolve-color ">&</span>
-            <br />
-            <JumpingText className="title uppercase text-hxlm sm:text-hxlt lg:lg:text-[180px]/[162px] xl:text-hxl font-bold ">
-              Creative Coding
-            </JumpingText>
+            <h1 className="title uppercase text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold ">
+              <JumpingText y={12} className="title">
+                Digital Art
+              </JumpingText>
+              <JumpingText y={12} className="text-dissolve-color ">
+                &
+              </JumpingText>
+
+              <JumpingText y={12} className="title">
+                Creative Coding
+              </JumpingText>
+            </h1>
           </div>
+
           <div className="home-lines absolute left-[-60%] top-[-4%] sm:left-[-46%] sm:top-[4%] lg:left-[-46%] lg:top-[10%]  xl:left-[-38%] xl:top-[8%]  z-20 pointer-events-none">
             <DecorHome className="w-[280px] sm:w-[600px]  lg:w-[800px] xl:w-[920px]" />
           </div>
