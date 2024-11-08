@@ -1,0 +1,56 @@
+.layout {
+  background: var(--clr-bg);
+  height: 100%;
+
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+  grid-template-columns: auto;
+  grid-template-rows: var(--sz-header) 1fr var(--sz-footer);
+  overflow: hidden;
+}
+
+.header {
+  grid-area: header;
+  overflow: hidden;
+}
+
+.sidebar {
+  grid-area: side;
+  display: none;
+}
+
+.main {
+  grid-area: main;
+  overflow: auto;
+  position: relative;
+}
+
+.footer {
+  grid-area: footer;
+  overflow: hidden;
+}
+
+.content {
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 10px 5px;
+}
+
+@media screen and (min-width: 792px) {
+  .sidebar {
+    display: block;
+  }
+
+  :global(.layout--with-sidebar).layout {
+    grid-template-areas:
+      "header header"
+      "side main"
+      "footer footer";
+
+    grid-template-columns: var(--sz-sidebar) auto;
+  }
+}
