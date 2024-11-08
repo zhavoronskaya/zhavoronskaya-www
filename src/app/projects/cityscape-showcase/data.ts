@@ -1,14 +1,13 @@
 import { TechnologyLinks } from "@/constants";
 import { IProject } from "@/interfaces";
 
-const mono: IProject = {
-  name: ["MONO", "kami"],
-  separator: "/",
-  label: "Enjoy online experience of virtual visiting",
+const cityscape: IProject = {
+  name: ["Cityscape Showcase"],
+  label: "Representation of Urban Design and Architecture",
   thumbnailDIscription:
     "Architectural 3D project blending functionality and aesthetics",
   thumbnailVideoUrl: "/video/mono1-compressed-720.mp4",
-  routing: "/projects/mono",
+  routing: "/projects/cityscape-showcase",
   link: `${TechnologyLinks.MONO}`,
   description: " This page is currently under development",
   // technology: [
@@ -24,4 +23,4 @@ const mono: IProject = {
   // ],
 };
 
-export default mono;
+export default cityscape;

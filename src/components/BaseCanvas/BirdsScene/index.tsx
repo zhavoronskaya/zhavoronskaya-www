@@ -248,48 +248,6 @@ export const Birds = ({}: Props) => {
         "<"
       );
     }
-
-    // tl.to(cloneMesh.position, {
-    //   x: Math.round(Math.random()) * 2 - 1,
-    //   y: Math.round(Math.random()) * 2 - 1,
-    //   z: Math.round(Math.random()) * 2 - 1,
-    //   ease: "sine.inOut",
-    //   duration: 0.5,
-    //   repeat: 9,
-    //   // repeatRefresh: true,
-    //   onComplete: () => {
-    //     cloneMesh.visible = false;
-    //     note.getWorldPosition(cloneMesh.position);
-    //     cloneMesh.updateMatrix();
-    //     const pos = note.getWorldPosition(cloneMesh.position);
-    //     console.log(pos, cloneMesh.position);
-    //   },
-
-    //   onRepeat: () => {
-    //     console.log("repeat");
-    //     const pos = note.getWorldPosition(cloneMesh.position);
-    //     note.getWorldPosition(cloneMesh.position);
-    //     note.getWorldQuaternion(cloneMesh.quaternion);
-    //     cloneMesh.updateMatrix();
-    //     cloneMesh.matrixWorldNeedsUpdate = true;
-
-    //     // console.log(pos, cloneMesh.position);
-    //   },
-    // });
-    // tl.to(
-    //   cloneMesh.material,
-    //   {
-    //     opacity: 0,
-    //     ease: "sine.inOut",
-    //     duration: 0.5,
-
-    //     onComplete: () => {
-    //       if (!isMaterial(cloneMesh.material)) return;
-    //       cloneMesh.material.opacity = 1;
-    //     },
-    //   },
-    //   "<"
-    // );
   };
 
   useEffect(() => {
@@ -450,6 +408,6 @@ export const Birds = ({}: Props) => {
   );
 };
 
-useGLTF.preload("/model/zhav.glb");
+useGLTF.preload("/model/zhav1.glb");
 
 export default BirdsScene;

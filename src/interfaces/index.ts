@@ -22,6 +22,7 @@ export interface IIcon {
   size?: number;
   className?: string;
   onClick?: () => void;
+  idx?: number;
 }
 
 export interface IProject {
@@ -35,7 +36,10 @@ export interface IProject {
   routing: string;
   projectImages?: string[];
   description?: string;
+  role?: Role;
   technology?: Technolody[];
+  challenges?: ChallengesStep[];
+  linkToSource?: string;
   developmentSteps?: DevelopmentSteps[];
 }
 
@@ -75,6 +79,14 @@ export type Technolody = {
 export type DevelopmentSteps = {
   name: string;
   items: string[];
+};
+export type Role = {
+  name: string;
+  description: string;
+};
+export type ChallengesStep = {
+  info: string;
+  details: string[];
 };
 
 export type ImageSizes = {

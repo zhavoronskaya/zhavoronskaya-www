@@ -5,6 +5,8 @@ import DecorativeList from "@/components/DecorativeList/DecorativeList";
 import { BirdProject, HeartProject } from "@/components/UI/decor";
 import { ProjectLayoutSvgAnimation } from "@/components/SvgAnimation";
 import FadingText from "@/components/FadingText";
+import { Heart } from "@/components/UI/icons";
+import FillingSvg from "@/components/FadingElement";
 
 type Props = {
   project: IProject;
@@ -19,7 +21,7 @@ const ProjectPageLayout = ({ project, children }: Props) => {
       <div className="px-8">
         <ProjectHeader />
         <div className="mt-16 sm:mt-36 sm:grid sm:grid-cols-12 relative">
-          <div className="sm:col-start-1 sm:col-span-10 ">
+          <div className="sm:col-start-1 sm:col-span-11 ">
             <h1 className=" text-hxlm sm:text-hxlt lg:text-hxl font-bold ">
               {project.name.map((part, idx) => {
                 return (
@@ -89,6 +91,83 @@ const ProjectPageLayout = ({ project, children }: Props) => {
                     {idx != arr.length - 1 && ","}
                   </React.Fragment>
                 ))}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {project.role && (
+          // <div className="mt-20 sm:mt-32 sm:grid sm:grid-cols-12">
+          <div className="mt-20 sm:mt-32 lg:mt-20 sm:grid sm:grid-cols-12">
+            <div className="sm:col-start-1 sm:col-span-11 lg:col-span-7">
+              <div className="sm:col-start-1 sm:col-span-12 lg:col-span-12">
+                <span className="block text-dissolve-color text-remarkm sm:text-remarkt lg:text-remark">
+                  project role
+                </span>
+                <p className="uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm font-medium">
+                  {project.role.name}
+                </p>
+                <p className="mt-4 lg:mt-8 text-bodysm sm:text-bodyst lg:text-bodys ">
+                  {project.role.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {project.challenges && (
+          <>
+            {/* <div className="mt-20 sm:mt-32"> */}
+            <div className="mt-20 sm:mt-32 lg:mt-20 sm:grid sm:grid-cols-12">
+              <div className="sm:col-start-1 sm:col-span-11 lg:col-span-7">
+                <span className="block text-remarkm sm:text-remarkt lg:text-remark text-dissolve-color ">
+                  challenges and achievement
+                </span>
+                <p className="uppercase text-pillsmm sm:text-pillsmt lg:text-pillsm font-medium">
+                  What I learned through this project:
+                </p>
+              </div>
+            </div>
+            <div className=" lg:mt-20 sm:grid sm:grid-cols-12">
+              <div className="sm:col-start-1 sm:col-span-11 lg:col-span-7">
+                {project.challenges?.map((chlg, idx) => (
+                  <div key={idx}>
+                    <div className="flex gap-2 mt-4 lg:mt-8 mb-2 sm:mb-4 items-center">
+                      <p className=" text-bodysm sm:text-bodyst lg:text-bodys font-medium ">
+                        <Heart
+                          className={`trigger ${idx} h-[12px] sm:h-[20px] lg:h-[24px] shrink-0 inline align-baseline`}
+                          idx={idx}
+                        />
+                        &nbsp;
+                        {chlg.info}
+                      </p>
+                    </div>
+                    <div className="mb-8 sm:mb-12">
+                      {/* <Heart className="w-[24px] sm:w-[28px] lg:w-[32px] shrink-0" /> */}
+                      <span className="text-bodysm sm:text-bodyst lg:text-bodys">
+                        {chlg.details}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+        {project.linkToSource && (
+          <div className="mt-8 sm:mt-12 grid grid-cols-3 sm:grid-cols-12 relative">
+            <div className="col-start-2 col-span-2 sm:col-start-8 sm:col-span-5">
+              <p className="text-bodysm sm:text-bodyst lg:text-bodys">
+                You can find the source code on
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={project.linkToSource}
+                  className="text-accent-color hover:text-accent-color-active uppercase"
+                >
+                  {" "}
+                  GITHUB
+                </a>
               </p>
             </div>
           </div>

@@ -25,5 +25,5 @@ export const TechnologyLinks = {
   SHADERBOOK: "https://thebookofshaders.com/",
   SIMONSHADER: "https://simondev.teachable.com/courses/",
   VIRTUDES: "https://zhavoronskaya.github.io/virtudes/",
-  MONO: "https://marta.technology/mono/kami/",
+  MONO: "https://marta.technology/mono/kami/widget.html",
 };
