@@ -6,9 +6,9 @@ type Props = {};
 const Reality = ({}: Props) => {
   return (
     <AlbumPageLayoutDetailed album={reality}>
-      It's like losing grasp of reality and the boundaries of the present, with
-      an industrial sound that envelops the listener in a sensation of being
-      lost
+      It&#39;s like losing grasp of reality and the boundaries of the present,
+      with an industrial sound that envelops the listener in a sensation of
+      being lost
     </AlbumPageLayoutDetailed>
   );
 };

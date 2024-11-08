@@ -6,7 +6,7 @@ type Props = {};
 const DecorationAnimation = ({}: Props) => {
   useEffect(() => {
     animatePageIn("decoration-image");
-  });
+  }, []);
   return null;
 };
 

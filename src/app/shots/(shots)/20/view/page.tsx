@@ -1,4 +1,3 @@
-"use client";
 import ViewShotPageLayout from "@/modules/shots/components/ViewShotPageLayout";
 import Experience from "./Perlin1/Experience";
 

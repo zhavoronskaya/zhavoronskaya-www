@@ -1,3 +1,4 @@
+"use client";
 import { Suspense } from "react";
 import { Html, OrbitControls, useProgress } from "@react-three/drei";
 import Perlin from "./Perlin";
