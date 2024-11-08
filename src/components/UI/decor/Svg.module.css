@@ -1,0 +1,16 @@
+.draw {
+  stroke-dasharray: 4400;
+  stroke-dashoffset: 4400;
+}
+.draw:global(.active) {
+  animation: dash 3s ease-in alternate infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 4400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
