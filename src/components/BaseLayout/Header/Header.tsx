@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./Header.module.css";
 import { Logo, Burger, Cross } from "@/components/UI/icons";
 import TransitionLink from "@/components/TransitionLink";
+import { createPortal } from "react-dom";
 
 type Props = {
   bgRight?: string;
@@ -140,10 +141,10 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
     );
   }, []);
 
-  let className = `menu fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 opacity-0 bg-background-color`;
+  let className = `menu fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 opacity-0 bg-background-color z-[220]`;
   //let className = `menu fixed w-full h-full left-0 top-0 px-4 sm:px-6 py-16 opacity-1 translate-y-[-100%] bg-background-color`;
 
-  return (
+  return createPortal(
     <div onClick={onClose} className={className}>
       <div
         className="pointer absolute top-4 sm:right-6 right-4"
@@ -217,7 +218,8 @@ const Menu = ({ onClose }: { onClose: () => void }) => {
           </nav>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

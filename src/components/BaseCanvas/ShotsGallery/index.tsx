@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useFrame, useThree } from "@react-three/fiber";
 import {
   ScrollControls,
@@ -191,7 +191,6 @@ const ItemsScrollTracker = ({}: ItemsScrollTrackerProps) => {
   const htmlScrollLock = useScrollLock("html");
   const htmlScroll = useScrollY("html");
   const scroll = useScroll();
-
   const prevScrollOffset = useRef(0);
   const allowedLDirection = useRef<typeof htmlScroll.direction>("up");
   const shotsCanvasRef = useRef<HTMLElement | null>(null);
@@ -201,6 +200,9 @@ const ItemsScrollTracker = ({}: ItemsScrollTrackerProps) => {
   useEffect(() => {
     const shotsCanvas = document.getElementById(SHOTS_CANVAS_ID);
     shotsCanvasRef.current = shotsCanvas;
+    return () => {
+      htmlScrollLock.disable();
+    };
   }, []);
 
   const handleScrolltoCenter = () => {
@@ -246,11 +248,11 @@ const ItemsScrollTracker = ({}: ItemsScrollTrackerProps) => {
       if (scroll.offset <= 0.01 && direction === "up") {
         htmlScrollLock.disable();
         allowedLDirection.current = "up";
-        console.log("UNLOCK UP");
+        // console.log("UNLOCK UP");
       } else if (scroll.offset >= 0.99 && direction === "down") {
         htmlScrollLock.disable();
         allowedLDirection.current = "down";
-        console.log("UNLOCK DOWN");
+        // console.log("UNLOCK DOWN");
       }
     } else {
       if (
@@ -258,7 +260,7 @@ const ItemsScrollTracker = ({}: ItemsScrollTrackerProps) => {
         shotsCanvasVisibility.percentage <= 52 &&
         direction !== allowedLDirection.current
       ) {
-        console.log("LOCK");
+        // console.log("LOCK");
         htmlScrollLock.enable();
         handleScrolltoCenter();
       }
