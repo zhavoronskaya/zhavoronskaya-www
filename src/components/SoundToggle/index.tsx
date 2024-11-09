@@ -8,7 +8,7 @@ export default function SoundToggle({ sound }: { sound: boolean }) {
   const [isActive, setIsActive] = useState(false);
   const { toggle } = useAudio("/sound/sound.mp3", {
     startTime: 0,
-    autoplay: true,
+    autoplay: false,
     loop: true,
   });
   const handleSoundClick = () => {
