@@ -36,7 +36,7 @@ const ProjectPageLayout = ({ project, children }: Props) => {
             </span>
           </div>
           <div className="project-bird absolute right-[-52%] top-[132%] sm:right-[-20%] sm:top-[54%] lg:right-[-22%] lg:top-[64%] xl:right-[-16%] xl:top-[64%] z-20 pointer-events-none">
-            <BirdProject className="w-[430px] sm:w-[720px] lg:w-[996px]" />
+            <BirdProject className="w-[430px] sm:w-[720px] lg:w-[996px] xl:w-[996px]" />
           </div>
         </div>
 
