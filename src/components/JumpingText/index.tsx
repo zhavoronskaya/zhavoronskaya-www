@@ -39,6 +39,7 @@ const JumpingText = ({ id, children, className, y = 18 }: Props) => {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }

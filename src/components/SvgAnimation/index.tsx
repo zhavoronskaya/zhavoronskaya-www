@@ -14,6 +14,7 @@ export function HomeSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".home-flower", {
         duration: 0.2,
         ease: "power1.inOut",
@@ -40,6 +41,7 @@ export function HomeSvgAnimation() {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -52,6 +54,7 @@ export function ShotsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".path-bird-heart", {
         duration: 0.2,
         ease: "sine.inOut",
@@ -83,6 +86,7 @@ export function ShotsSvgAnimation() {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -95,6 +99,7 @@ export function ShotLayoutSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".path-heart-shot", {
         duration: 1,
         opacity: 0,
@@ -122,6 +127,7 @@ export function ShotLayoutSvgAnimation() {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -134,6 +140,7 @@ export function ProjectsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".projects-flower", {
         duration: 4,
         repeat: -1,
@@ -177,6 +184,7 @@ export function ProjectsSvgAnimation() {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -190,6 +198,7 @@ export function ProjectLayoutSvgAnimation() {
 
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".project-bird", {
         duration: 1,
         rotation: 10,
@@ -200,6 +209,7 @@ export function ProjectLayoutSvgAnimation() {
           trigger: ".project-bird",
         },
       });
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -212,6 +222,7 @@ export function SkillsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".path-flower-skiils", {
         duration: 0.2,
         ease: "sine.inOut",
@@ -224,24 +235,24 @@ export function SkillsSvgAnimation() {
           // scrub: true,
           // start: "5% bottom",
         },
-      });
-      tl.to(
-        ".path-stars-skills",
-        {
-          duration: 1,
-          opacity: 0,
-          repeat: -1,
-          delay: 0.5,
-          stagger: 0.2,
-          yoyo: true,
-          immediateRender: false,
-          ease: "sine.out",
-          scrollTrigger: {
-            trigger: ".skills-stars",
+      })
+        .to(
+          ".path-stars-skills",
+          {
+            duration: 1,
+            opacity: 0,
+            repeat: -1,
+            delay: 0.5,
+            stagger: 0.2,
+            yoyo: true,
+            immediateRender: false,
+            ease: "sine.out",
+            scrollTrigger: {
+              trigger: ".skills-stars",
+            },
           },
-        },
-        "<"
-      )
+          "<"
+        )
         .to(
           ".skills-bird",
           {
@@ -309,6 +320,7 @@ export function SkillsSvgAnimation() {
           },
           "<"
         );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -322,6 +334,7 @@ export function MusicSvgAnimation() {
 
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".music-flower", {
         duration: 0.5,
         rotation: 5,
@@ -332,49 +345,50 @@ export function MusicSvgAnimation() {
         scrollTrigger: {
           trigger: ".music-flower",
         },
-      });
+      })
+        .to(
+          ".path-bird-music",
+          {
+            duration: 1,
+            motionPath: {
+              path: [
+                { x: 0, y: 0, rotation: 0, opacity: 1 },
+                { x: 0, y: 40, rotation: 20, opacity: 1 },
+                { x: 0, y: 80, rotation: 80, opacity: 0 },
+              ],
 
-      tl.to(
-        ".path-bird-music",
-        {
-          duration: 1,
-          motionPath: {
-            path: [
-              { x: 0, y: 0, rotation: 0, opacity: 1 },
-              { x: 0, y: 40, rotation: 20, opacity: 1 },
-              { x: 0, y: 80, rotation: 80, opacity: 0 },
-            ],
-
-            curviness: 2,
+              curviness: 2,
+            },
+            repeat: -1,
+            delay: 0.1,
+            stagger: 0.2,
+            // yoyo: true,
+            immediateRender: false,
+            transformOrigin: "50% 86%",
+            ease: "linear",
+            scrollTrigger: {
+              trigger: ".music-bird",
+            },
           },
-          repeat: -1,
-          delay: 0.1,
-          stagger: 0.2,
-          // yoyo: true,
-          immediateRender: false,
-          transformOrigin: "50% 86%",
-          ease: "linear",
-          scrollTrigger: {
-            trigger: ".music-bird",
+          "<"
+        )
+        .to(
+          ".path-eye-bird-music",
+          {
+            duration: 1,
+            scale: 1.5,
+            repeat: -1,
+            yoyo: true,
+            immediateRender: false,
+            transformOrigin: "50% 86%",
+            ease: "sine.out",
+            scrollTrigger: {
+              trigger: ".music-flower",
+            },
           },
-        },
-        "<"
-      ).to(
-        ".path-eye-bird-music",
-        {
-          duration: 1,
-          scale: 1.5,
-          repeat: -1,
-          yoyo: true,
-          immediateRender: false,
-          transformOrigin: "50% 86%",
-          ease: "sine.out",
-          scrollTrigger: {
-            trigger: ".music-flower",
-          },
-        },
-        "<"
-      );
+          "<"
+        );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -388,6 +402,7 @@ export function AlbumSvgAnimation() {
 
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".path-notes-album", {
         duration: 0.8,
         motionPath: {
@@ -409,6 +424,7 @@ export function AlbumSvgAnimation() {
           trigger: ".album-notes",
         },
       });
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }
@@ -422,6 +438,7 @@ export function ContactSvgAnimation() {
 
   useGSAP(
     () => {
+      console.log("ANIMATION");
       tl.to(".path-note-contact", {
         duration: 1.2,
         motionPath: {
@@ -455,6 +472,7 @@ export function ContactSvgAnimation() {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }

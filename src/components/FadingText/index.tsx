@@ -37,6 +37,7 @@ const FadingText = ({ id, children, className }: Props) => {
         },
         "<"
       );
+      ScrollTrigger.refresh();
     },
 
     { dependencies: [] }

@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { animatePageOut } from "./Animation";
+
 import Link from "next/link";
 
 export default function TransitionLink({
@@ -17,7 +18,6 @@ export default function TransitionLink({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
 
@@ -30,7 +30,6 @@ export default function TransitionLink({
       animatePageOut(href, router, "decoration-image");
     }
   };
-
   // return (
   //   <button className={className} onClick={handleClick}>
   //     {children}

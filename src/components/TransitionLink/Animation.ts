@@ -14,6 +14,8 @@ export const animatePageIn = (selector: string) => {
       ease: "sine.in",
       duration: 1,
     });
+
+    // const tl = gsap.timeline();
   }
 };
 export const animatePageOut = (

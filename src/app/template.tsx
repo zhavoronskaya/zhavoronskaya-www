@@ -9,6 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     animatePageIn("transition-element");
+    console.log("ANIMATION PAGE");
   }, [pathname]);
 
   return (
