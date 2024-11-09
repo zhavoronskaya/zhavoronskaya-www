@@ -14,7 +14,6 @@ export function HomeSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".home-flower", {
         duration: 0.2,
         ease: "power1.inOut",
@@ -54,7 +53,6 @@ export function ShotsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".path-bird-heart", {
         duration: 0.2,
         ease: "sine.inOut",
@@ -99,7 +97,6 @@ export function ShotLayoutSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".path-heart-shot", {
         duration: 1,
         opacity: 0,
@@ -140,7 +137,6 @@ export function ProjectsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".projects-flower", {
         duration: 4,
         repeat: -1,
@@ -198,7 +194,6 @@ export function ProjectLayoutSvgAnimation() {
 
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".project-bird", {
         duration: 1,
         rotation: 10,
@@ -222,7 +217,6 @@ export function SkillsSvgAnimation() {
   const tl = gsap.timeline();
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".path-flower-skiils", {
         duration: 0.2,
         ease: "sine.inOut",
@@ -334,7 +328,6 @@ export function MusicSvgAnimation() {
 
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".music-flower", {
         duration: 0.5,
         rotation: 5,
@@ -402,7 +395,6 @@ export function AlbumSvgAnimation() {
 
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".path-notes-album", {
         duration: 0.8,
         motionPath: {
@@ -438,7 +430,6 @@ export function ContactSvgAnimation() {
 
   useGSAP(
     () => {
-      console.log("ANIMATION");
       tl.to(".path-note-contact", {
         duration: 1.2,
         motionPath: {

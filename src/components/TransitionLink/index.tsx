@@ -18,16 +18,16 @@ export default function TransitionLink({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
 
-    if (onClick) {
-      onClick();
-    }
-    if (pathname === href) return;
-    animatePageOut(href, router, "transition-element");
-    if (pathname === "/contact") {
-      animatePageOut(href, router, "decoration-image");
+    if (onClick) onClick();
+
+    if (pathname !== href) {
+      animatePageOut(".js-view-transition-element", () => {
+        router.push(href);
+      });
     }
   };
   // return (

@@ -2,41 +2,29 @@ import gsap from "gsap";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export const animatePageIn = (selector: string) => {
-  const transitionElement = document.getElementById(selector);
+  // console.log("PAGE IN", selector);
+  const transitionElements = document.querySelectorAll(selector);
+  const tl = gsap.timeline();
 
-  if (transitionElement) {
-    const tl = gsap.timeline();
-
-    tl.set(transitionElement, {
-      opacity: 0,
-    }).to(transitionElement, {
-      opacity: 1.2,
-      ease: "sine.in",
-      duration: 1,
-    });
-
-    // const tl = gsap.timeline();
-  }
+  tl.set(transitionElements, {
+    opacity: 0,
+  }).to(transitionElements, {
+    opacity: 1,
+    ease: "sine.in",
+    duration: 1,
+  });
 };
-export const animatePageOut = (
-  href: string,
-  router: AppRouterInstance,
-  selector: string
-) => {
-  const animationWrapper = document.getElementById(selector);
+export const animatePageOut = (selector: string, onComplete?: () => void) => {
+  // console.log("PAGE OUT");
+  const transitionElements = document.querySelectorAll(selector);
+  const tl = gsap.timeline();
 
-  if (animationWrapper) {
-    const tl = gsap.timeline();
-
-    tl.set(animationWrapper, {
-      opacity: 1,
-    }).to(animationWrapper, {
-      opacity: 0,
-      ease: "sine.out",
-      duration: 1.2,
-      onComplete: () => {
-        router.push(href);
-      },
-    });
-  }
+  tl.set(transitionElements, {
+    opacity: 1,
+  }).to(transitionElements, {
+    opacity: 0,
+    ease: "sine.out",
+    duration: 1.2,
+    onComplete,
+  });
 };

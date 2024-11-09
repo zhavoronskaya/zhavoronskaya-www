@@ -53,7 +53,10 @@ const Header = ({ bgRight }: Props) => {
 
   return (
     <>
-      <header className="fixed h-[64px] left-0 top-0 w-full z-[50]">
+      <header
+        id="base-layout-header"
+        className="fixed h-[64px] left-0 top-0 w-full z-[50]"
+      >
         <div className="flex justify-between w-full px-4 sm:px-6 py-4">
           <TransitionLink href="/">
             <Logo />

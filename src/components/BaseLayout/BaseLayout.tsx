@@ -1,8 +1,7 @@
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import styles from "./BaseLayout.module.css";
-import Transition from "./Transition";
-import { AnimatePresence } from "framer-motion";
+
 type Props = {
   children: React.ReactNode;
   decoration?: React.ReactNode;
