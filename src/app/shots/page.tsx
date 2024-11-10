@@ -18,10 +18,10 @@ const ShotsPage = ({}: Props) => {
           <HeartsShot className="w-[144px] sm:w-[244px] lg:w-[320px]" />
         </div>
         <div className="title shots-section-1 mt-16 sm:mt-32">
-          <JumpingText className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase ">
+          <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase ">
             Gallery
           </JumpingText>
-          <JumpingText className="text-hxlm sm:text-hxlt lg:text-hxl font-bold uppercase ">
+          <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl ffont-bold uppercase ">
             of digital art
           </JumpingText>
 
