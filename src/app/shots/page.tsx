@@ -21,7 +21,7 @@ const ShotsPage = ({}: Props) => {
           <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase ">
             Gallery
           </JumpingText>
-          <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl ffont-bold uppercase ">
+          <JumpingText className="text-hxlm sm:text-hxlt lg:text-[176px]/[162px] xl:text-hxl font-bold uppercase ">
             of digital art
           </JumpingText>
 
